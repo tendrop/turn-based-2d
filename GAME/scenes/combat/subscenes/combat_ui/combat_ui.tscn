@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://uoxwu5km2540"]
+
+[node name="CombatUi" type="CanvasLayer" unique_id=1977580954]
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1999987526]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1592608962]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer" unique_id=1188373706]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "This is test text 1"
