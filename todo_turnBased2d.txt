@@ -1,0 +1,224 @@
+
+| TODO DRIVE: ARENA |
+
+-- Black #000000
+-- 85% Gray: #262626 (for disabled controls)
+-- 75% Gray: #404040 (hover)
+-- 66% Gray: #545454 (select)
+-- 50% Gray #808080 (select + hover)
+-- 33% Gray #A8A8A8
+-- 25% Gray #C0C0C0
+
+AND THEN ONLY INDIGLO AND IBM COLORBLIND palette
+-- Yellow: #FFB000 (255, 176, 0)
+-- Orange: #FE6100 (254, 97, 0)
+-- Red: #DC267F (220, 38, 127)
+-- Purple: #785EF0 (120, 94, 240)
+-- Blue: #648FFF (100, 143, 255)
+
+IndiGLO is player UI accent color 
+-- #00ffb0 (0, 255, 176)
+
+
+| CONTROLS |
+
+
+800 246 2154
+
+8202
+
+| World Layers |
+
+
+
+| Collision Layers|
+1: "Wall" -- the base on which a model would sit. Used on Bodies for collision work
+
+| NOTES |
+
+- Don't use font shadow, it causes performance issues. and is superfluous
+
+
+>> .distance_squared_to() is faster than .distance_to() because distance_to is an extra step (square rooting)
+DismissalTimer handles all objects that should be removed when player too far away.
+	-- every 8 seconds, it checkes all objs that belong to "dismissable" group.
+		if obj is too far from player, then call that obj's "dismiss()" func
+
+>> LERP in process or physics process is weird. use MOVE_TOWARDS instead, and then for delta do (delta * process_delta)
+
+| SETTINGS |
+-- going PS1 pixel art 640×360 --> 960x540 --> 854x480 (windows 3.0 is 640x480, so basically windscreen win3.0)
+	-- might be better to go back to 640 if want retro style, or to bigger if want clear style. what have now is weird in-between.
+		-- or could make this style work with a very simple palette?
+		-- but big city images are goin to be harder with this style because need to do so much more
+	-- different sizes will need default values (consts) tweaked (collision stuff, movevemt stuff) 
+		-- as well as center of mass, linear velocity, angular velocity , PhysicsMaterial->Bounce in RigidBody2D
+	-- make sure to turn on Solver->Contact Monitor in RigidBody2D (and set Max Contacts Report) in order to report collisions
+	-- need to adjust marker2d so enemy will hit car when parked instead of endlessly circling
+-- Physics->2D->Default Gravity = 0
+-- canvas_items, expand, fractional
+	-- https://docs.godotengine.org/en/latest/tutorials/rendering/multiple_resolutions.html
+	-- mode: viewport // aspect: expand // scale_mode: integer
+
+	!! Blurry Fonts !!
+	-- Project Settings -> Search 'MSDF', in GUI -> Theme enable default font multichannel signed...
+		-- then save scene and reload current project
+
+-- cars are 18 by 36
+	-- if go 640 would need them to be 12 by 24? 640 with current size simply doesn't show enouh screen
+		-- but 12 by 24 is going to be extremely low detail
+
+
+| RENDERER NOTES |
+~ motion jumps still visible --- ITS VULCAN RENDERER
+	-- https://www.reddit.com/r/godot/comments/1dmtiwt/godot_skipping_frames_in_extremely_simple_and/
+	-- Rendering > Rendering Device > Driver > Driver.windows ( with Vsync enabled) solves
+	-- don't need Project Settings > Physics > Common > Physics Interpolation
+	!! 4.6 will have dx12 as default instead of vulcan!!
+
+~ TRY COMPATIBLITY RENDERER
+	-- motion jumps return
+		-- COMPATIBILITY CAN WORK, but do have (documented) issue of stutter occuring when elements
+		    loaded into scene for first time. Need to init them once behind a ColorRect in order to reduce stutter
+			-- exclusive full screen doesn't have this stutter?
+	!! solution: "Mobile" rendering method with dx3d12 renderer !!
+		-- turned of antialiasing screen space roughness limiter as well
+>> can try to set "enable physics interpolation" in project settings for smoothness if this doesn't work
+	-- ehh. tried physics jitter fix to 1.5 or 2.0 instead. seems good in exclusive fullscreen under compatiblity
+		-- went back to physics interpolation again for no real good reason. seems working now?
+	-- what we've learned: vsync is needed. physics jitter fix or physics interpolation is needed.
+		-- having a camera as a separate node that updates on process instaed of physics process doesn't seem to help (CombatCamera)
+	-- issues are more obvious in windowed mode than exclusive fullscreen
+	
+	
+| UI Control Nodes |
+https://www.youtube.com/watch?v=5Hog6a0EYa0
+-- need to change anchros preset to custom after doing intial set to tweak
+-- use anchors, not (absolute) position
+-- anchor point value = % of screen position (0 to 1, 0.5 is 50% or halfway point of screen)
+-- anchors work like winforms, where you want to anchor to appropriate edge of screen for resizing
+-- anchor offsets (anchor preset = custom) to give margins
+	
+Containers
+-- container children do not have anchors
+-- custom minimimum + ignore size (expand mode) for sizing images
+-- child of container: when using horizontal/vertical fill sizing, need to click on the "Expand" checkbox to have it take whole space
+	-- in the inspector sidebar, not the top menu
+	-- checking this checkbox is akin to setting width/hight to "*" in wpf
+		-- then stretch ratio below it can be 1.5*, 2*, et
+
+Style Box (for panels) resource
+-- set panels appearance with stylebox, can have differnt types of styleboxes
+
+
+
+| THIS BRANCH TODO |
+
+~ change health to integrity
+~ commit into execute
+~ change paused to suspend/halt [execution]
+
+~ fire button disabled until suspend occurs [Execution Running]
+~	-- "Press SPACE to Suspend Execution" label
+~	* pause refreshtimer as well when suspended (run update one last time)
+	
+~ update LOS to be both when in range of weapon, and have clear shot to target
+
+* fire (temp) bullet at target and have it take off damage
+* weapon manager, each weapon is a scene that it sends off
+
+* after fire, shoot form disappears and continues to destination
+* if don't fire during movement, player still has option to shoot at end of movement
+	* also need button to end turn without shooting (if no valid targets)
+
+~ banner message at top middle
+	~ will say "player paused" or "enemy turn"
+	~ inner ring or border should change color based on player/enemy
+		~ might be easiest to make fake border with marginbox
+
+~ track health
+	~ show in table
+
+~ player and enemy groups
+	~ player can only activate player owned actors
+	~ selecting enemy identifies as such in selection box at bottom middle
+		~ selection box should have different color border when enemy selected
+			~--> see BannerMsgContainer for how to do (in CombatUi also)
+
+
+* when paused, show overwatch form (in place of activation form)
+		--> listbox of overwatch weapons
+		--> listbox of potential targets and their hp (will eventually have damage and hit%)
+		--> button to fire
+
+* tab key to cycle through targets when shooting is open, and player actors when game in idle state
+	-- when target changes, selection box updates to them
+	
+* player able to pause when moving and shoot at enemy
+	* basic state machine (if not one already) for actor
+	* doodad manager also handles projectiles
+
+* actor names on base instead of floating above, so can have icons above
+* base should be 3d ring, with sticker of name that always faces player (or rotate to always face camera?)
+	-- or else name flat on ground, pointing up?
+
+| Future Branch |
+POTENTIAL MVMT TWEAKS
+* hard left/right available until gear 4
+* not enough difference between forwards
+	* short should be length of (halfway between short and medium)
+* movement should be based on a turn angle + distance-determined-by-gear, not blocks ala now
+* turns should not be started until around halfway through movment
+
+* INSTEAD OF MOVEMENT GRID
+	* gear shift to determine distance
+	* 180degree dial to choose heading
+	* current gear limits which headings are available
+	* gear shift is before dial; allowing player more options
+	* may have to build own dial: https://github.com/jesuisse/godot-radial-menu-control
+		-- https://godotengine.org/asset-library/asset/1246
+		-- https://forum.godotengine.org/t/how-to-make-a-rotary-knob-control/22829/2
+		-- https://www.youtube.com/watch?v=SfNu7ZDcF_A
+		
+		
+
+~ when two base-areas touch during a turn, movement stops and they become locked 
+	* terrain needs to be destructable then, b/c same happens with TerrainPiece
+	* TerrainPiece object that stops movement
+
+* what if player actor hits/locks another player actor?
+	* tentitive plan: another Area3D that gives 1.5 unit buffer and makes stop before gets to close to other player
+* ring out if leave edge of world
+
+* GameStateManager overhaul?
+* different gears should have different speeds and different push-away-impact strengths
+* name on ground, icons overhead (eg ! for those who can currently see selected actor)
+	* wingdings font for icons? then use label3d?
+
+* can't infiltrate when currently seen
+* infiltrating removes action task
+* default action is attack
+--------------
+* select triangle
+* select destination
+* hit button
+* watch move
+* ready for next move
+
+
+| MOUSE INTERACTIONS |
+-- left-click to SELECT something
+	-- left-click on nothing to clear active selection
+		-- too tricky, just use tab to move through selections
+-- left-hold and drag = move camera X&Z
+	-- does not deselect active selection, or select new item
+	-- mouse cursor touch edge of screen = slow scroll
+-- mouse wheel to zoom in or out. 
+	-- as zoom in, camara tilts to near horizontal. at max zoom out, is almost overhead looking straight down
+-- camera is orthogonal. farter away from camera is not smaller.
+-- left click on minimap to snap to location
+
+gladius style right-click (prob needs tweaking)
+-- right-moves to location (gladius: no confirm. will prob want confirm)
+-- hold right click to see path of unit. when release, unit moves to destination.
+
