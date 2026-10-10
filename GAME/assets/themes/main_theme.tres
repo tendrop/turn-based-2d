@@ -5,8 +5,8 @@
 [ext_resource type="StyleBox" uid="uid://7oas5taxmly6" path="res://assets/themes/main_theme_sub_themes/new_style_box_flat_grabbed.tres" id="3_0f6i3"]
 [ext_resource type="Texture2D" uid="uid://cxyqmkaq7bfdc" path="res://assets/svgs/circle16_indiglo.svg" id="3_y0ixg"]
 [ext_resource type="StyleBox" uid="uid://bu1hhurv82p4r" path="res://assets/themes/main_theme_sub_themes/new_style_box_flat.tres" id="4_y0ixg"]
-[ext_resource type="FontFile" uid="uid://lefx3ww8a31d" path="res://assets/fonts/Mx437_Wyse700b-2y.ttf" id="5_etupa"]
 [ext_resource type="StyleBox" uid="uid://cafjlvai0yry2" path="res://assets/themes/main_theme_sub_themes/Black_noBorder_StyleBoxFloat.tres" id="6_0f6i3"]
+[ext_resource type="FontFile" uid="uid://70vi8t8xxbx6" path="res://assets/fonts/Mx437_Wang_Pro_Mono.ttf" id="7_0f6i3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgdp2"]
 content_margin_left = 4.0
@@ -238,11 +238,12 @@ expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
 [resource]
-default_font = ExtResource("5_etupa")
-default_font_size = 16
+default_font = ExtResource("7_0f6i3")
+default_font_size = 12
 Button/colors/font_disabled_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 12
 Button/styles/disabled = SubResource("StyleBoxFlat_xgdp2")
 Button/styles/focus = ExtResource("1_4fp8c")
 Button/styles/hover = SubResource("StyleBoxFlat_gxbo5")
@@ -258,14 +259,17 @@ ItemList/colors/font_color = Color(0.7647059, 0.7647059, 0.7647059, 1)
 ItemList/colors/font_hovered_color = Color(1, 1, 1, 1)
 ItemList/colors/font_hovered_selected_color = Color(1, 1, 1, 1)
 ItemList/colors/font_selected_color = Color(1, 1, 1, 1)
+ItemList/font_sizes/font_size = 12
 ItemList/styles/panel = SubResource("StyleBoxFlat_611f8")
 MarginContainer/constants/margin_bottom = 8
 MarginContainer/constants/margin_left = 8
 MarginContainer/constants/margin_right = 8
 MarginContainer/constants/margin_top = 8
 OptionButton/colors/font_color = Color(1, 1, 1, 1)
+OptionButton/font_sizes/font_size = 12
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_x776d")
 PopupMenu/colors/font_color = Color(1, 1, 1, 1)
+PopupMenu/font_sizes/font_size = 12
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_0arac")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_hvvpc")
 TooltipPanel/colors/title_color = Color(0, 1, 0, 1)
@@ -276,6 +280,7 @@ Tree/constants/inner_item_margin_right = 4
 Tree/constants/inner_item_margin_top = 4
 Tree/constants/item_margin = 0
 Tree/constants/v_separation = 0
+Tree/font_sizes/font_size = 12
 Tree/styles/focus = SubResource("StyleBoxFlat_nb43s")
 Tree/styles/hovered = SubResource("StyleBoxFlat_y0ixg")
 Tree/styles/hovered_dimmed = SubResource("StyleBoxFlat_81epl")

@@ -30,10 +30,8 @@ layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/ScrollContainer" unique_id=1962049946]
 unique_name_in_owner = true
-texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 10
 text = "Example test starts here"
 scroll_following = true

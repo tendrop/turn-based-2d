@@ -22,8 +22,9 @@ GameStateManager="*uid://r4c1klqth3lb"
 
 [display]
 
+window/size/mode=4
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep_height"
 
 [file_customization]
 
@@ -37,7 +38,7 @@ folder_colors={
 [gui]
 
 theme/custom="uid://c1ub1c2nv27f7"
-theme/custom_font="uid://lefx3ww8a31d"
+theme/custom_font="uid://70vi8t8xxbx6"
 
 [physics]
 
@@ -45,7 +46,6 @@ theme/custom_font="uid://lefx3ww8a31d"
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

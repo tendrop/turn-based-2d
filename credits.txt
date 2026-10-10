@@ -1,3 +1,1 @@
-Quake Style Fluid Shader: https://godotshaders.com/shader/quake-style-fluid/
-
-Font: Wyse700b-2y  by VileR (int10h.org)
+Font: Mx437_Wang_Pro_Mono  by VileR (int10h.org)
