@@ -1,15 +1,37 @@
 [gd_scene format=3 uid="uid://uoxwu5km2540"]
 
+[ext_resource type="Script" uid="uid://cka47qjg7jefb" path="res://scenes/combat/subscenes/combat_ui/combat_ui.gd" id="1_1sq4j"]
+
 [node name="CombatUi" type="CanvasLayer" unique_id=1977580954]
+script = ExtResource("1_1sq4j")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1999987526]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MainUi" type="Control" parent="." unique_id=129616617]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1592608962]
+[node name="PanelContainer" type="PanelContainer" parent="MainUi" unique_id=1999987526]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -40.0
+offset_right = 85.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MainUi/PanelContainer" unique_id=1592608962]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer" unique_id=1188373706]
+[node name="SelectionLabel" type="Label" parent="MainUi/PanelContainer/MarginContainer" unique_id=1188373706]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "This is test text 1"

@@ -1,0 +1,18 @@
+extends CharacterBody2D
+class_name Actor
+
+@export var display_name: String = "[Actor]"
+
+
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		print("Actor clicked")
+		GameStateManager.try_select_object(self)
+
+
+func _on_mouse_entered() -> void:
+	print("mouse entered %s" % display_name)
+
+
+func _on_mouse_exited() -> void:
+	print("mouse exited %s" % display_name)
