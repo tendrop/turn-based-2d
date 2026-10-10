@@ -8,3 +8,7 @@ extends Node
 ## emitted by: GameStateManager
 ## heard by: CombatUi
 signal on_object_selected(n: Node2D)
+
+## emitted by: lots
+## heard by: ScrollingLog (in CombatUi)
+signal on_print_message_to_log(msg: String)

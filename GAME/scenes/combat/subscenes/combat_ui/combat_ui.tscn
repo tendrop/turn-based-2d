@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://uoxwu5km2540"]
 
 [ext_resource type="Script" uid="uid://cka47qjg7jefb" path="res://scenes/combat/subscenes/combat_ui/combat_ui.gd" id="1_1sq4j"]
+[ext_resource type="PackedScene" uid="uid://cejd6hkhbjluy" path="res://scenes/combat/subscenes/combat_ui/children_scenes/scrolling_log/scrolling_log.tscn" id="2_vb2sj"]
 
 [node name="CombatUi" type="CanvasLayer" unique_id=1977580954]
 script = ExtResource("1_1sq4j")
@@ -32,6 +33,17 @@ layout_mode = 2
 
 [node name="SelectionLabel" type="Label" parent="MainUi/PanelContainer/MarginContainer" unique_id=1188373706]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "This is test text 1"
+
+[node name="ScrollingLog" parent="MainUi" unique_id=1600343915 instance=ExtResource("2_vb2sj")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+offset_right = 360.0
+offset_bottom = 0.0
+grow_vertical = 0

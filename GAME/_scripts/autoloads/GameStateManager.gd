@@ -14,7 +14,9 @@ var current_game_state: GAME_STATE:
 		return __current_game_state
 	set(new_state):
 		if new_state == __current_game_state:
-			push_warning("attempted to change state, but already in %s" % GAME_STATE.keys()[current_game_state])
+			# do nothing
+			if new_state != GAME_STATE.OBJECT_SELECTED:
+				push_warning("attempted to change state, but already in %s" % GAME_STATE.keys()[current_game_state])
 		else:
 			# EXIT tasks for current state
 			match __current_game_state:
