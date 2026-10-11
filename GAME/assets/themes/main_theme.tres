@@ -173,7 +173,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.32941177, 0.32941177, 0.32941177, 1)
+border_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etupa"]
