@@ -36,9 +36,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			__do_zoom(true)
+			get_viewport().set_input_as_handled()
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			__do_zoom(false)
-		get_viewport().set_input_as_handled()
+			get_viewport().set_input_as_handled()
 		   
 
 func __do_zoom(zoom_in: bool) -> void:
