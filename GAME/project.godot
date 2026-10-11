@@ -34,6 +34,10 @@ folder_colors={
 "res://scenes/combat/subscenes/combat_ui/": "green"
 }
 
+[global_group]
+
+player_actors=""
+
 [gui]
 
 theme/custom="uid://c1ub1c2nv27f7"

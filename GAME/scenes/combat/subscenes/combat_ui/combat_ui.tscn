@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cka47qjg7jefb" path="res://scenes/combat/subscenes/combat_ui/combat_ui.gd" id="1_1sq4j"]
 [ext_resource type="PackedScene" uid="uid://cejd6hkhbjluy" path="res://scenes/combat/subscenes/combat_ui/children_scenes/scrolling_log/scrolling_log.tscn" id="2_vb2sj"]
+[ext_resource type="PackedScene" uid="uid://bvw64k3msl7oq" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_actors_table/player_actors_table.tscn" id="3_eljfe"]
 
 [node name="CombatUi" type="CanvasLayer" unique_id=1977580954]
 script = ExtResource("1_1sq4j")
@@ -48,3 +49,12 @@ offset_top = -120.0
 offset_right = 360.0
 offset_bottom = 0.0
 grow_vertical = 0
+
+[node name="PlayerActorsTable" parent="." unique_id=1859567931 instance=ExtResource("3_eljfe")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 32.0
+offset_bottom = 12.0
+grow_horizontal = 1
+grow_vertical = 1

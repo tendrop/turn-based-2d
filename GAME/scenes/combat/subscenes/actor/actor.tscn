@@ -8,7 +8,7 @@ size = Vector2(32, 32)
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm35l"]
 radius = 22.0
 
-[node name="Actor" type="CharacterBody2D" unique_id=265465293]
+[node name="Actor" type="CharacterBody2D" unique_id=265465293 groups=["player_actors"]]
 input_pickable = true
 motion_mode = 1
 script = ExtResource("1_6v7qs")
