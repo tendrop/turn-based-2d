@@ -22,7 +22,6 @@ GameStateManager="*uid://r4c1klqth3lb"
 
 [display]
 
-window/size/mode=4
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
 

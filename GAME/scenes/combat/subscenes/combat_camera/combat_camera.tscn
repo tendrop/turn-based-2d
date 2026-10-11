@@ -1,3 +1,9 @@
 [gd_scene format=3 uid="uid://bf8w8h7oytew0"]
 
+[ext_resource type="Script" uid="uid://c3dpo6aj36mqt" path="res://scenes/combat/subscenes/combat_camera/combat_camera.gd" id="1_sqi1f"]
+
 [node name="CombatCamera" type="Camera2D" unique_id=1902928079]
+position_smoothing_enabled = true
+script = ExtResource("1_sqi1f")
+ZOOM_STEP = 0.2
+ZOOM_SPEED = 30.0

@@ -92,7 +92,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+border_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0arac"]

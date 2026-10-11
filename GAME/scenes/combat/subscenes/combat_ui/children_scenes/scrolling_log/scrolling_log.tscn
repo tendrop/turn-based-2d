@@ -8,7 +8,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+border_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
 corner_detail = 1
 
 [node name="ScrollingLog" type="PanelContainer" unique_id=1600343915]
@@ -33,5 +33,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
 text = "Example test starts here"
 scroll_following = true
