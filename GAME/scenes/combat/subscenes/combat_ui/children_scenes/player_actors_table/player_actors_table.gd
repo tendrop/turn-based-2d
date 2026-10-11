@@ -21,8 +21,8 @@ var __player_actors: Dictionary[Actor, TreeItem] = {}
 
 func _ready():
 	SignalManager.on_object_selected.connect(_on_object_selected)
-	#SignalManager.on_actor_selection_cleared.connect(_on_actor_selection_cleared)
-	#SignalManager.on_select_next_player_actor.connect(_on_select_next_player_actor)
+	SignalManager.on_object_selection_cleared.connect(_on_object_selection_cleared)
+	SignalManager.on_select_next_player_actor.connect(_on_select_next_player_actor)
 	
 	for col_name: COLS in __columns.keys():
 		set_column_title(__columns[col_name], COLS.keys()[col_name])
@@ -62,3 +62,31 @@ func _on_object_selected(n: Node2D) -> void:
 			tree_item.select(0)
 	else:
 		self.deselect_all()
+
+
+func _on_select_next_player_actor() -> void:
+	print("signal heard")
+	var tree_item: TreeItem = self.get_selected()
+	if tree_item:
+		# find index of current entry
+		var index: int = 0
+		for item: TreeItem in __player_actors.values():
+			index += 1
+			if item == tree_item:
+				break
+		
+		if index > __player_actors.size() - 1:
+			index = 0
+		
+		var actor: Actor = __player_actors.keys()[index]
+		__player_actors[actor].select(0)
+		GameStateManager.try_select_object(actor)
+		
+	else:
+		# select first entry if nothing is selected
+		__player_actors[__player_actors.keys()[0]].select(0)
+		GameStateManager.try_select_object(__player_actors.keys()[0])
+
+
+func _on_object_selection_cleared() -> void:
+	self.deselect_all()

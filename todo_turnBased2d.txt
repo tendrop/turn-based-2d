@@ -119,6 +119,10 @@ Style Box (for panels) resource
 
 * Key Handler node that does all unhandled input
 
+* selection circle in doodad manager
+
+* Activated window is just 2 actions, both need to be declared before executing. no backsies
+	-- reread infinity and sketch out plan (& pirates)
 
 | Future Branch |
 

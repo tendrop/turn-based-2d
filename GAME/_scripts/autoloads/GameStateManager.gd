@@ -23,7 +23,9 @@ var current_game_state: GAME_STATE:
 				GAME_STATE.PLAYER_IDLE:
 					pass
 				GAME_STATE.OBJECT_SELECTED:
-					pass
+					if new_state != GAME_STATE.ACTOR_ACTIVATED:
+						__current_actor = null
+						SignalManager.on_object_selection_cleared.emit()
 				GAME_STATE.ACTOR_ACTIVATED:
 					pass
 				GAME_STATE.PLAYER_TURN_RUNNING:
@@ -83,3 +85,13 @@ func __select_object(obj: Node2D) -> void:
 	else:
 		__current_actor = null
 	current_game_state = GAME_STATE.OBJECT_SELECTED
+
+
+## called by KeyHandler when backspace is pressed
+func try_clear_selection() -> void:
+	match current_game_state:
+		GAME_STATE.OBJECT_SELECTED:
+			current_game_state = GAME_STATE.PLAYER_IDLE
+		GAME_STATE.ACTOR_ACTIVATED:
+			# first push of backspace button returns to prev state (actor selected)
+			current_game_state = GAME_STATE.OBJECT_SELECTED

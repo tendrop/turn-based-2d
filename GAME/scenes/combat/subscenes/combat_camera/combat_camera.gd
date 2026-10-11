@@ -25,9 +25,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		if event.pressed:
 			__is_panning = true
+			Input.set_default_cursor_shape(Input.CURSOR_MOVE)
 			get_viewport().set_input_as_handled()
 		else:
 			__is_panning = false
+			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	elif event is InputEventMouseMotion and __is_panning:
 		position += -event.relative / zoom
 		get_viewport().set_input_as_handled()

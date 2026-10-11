@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://l1k5670ib4d3"]
 
+[ext_resource type="PackedScene" uid="uid://baptberhrvlg" path="res://scenes/combat/subscenes/key_handler/key_handler.tscn" id="1_kaxju"]
 [ext_resource type="PackedScene" uid="uid://uoxwu5km2540" path="res://scenes/combat/subscenes/combat_ui/combat_ui.tscn" id="1_n7x52"]
 [ext_resource type="PackedScene" uid="uid://bf8w8h7oytew0" path="res://scenes/combat/subscenes/combat_camera/combat_camera.tscn" id="2_1pw7v"]
 [ext_resource type="PackedScene" uid="uid://vqyv3wh7y3sn" path="res://scenes/combat/subscenes/actor/actor.tscn" id="3_n426y"]
 
 [node name="PrimaryCombat" type="Node2D" unique_id=384078481]
+
+[node name="KeyHandler" parent="." unique_id=227509208 instance=ExtResource("1_kaxju")]
 
 [node name="CombatUi" parent="." unique_id=1977580954 instance=ExtResource("1_n7x52")]
 
