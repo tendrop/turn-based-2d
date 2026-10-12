@@ -130,9 +130,7 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-* Change mouse icon to hand when dragging
-
-* Key Handler node that does all unhandled input
+* Get rid of activated state, it's pointless
 
 * selection circle in doodad manager
 

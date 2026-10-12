@@ -3,7 +3,6 @@ extends Node
 enum GAME_STATE {
 	PLAYER_IDLE,
 	OBJECT_SELECTED,
-	ACTOR_ACTIVATED,
 	PLAYER_TURN_RUNNING,
 	ENEMY_TURN_RUNNING
 }
@@ -23,13 +22,8 @@ var current_game_state: GAME_STATE:
 				GAME_STATE.PLAYER_IDLE:
 					pass
 				GAME_STATE.OBJECT_SELECTED:
-					if new_state != GAME_STATE.ACTOR_ACTIVATED:
-						__current_actor = null
-						SignalManager.on_object_selection_cleared.emit()
-				GAME_STATE.ACTOR_ACTIVATED:
-					if new_state != GAME_STATE.OBJECT_SELECTED:
-						__current_actor = null
-						SignalManager.on_player_actor_deactivated.emit()
+					__current_actor = null
+					SignalManager.on_object_selection_cleared.emit()
 				GAME_STATE.PLAYER_TURN_RUNNING:
 					pass
 				GAME_STATE.ENEMY_TURN_RUNNING:
@@ -41,8 +35,6 @@ var current_game_state: GAME_STATE:
 					pass
 				GAME_STATE.OBJECT_SELECTED:
 					pass
-				GAME_STATE.ACTOR_ACTIVATED:
-					current_actor.activate_me()
 				GAME_STATE.PLAYER_TURN_RUNNING:
 					pass
 				GAME_STATE.ENEMY_TURN_RUNNING:
@@ -68,24 +60,9 @@ func try_select_object(obj: Node2D) -> void:
 	if "display_name" in obj:
 		print("selcting %s when state is %s" % [obj.display_name, GAME_STATE.keys()[current_game_state]])
 		match current_game_state:
-			GAME_STATE.PLAYER_IDLE, GAME_STATE.ACTOR_ACTIVATED:
+			GAME_STATE.PLAYER_IDLE, GAME_STATE.OBJECT_SELECTED:
 				print("trying to select it...")
 				__select_object(obj)
-			
-			GAME_STATE.OBJECT_SELECTED:
-				if current_actor == obj and obj.owner_group == Statics.GROUPS.PLAYER_ACTORS:
-					print("actor already selected, trying to activate")
-					try_activate_actor()
-				else:
-					print("clicked object is new when something was already selected, trying to select it")
-					__select_object(obj)
-
-
-func try_activate_actor() -> void:
-	if not current_actor:
-		push_error("MsgBox: No actor is selected")
-		return
-	current_game_state = GAME_STATE.ACTOR_ACTIVATED
 
 
 func __select_object(obj: Node2D) -> void:
@@ -106,6 +83,3 @@ func try_clear_selection() -> void:
 	match current_game_state:
 		GAME_STATE.OBJECT_SELECTED:
 			current_game_state = GAME_STATE.PLAYER_IDLE
-		GAME_STATE.ACTOR_ACTIVATED:
-			# first push of backspace button returns to prev state (actor selected)
-			current_game_state = GAME_STATE.OBJECT_SELECTED
