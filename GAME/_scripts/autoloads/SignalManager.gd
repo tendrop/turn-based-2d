@@ -17,3 +17,8 @@ signal on_print_message_to_log(msg: String)
 ## emitted by: KeyHandler
 ## heard by: PlayerActorsTable
 signal on_select_next_player_actor()
+
+
+
+############### DooDads
+signal on_move_hover_circle(visible: bool, global_loc: Vector2)

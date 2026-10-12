@@ -41,8 +41,7 @@ IndiGLO is player UI accent color
 
 | World Layers |
 
-
-
+10 - Actor
 
 
 | Collision Layers|
@@ -130,9 +129,7 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-* Get rid of activated state, it's pointless
-
-* selection circle in doodad manager
+* move action
 
 * Activated window is just 2 actions, both need to be declared before executing. no backsies
 	-- reread infinity and sketch out plan (& pirates)

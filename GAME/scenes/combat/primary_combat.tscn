@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://uoxwu5km2540" path="res://scenes/combat/subscenes/combat_ui/combat_ui.tscn" id="1_n7x52"]
 [ext_resource type="PackedScene" uid="uid://bf8w8h7oytew0" path="res://scenes/combat/subscenes/combat_camera/combat_camera.tscn" id="2_1pw7v"]
 [ext_resource type="PackedScene" uid="uid://vqyv3wh7y3sn" path="res://scenes/combat/subscenes/actor/actor.tscn" id="3_n426y"]
+[ext_resource type="PackedScene" uid="uid://beutckbanthtt" path="res://scenes/combat/subscenes/doodad_manager/doodad_manager.tscn" id="5_d0tbs"]
 
 [node name="PrimaryCombat" type="Node2D" unique_id=384078481]
 
@@ -20,3 +21,5 @@ display_name = "Onzer"
 [node name="Actor2" parent="." unique_id=265465293 instance=ExtResource("3_n426y")]
 position = Vector2(119, -54)
 display_name = "Act2"
+
+[node name="DoodadManager" parent="." unique_id=2081016043 instance=ExtResource("5_d0tbs")]

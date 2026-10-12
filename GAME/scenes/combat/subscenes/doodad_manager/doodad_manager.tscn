@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://beutckbanthtt"]
+
+[ext_resource type="Script" uid="uid://cxa1vdfvjadqn" path="res://scenes/combat/subscenes/doodad_manager/doodad_manager.gd" id="1_88tih"]
+[ext_resource type="PackedScene" uid="uid://55e762kn7fo1" path="res://scenes/combat/subscenes/doodad_manager/doodads/hover_circle/hover_circle.tscn" id="2_pj6hf"]
+[ext_resource type="Script" uid="uid://b5rdaivdngbur" path="res://scenes/combat/subscenes/doodad_manager/doodads/hover_circle/selection_circle.gd" id="3_f2t1t"]
+
+[node name="DoodadManager" type="Node" unique_id=2081016043]
+script = ExtResource("1_88tih")
+
+[node name="SelectionCircle" parent="." unique_id=696052192 instance=ExtResource("2_pj6hf")]
+visible = false
+modulate = Color(0, 1, 0.6901961, 1)
+script = ExtResource("3_f2t1t")
+
+[node name="HoverCircle" parent="." unique_id=685406837 instance=ExtResource("2_pj6hf")]
+visible = false

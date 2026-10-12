@@ -21,8 +21,8 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 
 func _on_mouse_entered() -> void:
-	print("mouse entered %s" % display_name)
+	SignalManager.on_move_hover_circle.emit(true, self.global_position)
 
 
 func _on_mouse_exited() -> void:
-	print("mouse exited %s" % display_name)
+	SignalManager.on_move_hover_circle.emit(false, Vector2.INF)
