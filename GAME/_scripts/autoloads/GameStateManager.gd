@@ -27,7 +27,9 @@ var current_game_state: GAME_STATE:
 						__current_actor = null
 						SignalManager.on_object_selection_cleared.emit()
 				GAME_STATE.ACTOR_ACTIVATED:
-					pass
+					if new_state != GAME_STATE.OBJECT_SELECTED:
+						__current_actor = null
+						SignalManager.on_player_actor_deactivated.emit()
 				GAME_STATE.PLAYER_TURN_RUNNING:
 					pass
 				GAME_STATE.ENEMY_TURN_RUNNING:
@@ -40,7 +42,7 @@ var current_game_state: GAME_STATE:
 				GAME_STATE.OBJECT_SELECTED:
 					pass
 				GAME_STATE.ACTOR_ACTIVATED:
-					pass
+					current_actor.activate_me()
 				GAME_STATE.PLAYER_TURN_RUNNING:
 					pass
 				GAME_STATE.ENEMY_TURN_RUNNING:
@@ -67,24 +69,36 @@ func try_select_object(obj: Node2D) -> void:
 		print("selcting %s when state is %s" % [obj.display_name, GAME_STATE.keys()[current_game_state]])
 		match current_game_state:
 			GAME_STATE.PLAYER_IDLE, GAME_STATE.ACTOR_ACTIVATED:
+				print("trying to select it...")
 				__select_object(obj)
 			
 			GAME_STATE.OBJECT_SELECTED:
-				if current_actor == obj: #&& obj.owner_group == Statics.GROUPS.PLAYER_ACTORS:
+				if current_actor == obj and obj.owner_group == Statics.GROUPS.PLAYER_ACTORS:
 					print("actor already selected, trying to activate")
-					## TODO
-					# try_activate_actor()
+					try_activate_actor()
 				else:
+					print("clicked object is new when something was already selected, trying to select it")
 					__select_object(obj)
 
 
+func try_activate_actor() -> void:
+	if not current_actor:
+		push_error("MsgBox: No actor is selected")
+		return
+	current_game_state = GAME_STATE.ACTOR_ACTIVATED
+
+
 func __select_object(obj: Node2D) -> void:
-	SignalManager.on_object_selected.emit(obj)
-	if obj is Actor:
-		__current_actor = obj
+	if current_actor != obj:
+		print("selecting object")
+		SignalManager.on_object_selected.emit(obj)
+		if obj is Actor:
+			__current_actor = obj
+		else:
+			__current_actor = null
+		current_game_state = GAME_STATE.OBJECT_SELECTED
 	else:
-		__current_actor = null
-	current_game_state = GAME_STATE.OBJECT_SELECTED
+		print("did not select it")
 
 
 ## called by KeyHandler when backspace is pressed

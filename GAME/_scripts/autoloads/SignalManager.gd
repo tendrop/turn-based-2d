@@ -17,3 +17,7 @@ signal on_print_message_to_log(msg: String)
 ## emitted by: KeyHandler
 ## heard by: PlayerActorsTable
 signal on_select_next_player_actor()
+
+## emitted by: Actor.activate_me() -- triggered by GameStateManager.try_activate_actor()
+## heard by: PlayerExecutionPanel (in CombatUi)
+signal on_player_actor_activated(a: Actor)

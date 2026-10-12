@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b1jcpgun526kw"]
 
+[ext_resource type="Script" uid="uid://clscdotkr0up1" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_execution_panel/player_execution_panel.gd" id="1_1gnpe"]
 [ext_resource type="ButtonGroup" uid="uid://4gqyh1byu54a" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_execution_panel/task_one_button_group.tres" id="1_o5m3u"]
 [ext_resource type="Texture2D" uid="uid://ckii0y7ubb08k" path="res://assets/svgs/play.svg" id="2_ftqre"]
 
@@ -32,6 +33,7 @@ corner_detail = 1
 [node name="PlayerExecutionPanel" type="PanelContainer" unique_id=733081911]
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_1gnpe")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1805017115]
 layout_mode = 2
