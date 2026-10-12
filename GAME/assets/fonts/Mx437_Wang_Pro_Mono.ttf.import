@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://lefx3ww8a31d"
-path="res://.godot/imported/Mx437_Wyse700b-2y.ttf-a64ebb5a99b85623f488d4bda61ef1cd.fontdata"
+uid="uid://70vi8t8xxbx6"
+path="res://.godot/imported/Mx437_Wang_Pro_Mono.ttf-4d3ee7dcee608b2021cb5cab47e60722.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/Mx437_Wyse700b-2y.ttf"
-dest_files=["res://.godot/imported/Mx437_Wyse700b-2y.ttf-a64ebb5a99b85623f488d4bda61ef1cd.fontdata"]
+source_file="res://assets/fonts/Mx437_Wang_Pro_Mono.ttf"
+dest_files=["res://.godot/imported/Mx437_Wang_Pro_Mono.ttf-4d3ee7dcee608b2021cb5cab47e60722.fontdata"]
 
 [params]
 

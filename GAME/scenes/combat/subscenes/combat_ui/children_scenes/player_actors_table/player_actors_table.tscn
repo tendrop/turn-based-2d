@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bvw64k3msl7oq"]
+
+[ext_resource type="Script" uid="uid://b14hdxdn4dx6c" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_actors_table/player_actors_table.gd" id="1_7hwv4"]
+
+[node name="PlayerActorsTable" type="Tree" unique_id=1859567931]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+columns = 3
+column_titles_visible = true
+hide_root = true
+select_mode = 1
+auto_tooltip = false
+scroll_horizontal_enabled = false
+scroll_vertical_enabled = false
+script = ExtResource("1_7hwv4")

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://baptberhrvlg"]
+
+[ext_resource type="Script" uid="uid://riesyv6kromf" path="res://scenes/combat/subscenes/key_handler/key_handler.gd" id="1_60bud"]
+
+[node name="KeyHandler" type="Node" unique_id=227509208]
+script = ExtResource("1_60bud")

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://55e762kn7fo1"]
+
+[ext_resource type="Script" uid="uid://dv557b8fawc20" path="res://scenes/combat/subscenes/doodad_manager/doodads/hover_circle/hover_circle.gd" id="1_a08wm"]
+[ext_resource type="Texture2D" uid="uid://cik502lu0cubg" path="res://assets/pngs/selection_circle.png" id="1_qgxde"]
+
+[node name="HoverCircle" type="Sprite2D" unique_id=685406837]
+modulate = Color(1, 1, 1, 0.60784316)
+texture = ExtResource("1_qgxde")
+script = ExtResource("1_a08wm")

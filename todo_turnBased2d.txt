@@ -26,12 +26,26 @@ IndiGLO is player UI accent color
 
 
 
+| TERMINOLOGY |
+-- INTEGRITY: Health points
+-- POWER: Mana/Minerals/Gold - used to build units, cast spells
+-- SCRIPTS: spells. can be one-offs or persistant
+	-- if persistant, should show up in table under spells button with cancel button
+		-- persistant spells have ongoing power cost
+	-- spells need to be in range of [built? captured?] "Wizard Tower" nodes ala Majesty
+-- ACTORS: units. buy with power.
+	-- WORKER: base unit. only thing that can [capture and/or build] structures. basic weapon.
+-- BANDWIDTH: unit cap
+-- DATUM: meta-currency to track meta-game state progress. get from completing missions, destroying stuff, etc
+-- EXECUTIONS: number of actions can take in your turn. need a tracker in GUI
+
 | World Layers |
 
+10 - Actor
 
 
 | Collision Layers|
-1: "Wall" -- the base on which a model would sit. Used on Bodies for collision work
+
 
 | NOTES |
 
@@ -115,10 +129,10 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
+* move action
 
-
-* Key Handler node that does all unhandled input
-
+* Activated window is just 2 actions, both need to be declared before executing. no backsies
+	-- reread infinity and sketch out plan (& pirates)
 
 | Future Branch |
 

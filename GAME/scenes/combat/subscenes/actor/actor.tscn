@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://vqyv3wh7y3sn"]
+
+[ext_resource type="Script" uid="uid://cq4qhjalj6hgt" path="res://scenes/combat/subscenes/actor/actor.gd" id="1_6v7qs"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bm35l"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bm35l"]
+radius = 22.0
+
+[node name="Actor" type="CharacterBody2D" unique_id=265465293 groups=["player_actors"]]
+input_pickable = true
+motion_mode = 1
+script = ExtResource("1_6v7qs")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=876451860]
+texture = SubResource("PlaceholderTexture2D_bm35l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768934576]
+shape = SubResource("CircleShape2D_bm35l")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
