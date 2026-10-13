@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cpmn1tj82vhle"]
+
+[ext_resource type="Script" uid="uid://4mpdc6b3ahie" path="res://scenes/combat/subscenes/movement_plotter/movement_plotter.gd" id="1_otmdd"]
+
+[node name="MovementPlotter" type="Node2D" unique_id=1240884466]
+script = ExtResource("1_otmdd")

@@ -19,3 +19,8 @@ func _on_object_selected(n: Node2D) -> void:
 
 func _on_object_selection_cleared() -> void:
 	self.visible = false
+
+
+func _on_t1_execute_button_pressed() -> void:
+	## TODO: just assumming movement for now
+	GameStateManager.current_game_state = GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT

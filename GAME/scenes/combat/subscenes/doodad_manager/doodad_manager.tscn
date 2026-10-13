@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cxa1vdfvjadqn" path="res://scenes/combat/subscenes/doodad_manager/doodad_manager.gd" id="1_88tih"]
 [ext_resource type="PackedScene" uid="uid://55e762kn7fo1" path="res://scenes/combat/subscenes/doodad_manager/doodads/hover_circle/hover_circle.tscn" id="2_pj6hf"]
 [ext_resource type="Script" uid="uid://b5rdaivdngbur" path="res://scenes/combat/subscenes/doodad_manager/doodads/hover_circle/selection_circle.gd" id="3_f2t1t"]
+[ext_resource type="Script" uid="uid://cd3lfos1dhojo" path="res://scenes/combat/subscenes/doodad_manager/doodad_folder_scripts/movement_plot_markers.gd" id="4_pw48e"]
 
 [node name="DoodadManager" type="Node" unique_id=2081016043]
 script = ExtResource("1_88tih")
@@ -14,3 +15,6 @@ script = ExtResource("3_f2t1t")
 
 [node name="HoverCircle" parent="." unique_id=685406837 instance=ExtResource("2_pj6hf")]
 visible = false
+
+[node name="MovementPlotMarkers" type="Node" parent="." unique_id=1783557850]
+script = ExtResource("4_pw48e")

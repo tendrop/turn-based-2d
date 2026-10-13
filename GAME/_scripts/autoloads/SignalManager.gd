@@ -22,3 +22,13 @@ signal on_select_next_player_actor()
 
 ############### DooDads
 signal on_move_hover_circle(visible: bool, global_loc: Vector2)
+
+
+################ Actions
+
+## player movement plotting
+## emitted by: GameStateManager
+## heard by: MovementPlotter
+signal on_start_player_movement_plotting(actor: Actor)
+signal on_stop_player_movement_plotting
+signal on_make_movement_plot_marker_doodad(global_pos: Vector2)
