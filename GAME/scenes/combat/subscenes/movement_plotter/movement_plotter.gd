@@ -17,6 +17,8 @@ func _process(_delta: float) -> void:
 func _draw() -> void:
 	if __actor:
 		## note: change z-axis of node to change line's z-axis
+		# https://docs.godotengine.org/en/stable/tutorials/2d/custom_drawing_in_2d.html
+		#  probably want draw_polyline instad for long connected line
 		draw_line(
 			__local_starting_pos,
 			to_local(get_global_mouse_position()),
