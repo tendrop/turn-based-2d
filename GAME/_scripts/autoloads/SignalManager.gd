@@ -2,6 +2,17 @@ extends Node
 
 @warning_ignore_start("unused_signal")
 
+############ KEYHANDLER
+
+## emitted by KeyHandler
+## heard by MovementPlotter
+## note: since keyhandler is Node, need to use get_local_mouse_position()
+## to get coords; can't pass as argument
+signal on_world_left_clicked()
+
+## emitted by KeyHandler
+## heard by MovementPlotter
+signal on_try_remove_movement_pivot_point()
 
 ############## update CombatUI elements
 

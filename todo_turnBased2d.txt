@@ -134,6 +134,8 @@ Style Box (for panels) resource
 		* use shapecast2d in order to evaluate with width (instead of raycast2d)
 		* line changes color when there is an interruption, place icon on screen [!] where interuption is occuring
 		* line color also changes color when exceeding max distance
+* line should not extend beyond max length
+
 * mouse cursor becomes 50% transparent replica of actor that is moving.
 	* needs collision circle itself that tints actor when collision is occurring
 * backspace to remove last put down plot pivot point

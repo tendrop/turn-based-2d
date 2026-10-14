@@ -14,15 +14,26 @@ func activate_me() -> void:
 	SignalManager.on_player_actor_activated.emit(self)
 
 
+func __mouse_actions_enabled() -> bool:
+	match GameStateManager.current_game_state:
+		GameStateManager.GAME_STATE.PLAYER_IDLE, GameStateManager.GAME_STATE.OBJECT_SELECTED:
+			return true
+		_:
+			return false
+
+
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		SignalManager.on_print_message_to_log.emit("%s clicked" % display_name)
-		GameStateManager.try_select_object(self)
+	if __mouse_actions_enabled():
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+			SignalManager.on_print_message_to_log.emit("%s clicked" % display_name)
+			GameStateManager.try_select_object(self)
 
 
 func _on_mouse_entered() -> void:
-	SignalManager.on_move_hover_circle.emit(true, self.global_position)
+	if __mouse_actions_enabled():
+		SignalManager.on_move_hover_circle.emit(true, self.global_position)
 
 
 func _on_mouse_exited() -> void:
-	SignalManager.on_move_hover_circle.emit(false, Vector2.INF)
+	if __mouse_actions_enabled():
+		SignalManager.on_move_hover_circle.emit(false, Vector2.INF)
