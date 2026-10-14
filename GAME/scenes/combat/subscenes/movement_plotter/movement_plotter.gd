@@ -51,13 +51,25 @@ func _on_start_player_movement_plotting(a: Actor) -> void:
 	__actor = a
 	__saved_line_coords = [ __local_starting_pos ]
 	self.set_process(true)
+	$UiUpdateTimer.start()
 
 
 func _on_stop_player_movement_plotting() -> void:
 	__actor = null
+	$UiUpdateTimer.stop()
 	self.set_process(false)
 
 
 func _on_try_remove_movement_pivot_point() -> void:
 	if __saved_line_coords.size() > 1:
 		__saved_line_coords.pop_back()
+
+
+func _on_ui_update_timer_timeout() -> void:
+	var total_dist: float = 0.0
+	for i in __saved_line_coords.size() - 1:
+		total_dist += __saved_line_coords[i].distance_to(__saved_line_coords[i + 1])
+		
+	total_dist += __saved_line_coords[__saved_line_coords.size() - 1].distance_to(to_local(get_global_mouse_position()))
+	
+	SignalManager.on_update_player_movement_distance.emit(total_dist / Statics.PIXELS_TO_UNITS_CONVERSION)

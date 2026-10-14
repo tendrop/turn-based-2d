@@ -30,6 +30,10 @@ signal on_print_message_to_log(msg: String)
 signal on_select_next_player_actor()
 
 
+## emitted by: MovementPlotter
+## heard by: PlayerMovementPanel
+signal on_update_player_movement_distance(dist: float)
+
 
 ############### DooDads
 signal on_move_hover_circle(visible: bool, global_loc: Vector2)

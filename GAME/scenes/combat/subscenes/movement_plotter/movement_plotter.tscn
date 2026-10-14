@@ -4,3 +4,8 @@
 
 [node name="MovementPlotter" type="Node2D" unique_id=1240884466]
 script = ExtResource("1_otmdd")
+
+[node name="UiUpdateTimer" type="Timer" parent="." unique_id=273936419]
+wait_time = 0.2
+
+[connection signal="timeout" from="UiUpdateTimer" to="." method="_on_ui_update_timer_timeout"]

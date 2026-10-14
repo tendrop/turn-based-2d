@@ -1,5 +1,6 @@
 class_name Statics
 
+const PIXELS_TO_UNITS_CONVERSION: float = 32
 
 enum GROUPS {
 	PLAYER_ACTORS,
