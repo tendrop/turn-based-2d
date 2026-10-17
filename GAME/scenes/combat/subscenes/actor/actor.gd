@@ -6,7 +6,7 @@ class_name Actor
 
 
 var current_integrity: float = 1.2
-
+var max_movement_distance: float = 8.0
 
 func activate_me() -> void:
 	#TODO selection circle

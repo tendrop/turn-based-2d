@@ -14,7 +14,13 @@ enum COLORS {
 	RED,
 	PURPLE,
 	BLUE,
-	INDIGLO
+	INDIGLO,
+	GRAY_85,
+	GRAY_75,
+	GRAY_66,
+	GRAY_50,
+	GRAY_33,
+	GRAY_25
 }
 
 const ColorDict: Dictionary[COLORS, Color] = {
@@ -23,5 +29,11 @@ const ColorDict: Dictionary[COLORS, Color] = {
 	COLORS.RED: Color("DC267F"),
 	COLORS.PURPLE: Color("785EF0"),
 	COLORS.BLUE: Color("648FFF"),
-	COLORS.INDIGLO: Color("00ffb0")
+	COLORS.INDIGLO: Color("00ffb0"),
+	COLORS.GRAY_85: Color("262626"),
+	COLORS.GRAY_75: Color("404040"),
+	COLORS.GRAY_66: Color("545454"),
+	COLORS.GRAY_50: Color("808080"),
+	COLORS.GRAY_33: Color("A8A8A8"),
+	COLORS.GRAY_25: Color("C0C0C0")
 }

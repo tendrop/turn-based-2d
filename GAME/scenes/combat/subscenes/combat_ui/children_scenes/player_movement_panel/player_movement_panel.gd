@@ -19,5 +19,9 @@ func _on_stop_player_movement_plotting() -> void:
 	self.visible = false
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
-func _on_update_player_movement_distance(dist: float) -> void:
-	%DistanceTraveled.text = "Total Distance: %.1f U" % dist 
+func _on_update_player_movement_distance(dist: float, max_dist: float) -> void:
+	%DistanceTraveled.text = "Total Distance: %.1f/%.1f" % [dist, max_dist]
+	if dist > max_dist:
+		%DistanceTraveled.modulate = Statics.ColorDict[Statics.COLORS.YELLOW]
+	else:
+		%DistanceTraveled.modulate = Color.WHITE

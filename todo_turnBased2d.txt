@@ -136,6 +136,8 @@ Style Box (for panels) resource
 		* line color also changes color when exceeding max distance
 * line should not extend beyond max length
 
+* error message to player (banner) that max movement is exceeded; don't allow to put down point
+
 * mouse cursor becomes 50% transparent replica of actor that is moving.
 	* needs collision circle itself that tints actor when collision is occurring
 ~ backspace to remove last put down plot pivot point
