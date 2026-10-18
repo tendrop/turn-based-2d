@@ -109,4 +109,4 @@ func _on_ui_update_timer_timeout() -> void:
 	else:
 		__saved_line_color = Statics.ColorDict[Statics.COLORS.GRAY_50]
 	
-	SignalManager.on_update_player_movement_distance.emit(total_dist, __actor.max_movement_distance)
+	SignalManager.on_update_player_movement_distance.emit(total_dist)

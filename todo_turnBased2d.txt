@@ -129,23 +129,23 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
+* commit button into enter with standard enter symbol
+
 * left click to put down plot pivot point (note in UI element)
-	* future: don't allow to put down pivot point if there is an interuption to the path
+	* don't allow to put down pivot point if there is an interuption to the path
 		* use shapecast2d in order to evaluate with width (instead of raycast2d)
-		* line changes color when there is an interruption, place icon on screen [!] where interuption is occuring
-		* line color also changes color when exceeding max distance
-* line should not extend beyond max length
+	* line changes color when there is an interruption, place icon on screen [!] where interuption is occuring
+	~ line color also changes color when exceeding max distance
+~ pivot point placed should not extend beyond max length
 
-* error message to player (banner) that max movement is exceeded; don't allow to put down point
+~ error message to player (banner) that max movement is exceeded; don't allow to put down point
 
-* mouse cursor becomes 50% transparent replica of actor that is moving.
-	* needs collision circle itself that tints actor when collision is occurring
 ~ backspace to remove last put down plot pivot point
 ?? right-click to pan needs to still work?
 ~ track the distance of the linear in UI element (distance to last node && distance to cursor
 	* note in UI element to hit SPACEBAR to confirm/start movement (will continue to last node)
 
-* check that 32x32 are adequate size
+~ check that 32x32 are adequate size
 
 * Activated window is just 2 actions, both need to be declared before executing. no backsies
 	-- reread infinity and sketch out plan (& pirates)

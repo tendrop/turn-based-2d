@@ -12,8 +12,29 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=789851739]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="DistanceTraveled" type="Label" parent="MarginContainer/VBoxContainer" unique_id=195290527]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-text = "Total Distance: XXX.X"
+theme_override_font_sizes/font_size = 20
+text = "Travel Distance: XXX.X"
+horizontal_alignment = 1
+
+[node name="MaxDistance" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1875832972]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Max Distance: XXX.X"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1784059915]
+layout_mode = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Notes" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=119019122]
+layout_mode = 2
+text = "- LEFT-CLICK to set pivot point
+- BACKSPACE to remove pivot point
+- SPACEBAR to confirm path"
