@@ -23,3 +23,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				match GameStateManager.current_game_state:
 					GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
 						SignalManager.on_world_left_clicked.emit()
+	
+	elif event.is_action_pressed("ui_accept"):
+		SignalManager.on_enter_key_pressed.emit()
+		

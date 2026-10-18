@@ -136,6 +136,9 @@ Style Box (for panels) resource
 		* use shapecast2d in order to evaluate with width (instead of raycast2d)
 	* line changes color when there is an interruption, place icon on screen [!] where interuption is occuring
 	~ line color also changes color when exceeding max distance
+
+* actually do movement, then go to new state for second action?
+
 ~ pivot point placed should not extend beyond max length
 
 ~ error message to player (banner) that max movement is exceeded; don't allow to put down point

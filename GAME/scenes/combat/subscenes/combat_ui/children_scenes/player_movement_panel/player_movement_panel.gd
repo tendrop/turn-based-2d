@@ -11,6 +11,7 @@ func _ready() -> void:
 
 func _on_start_player_movement_plotting(my_actor: Actor) -> void:
 	__max_distance = my_actor.max_movement_distance
+	%DistanceTraveled.text = "Travel Distance: 0.0"
 	%MaxDistance.text = "Max Distance: %.1f" % __max_distance
 	self.visible = true
 	#Input.warp_mouse(get_viewport().get_canvas_transform() * my_actor.global_position)
