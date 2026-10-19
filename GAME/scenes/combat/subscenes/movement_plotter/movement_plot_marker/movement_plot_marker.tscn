@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://qk15eo4ekh33"]
 
-[ext_resource type="Script" uid="uid://d0l8xmi2sjr2j" path="res://scenes/combat/subscenes/doodad_manager/doodads/movement_plot_marker/movement_plot_marker.gd" id="1_qmja2"]
+[ext_resource type="Script" uid="uid://d0l8xmi2sjr2j" path="res://scenes/combat/subscenes/movement_plotter/movement_plot_marker/movement_plot_marker.gd" id="1_qmja2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qjkmp"]
 size = Vector2(16, 16)
 
 [node name="MovementPlotMarker" type="Sprite2D" unique_id=1924987593]
-visible = false
 texture = SubResource("PlaceholderTexture2D_qjkmp")
 script = ExtResource("1_qmja2")
