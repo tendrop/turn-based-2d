@@ -129,7 +129,7 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-* commit button into enter with standard enter symbol
+~ commit button into enter with standard enter symbol
 
 * left click to put down plot pivot point (note in UI element)
 	* don't allow to put down pivot point if there is an interuption to the path
@@ -146,7 +146,7 @@ Style Box (for panels) resource
 ~ backspace to remove last put down plot pivot point
 ?? right-click to pan needs to still work?
 ~ track the distance of the linear in UI element (distance to last node && distance to cursor
-	* note in UI element to hit SPACEBAR to confirm/start movement (will continue to last node)
+	~ note in UI element to hit SPACEBAR to confirm/start movement (will continue to last node)
 
 ~ check that 32x32 are adequate size
 
