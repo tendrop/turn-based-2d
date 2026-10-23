@@ -11,6 +11,8 @@ var __saved_line_coords: Array[Vector2] = []
 var __saved_line_color: Color = Statics.ColorDict[Statics.COLORS.GRAY_50]
 var __plot_markers: Array[MovementPlotMarker] = []
 
+var __disable_further_mvmt: bool = false
+
 func _ready() -> void:
 	SignalManager.on_start_player_movement_plotting.connect(_on_start_player_movement_plotting)
 	SignalManager.on_stop_player_movement_plotting.connect(_on_stop_player_movement_plotting)
@@ -21,6 +23,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	self.queue_redraw()
+	__check_for_contact_points()
 
 
 func _draw() -> void:
@@ -52,30 +55,55 @@ func _draw() -> void:
 
 
 func _on_world_left_clicked() -> void:
-	if __actor == null: return
+	if __actor == null or __disable_further_mvmt: return
 	
 	var new_pos: Vector2 = Vector2.INF
-	var total_dist: float = __get_total_distance(false)
-	if total_dist <= __actor.max_movement_distance:
-		new_pos = to_local(get_global_mouse_position())
+	
+	# if we have a contact point from raycast collision, 
+	#  we just put point there
+	if %RayCast.is_colliding():
+		var used_distance: float = __get_total_distance(true)
 		
+		var collision_distance: float = %RayCast.global_position.distance_to(
+			%RayCast.get_collision_point()) / Statics.PIXELS_TO_UNITS_CONVERSION
+		
+		if used_distance + collision_distance > __actor.max_movement_distance:
+			# stop before the collision point
+			var remaining_dist: float = __actor.max_movement_distance - used_distance
+			remaining_dist = snapped(remaining_dist, 0.1)
+			if remaining_dist > 0:
+				var remaining_pixels: float = remaining_dist * Statics.PIXELS_TO_UNITS_CONVERSION
+				var start_pos: Vector2 = __saved_line_coords.back()
+				var end_pos: Vector2 = %ContactPoint.position
+				var direction: Vector2 = (end_pos - start_pos).normalized()
+				new_pos = start_pos + (direction * remaining_pixels)
+		else:
+			# stop at contact point
+			new_pos = %ContactPoint.position
+			__disable_further_mvmt = true
 	else:
-		# put line at max possible distance
-		var remaining_dist: float = __actor.max_movement_distance - __get_total_distance(true)
-		remaining_dist = snapped(remaining_dist, 0.1)
-		if remaining_dist == 0:
-			SignalManager.on_print_message_to_log.emit("Max Distance Exceeded; Cannot plot course.")
-			return
-		
-		var remaining_pixels: float = remaining_dist * Statics.PIXELS_TO_UNITS_CONVERSION
-		var start_pos: Vector2 = __saved_line_coords.back()
-		var end_pos: Vector2 = to_local(get_global_mouse_position())
-		var direction: Vector2 = (end_pos - start_pos).normalized()
-		new_pos = start_pos + (direction * remaining_pixels)
+		# check distance
+		var total_dist: float = __get_total_distance(false)
+		if total_dist <= __actor.max_movement_distance:
+			new_pos = to_local(get_global_mouse_position())
+		else:
+			# put line at max possible distance
+			var remaining_dist: float = __actor.max_movement_distance - __get_total_distance(true)
+			remaining_dist = snapped(remaining_dist, 0.1)
+			if remaining_dist == 0:
+				SignalManager.on_print_message_to_log.emit("Max Distance Exceeded; Cannot plot course.")
+				return
+			
+			var remaining_pixels: float = remaining_dist * Statics.PIXELS_TO_UNITS_CONVERSION
+			var start_pos: Vector2 = __saved_line_coords.back()
+			var end_pos: Vector2 = to_local(get_global_mouse_position())
+			var direction: Vector2 = (end_pos - start_pos).normalized()
+			new_pos = start_pos + (direction * remaining_pixels)
 	
 	# if we have a position, add it
 	if not new_pos == Vector2.INF:
 		__saved_line_coords.append(new_pos)
+		%RayCast.position = new_pos
 		var marker: MovementPlotMarker = MOVEMENT_PLOT_MARKER.instantiate()
 		marker.position = new_pos
 		__plot_markers.append(marker)
@@ -83,16 +111,21 @@ func _on_world_left_clicked() -> void:
 
 
 func _on_start_player_movement_plotting(a: Actor) -> void:
+	__disable_further_mvmt = false
 	__local_starting_pos = to_local(a.global_position)
 	__actor = a
 	__saved_line_coords = [ __local_starting_pos ]
+	%RayCast.global_position = a.global_position
 	__plot_markers = []
+	%RayCast.enabled = true
 	self.set_process(true)
 	$UiUpdateTimer.start()
 
 
 func _on_stop_player_movement_plotting() -> void:
 	__actor = null
+	%RayCast.enabled = true
+	%ContactPoint.visible = false
 	$UiUpdateTimer.stop()
 	self.set_process(false)
 
@@ -103,6 +136,8 @@ func _on_try_remove_movement_pivot_point() -> void:
 		var marker: MovementPlotMarker = __plot_markers.pop_back()
 		if marker:
 			marker.queue_free()
+		__disable_further_mvmt = false
+		%RayCast.position = __saved_line_coords[__saved_line_coords.size() - 1]
 
 
 func __get_total_distance(ignore_current_mouse_pos: bool) -> float:
@@ -117,6 +152,16 @@ func __get_total_distance(ignore_current_mouse_pos: bool) -> float:
 	
 	return total_dist
 
+
+func __check_for_contact_points() -> void:
+	# raycast from origin to mouse point
+	%RayCast.target_position = %RayCast.to_local(get_global_mouse_position())
+	%RayCast.force_raycast_update()
+	if %RayCast.is_colliding():
+		%ContactPoint.global_position = $%RayCast.get_collision_point()
+		%ContactPoint.visible = true
+	else:
+		%ContactPoint.visible = false
 
 
 func _on_ui_update_timer_timeout() -> void:

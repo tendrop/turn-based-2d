@@ -16,7 +16,7 @@
 [node name="CombatCamera" parent="." unique_id=1902928079 instance=ExtResource("2_1pw7v")]
 
 [node name="Actor" parent="." unique_id=440467227 instance=ExtResource("3_n426y")]
-position = Vector2(-148, 85)
+position = Vector2(-45, -59)
 display_name = "Onzer"
 
 [node name="Actor2" parent="." unique_id=265465293 instance=ExtResource("3_n426y")]
