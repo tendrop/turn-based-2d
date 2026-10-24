@@ -1,6 +1,8 @@
 class_name Statics
 
 const PIXELS_TO_UNITS_CONVERSION: float = 32
+const REACHED_DESTINATION_THRESHOLD: float = 1.0
+const MOVEMENT_SPEED: float = 100.0
 
 enum GROUPS {
 	PLAYER_ACTORS,

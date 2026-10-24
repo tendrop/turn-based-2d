@@ -18,6 +18,11 @@ signal on_try_remove_movement_pivot_point()
 ## heard by PlayerExecutionManager
 signal on_enter_key_pressed()
 
+## emitted by KeyHandler
+## heard by MovementPlotter
+signal on_start_player_action_pressed()
+
+
 ############## update CombatUI elements
 
 ## emitted by: GameStateManager
@@ -47,7 +52,7 @@ signal on_move_hover_circle(visible: bool, global_loc: Vector2)
 
 ## player movement plotting
 ## emitted by: GameStateManager
-## heard by: MovementPlotter
+## heard by: MovementPlotter, PlayerMovementPanel
 signal on_start_player_movement_plotting(actor: Actor)
 signal on_stop_player_movement_plotting
 signal on_make_movement_plot_marker_doodad(global_pos: Vector2)

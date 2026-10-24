@@ -15,9 +15,9 @@ var __disable_further_mvmt: bool = false
 
 func _ready() -> void:
 	SignalManager.on_start_player_movement_plotting.connect(_on_start_player_movement_plotting)
-	SignalManager.on_stop_player_movement_plotting.connect(_on_stop_player_movement_plotting)
 	SignalManager.on_world_left_clicked.connect(_on_world_left_clicked)
 	SignalManager.on_try_remove_movement_pivot_point.connect(_on_try_remove_movement_pivot_point)
+	SignalManager.on_start_player_action_pressed.connect(_on_make_player_move)
 	self.set_process(false)
 
 
@@ -123,6 +123,7 @@ func _on_start_player_movement_plotting(a: Actor) -> void:
 
 
 func _on_stop_player_movement_plotting() -> void:
+	__disable_further_mvmt = true
 	__actor = null
 	%RayCast.enabled = true
 	%ContactPoint.visible = false
@@ -138,6 +139,17 @@ func _on_try_remove_movement_pivot_point() -> void:
 			marker.queue_free()
 		__disable_further_mvmt = false
 		%RayCast.position = __saved_line_coords[__saved_line_coords.size() - 1]
+
+
+func _on_make_player_move() -> void:
+	var actor: Actor = __actor
+	_on_stop_player_movement_plotting()
+	var global_coords: Array[Vector2] = []
+	for i in range(__saved_line_coords.size() - 1, 0, -1):
+		global_coords.append(to_global(__saved_line_coords[i]))
+	
+	GameStateManager.start_player_movement(actor, global_coords)
+
 
 
 func __get_total_distance(ignore_current_mouse_pos: bool) -> float:

@@ -82,3 +82,12 @@ func try_clear_selection() -> void:
 	match current_game_state:
 		GAME_STATE.OBJECT_SELECTED:
 			current_game_state = GAME_STATE.PLAYER_IDLE
+
+
+# called by MovementPlotter after player pushed spacebar
+func start_player_movement(actor: Actor, coords: Array[Vector2]) -> void:
+	# TODO disable keyboard/mouse
+	# this might need to be awaited
+	actor.do_movement(coords)
+	print("is this printed before movement is done?")
+	# TODO go to second action if not infiltrating or sniping, otherwise back to idle state
