@@ -30,6 +30,10 @@ signal on_start_player_action_pressed()
 
 
 ############## update CombatUI elements
+## emitted by: GameStateManager
+## heard by: PlayerExecutionPanel
+signal on_show_player_task_two(a: Actor)
+
 
 ## emitted by: GameStateManager
 ## heard by: CombatUi

@@ -130,53 +130,24 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-~ Z to remove points instead of backspace (and close panel)
-~ E for execute instead of ENTER and SPACEBAR
-	~ put spacebar back into UI Accept
-~ C for commit movement
+* node selected is no longer an independent state, it's just for showing stuff in the lower-middle info panel
+	--> object selected state is now PLAYER_ACTOR_ACTIVATED
+* Q button to activate, or click on actor that is already selected
+?? selection window at bottom needs to be switchable while player execution window is open so that player can click on enemies?
+	-- hover circle: transparent white
+	-- select circle: pure white
+	-- activated circle (attached to actor, not in doodad, so moves with actor): INDIGLO
+
+* don't null out current actor in GameStateManager when exiting ObjectSelected,
+	-- instead null it out when entering idle
+	-- `done, but needs testing`
+
+
+
+| Future Branch |
 * F for fire weapon
-
-~ WASD to navigate panel (in addidtion to arrow keys)	
-	~ need cursor to start inside panel
-
-~ don't show hover circle during movement
-
-~ hide top-right panel before moving
-
-~ camera follows actor as moves
-~ disable keyboard and mouse while moving
-	~ then reenable when done
-	~* what happens when no points are placed?
+* seperate areas for projectiles to impact againstq
+	-- 3 total (player_projectile_collision, enemy_projectile_collision, any_projectile_collision)
 
 * TODO go to second action if not infiltrating or sniping, otherwise back to idle state
 	-- GameStateManager.handle_player_movement_complete
-
-~ commit button into enter with standard enter symbol
-
-~ get rid of placeholder textures
-
-~ left click to put down plot pivot point (note in UI element)
-	~ don't allow to put down pivot point if there is an interuption to the path
-		?? use shapecast2d in order to evaluate with width (instead of raycast2d)?
-	~ line changes color when there is an interruption, place icon on screen [!] where interuption is occuring
-	~ if user clicks when [!] interuption is there, then put stopping point at [!] and do not allow another point to be placed
-	~ line color also changes color when exceeding max distance
-
-* actually do movement, then go to new state for second action?
-
-~ pivot point placed should not extend beyond max length
-
-~ error message to player (banner) that max movement is exceeded; don't allow to put down point
-
-~ backspace to remove last put down plot pivot point
-?? right-click to pan needs to still work?
-~ track the distance of the linear in UI element (distance to last node && distance to cursor
-	~ note in UI element to hit SPACEBAR to confirm/start movement (will continue to last node)
-
-~ check that 32x32 are adequate size
-
-* Activated window is just 2 actions, both need to be declared before executing. no backsies
-	-- reread infinity and sketch out plan (& pirates)
-
-| Future Branch |
-

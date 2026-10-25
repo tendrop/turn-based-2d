@@ -41,14 +41,15 @@ layout_mode = 2
 [node name="TaskOneContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1486618296]
 layout_mode = 2
 
-[node name="T1_ActorName" type="Label" parent="MarginContainer/TaskOneContainer" unique_id=1844488465]
+[node name="ActorName" type="Label" parent="MarginContainer/TaskOneContainer" unique_id=1844488465]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "[ACTOR NAME]"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/TaskOneContainer" unique_id=876594603]
+[node name="TaskNumberLabel" type="Label" parent="MarginContainer/TaskOneContainer" unique_id=876594603]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "Set Execution Task (1 of 2)"
@@ -64,7 +65,7 @@ theme_override_constants/h_separation = -1
 theme_override_constants/v_separation = -1
 columns = 2
 
-[node name="T1_MoveButton" type="Button" parent="MarginContainer/TaskOneContainer/VBoxContainer" unique_id=226542585]
+[node name="MoveButton" type="Button" parent="MarginContainer/TaskOneContainer/VBoxContainer" unique_id=226542585]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 22)
 layout_mode = 2
@@ -73,7 +74,7 @@ button_pressed = true
 button_group = ExtResource("1_o5m3u")
 text = "MOVE"
 
-[node name="T1_InfiltrateButton" type="Button" parent="MarginContainer/TaskOneContainer/VBoxContainer" unique_id=207704715]
+[node name="InfiltrateButton" type="Button" parent="MarginContainer/TaskOneContainer/VBoxContainer" unique_id=207704715]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 22)
 layout_mode = 2
@@ -81,34 +82,52 @@ toggle_mode = true
 button_group = ExtResource("1_o5m3u")
 text = "INFILTRATE"
 
-[node name="T1_InfiltrateButton2" type="Button" parent="MarginContainer/TaskOneContainer/VBoxContainer" unique_id=67282367]
+[node name="AttackButton" type="Button" parent="MarginContainer/TaskOneContainer/VBoxContainer" unique_id=67282367]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 22)
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("1_o5m3u")
-text = "A THIRD OPTION"
+text = "ATTACK"
 
-[node name="T1_InfiltrateButton3" type="Button" parent="MarginContainer/TaskOneContainer/VBoxContainer" unique_id=1481994312]
+[node name="BigShotButton" type="Button" parent="MarginContainer/TaskOneContainer/VBoxContainer" unique_id=1072540849]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 22)
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("1_o5m3u")
-text = "OPTION 4"
+text = "BIG SHOT"
+
+[node name="FortifyButton" type="Button" parent="MarginContainer/TaskOneContainer/VBoxContainer" unique_id=1481994312]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 22)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("1_o5m3u")
+text = "FORTIFY"
+
+[node name="InteractButton" type="Button" parent="MarginContainer/TaskOneContainer/VBoxContainer" unique_id=1818487657]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 22)
+layout_mode = 2
+disabled = true
+toggle_mode = true
+button_group = ExtResource("1_o5m3u")
+text = "INTERACT"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/TaskOneContainer" unique_id=1793936259]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="T1_ExecuteButton" type="Button" parent="MarginContainer/TaskOneContainer" unique_id=1042607897]
+[node name="Turn1_ExecuteButton" type="Button" parent="MarginContainer/TaskOneContainer" unique_id=1042607897]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_o5m3u")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ftqre")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TaskOneContainer/T1_ExecuteButton" unique_id=1131726303]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TaskOneContainer/Turn1_ExecuteButton" unique_id=1131726303]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,7 +135,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TaskOneContainer/T1_ExecuteButton/HBoxContainer" unique_id=1246528926]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TaskOneContainer/Turn1_ExecuteButton/HBoxContainer" unique_id=1246528926]
 modulate = Color(0, 1, 0.6901961, 1)
 texture_filter = 4
 layout_mode = 2
@@ -126,7 +145,7 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(15, 0)
 texture = ExtResource("3_1gnpe")
 
-[node name="Label" type="Label" parent="MarginContainer/TaskOneContainer/T1_ExecuteButton/HBoxContainer" unique_id=663225417]
+[node name="Label" type="Label" parent="MarginContainer/TaskOneContainer/Turn1_ExecuteButton/HBoxContainer" unique_id=663225417]
 modulate = Color(0, 1, 0.6901961, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -137,4 +156,43 @@ text = "[E]xecute Action"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="MarginContainer/TaskOneContainer/T1_ExecuteButton" to="." method="_on_t1_execute_button_pressed"]
+[node name="Turn2_ExecuteButton" type="Button" parent="MarginContainer/TaskOneContainer" unique_id=1742388875]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_o5m3u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ftqre")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TaskOneContainer/Turn2_ExecuteButton" unique_id=1302281826]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TaskOneContainer/Turn2_ExecuteButton/HBoxContainer" unique_id=537435263]
+modulate = Color(0, 1, 0.6901961, 1)
+texture_filter = 4
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(15, 0)
+texture = ExtResource("3_1gnpe")
+
+[node name="Label" type="Label" parent="MarginContainer/TaskOneContainer/Turn2_ExecuteButton/HBoxContainer" unique_id=234062236]
+modulate = Color(0, 1, 0.6901961, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(-15, 0)
+theme_override_font_sizes/font_size = 14
+text = "[E]xecute Action"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/TaskOneContainer/Turn1_ExecuteButton" to="." method="_on_t1_execute_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TaskOneContainer/Turn2_ExecuteButton" to="." method="_on_t1_execute_button_pressed"]
