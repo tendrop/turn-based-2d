@@ -134,8 +134,8 @@ Style Box (for panels) resource
 	--> object selected state is now PLAYER_ACTOR_ACTIVATED
 * Q button to activate, or click on actor that is already selected
 ?? selection window at bottom needs to be switchable while player execution window is open so that player can click on enemies?
-	-- hover circle: transparent white
-	-- select circle: pure white
+	-- hover circle: transparent white (doodad)
+	-- select circle: pure white (doodad)
 	-- activated circle (attached to actor, not in doodad, so moves with actor): INDIGLO
 
 * don't null out current actor in GameStateManager when exiting ObjectSelected,
@@ -151,3 +151,4 @@ Style Box (for panels) resource
 
 * TODO go to second action if not infiltrating or sniping, otherwise back to idle state
 	-- GameStateManager.handle_player_movement_complete
+	* does second movement actually work?
