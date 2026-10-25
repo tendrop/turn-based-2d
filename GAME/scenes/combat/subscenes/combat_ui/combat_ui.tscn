@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cejd6hkhbjluy" path="res://scenes/combat/subscenes/combat_ui/children_scenes/scrolling_log/scrolling_log.tscn" id="2_vb2sj"]
 [ext_resource type="PackedScene" uid="uid://bvw64k3msl7oq" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_actors_table/player_actors_table.tscn" id="3_eljfe"]
 [ext_resource type="PackedScene" uid="uid://b1jcpgun526kw" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_execution_panel/player_execution_panel.tscn" id="4_sperb"]
+[ext_resource type="PackedScene" uid="uid://dmytrt6xjexjq" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_movement_panel/player_movement_panel.tscn" id="5_y6yq1"]
 
 [node name="CombatUi" type="CanvasLayer" unique_id=1977580954]
 script = ExtResource("1_1sq4j")
@@ -73,4 +74,14 @@ anchor_right = 1.0
 offset_left = -173.0
 offset_right = 0.0
 offset_bottom = 95.0
+grow_horizontal = 0
+
+[node name="PlayerMovementPanel" parent="MainUi" unique_id=171472155 instance=ExtResource("5_y6yq1")]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -123.0
+offset_right = 0.0
 grow_horizontal = 0

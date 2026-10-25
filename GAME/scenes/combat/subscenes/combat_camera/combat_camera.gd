@@ -11,16 +11,31 @@ var __is_panning : bool = false
 @export var ZOOM_SPEED: float = 10.0
 var __target_zoom: Vector2 = Vector2.ONE
 
+var __following: Node2D = null
+
 
 func _ready() -> void:
 	__target_zoom = self.zoom
+	SignalManager.on_start_camera_follow.connect(_on_start_camera_follow)
+	SignalManager.on_stop_camera_follow.connect(_on_stop_camera_follow)
 
 
 func _process(delta: float) -> void:
 	self.zoom = self.zoom.lerp(__target_zoom, 1.0 - exp(-ZOOM_SPEED * delta))
+	if is_instance_valid(__following) and __following:
+		#self.global_position = self.global_position.move_toward(__following.global_position, 100 * delta)
+		self.global_position = self.global_position.lerp(__following.global_position, 1.0 - pow(0.1, delta))
 
+func _on_start_camera_follow(n: Node2D) -> void:
+	__following = n
+
+func _on_stop_camera_follow() -> void:
+	__following = null
 
 func _unhandled_input(event: InputEvent) -> void:
+	if is_instance_valid(__following) and __following:
+		return 
+	
 	# hold right-click to pan camera
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		if event.pressed:

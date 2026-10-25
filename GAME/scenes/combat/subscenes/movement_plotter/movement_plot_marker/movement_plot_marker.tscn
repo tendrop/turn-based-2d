@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://qk15eo4ekh33"]
+
+[ext_resource type="Script" uid="uid://d0l8xmi2sjr2j" path="res://scenes/combat/subscenes/movement_plotter/movement_plot_marker/movement_plot_marker.gd" id="1_qmja2"]
+[ext_resource type="Texture2D" uid="uid://bv2lj47m77yan" path="res://assets/pngs/pivot_marker.png" id="1_uwcuv"]
+
+[node name="MovementPlotMarker" type="Sprite2D" unique_id=1924987593]
+texture = ExtResource("1_uwcuv")
+script = ExtResource("1_qmja2")
