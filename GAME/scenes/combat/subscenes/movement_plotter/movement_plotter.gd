@@ -24,7 +24,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	self.queue_redraw()
-	__check_for_contact_points()
+	if not __movement_active:
+		__check_for_contact_points()
 
 
 func _draw() -> void:
@@ -131,6 +132,7 @@ func _on_stop_player_movement_plotting() -> void:
 	%RayCast.enabled = true
 	%ContactPoint.visible = false
 	$UiUpdateTimer.stop()
+	SignalManager.on_stop_player_movement_plotting.emit()
 	set_deferred("set_process", false)
 
 
@@ -153,8 +155,10 @@ func _on_make_player_move() -> void:
 	var global_coords: Array[Vector2] = []
 	for i in range(__saved_line_coords.size() - 1, 0, -1):
 		global_coords.append(to_global(__saved_line_coords[i]))
-	
-	GameStateManager.start_player_movement(actor, global_coords)
+	SignalManager.on_move_hover_circle.emit(false, Vector2.INF)
+	%ContactPoint.visible = false
+	actor.do_movement(global_coords)
+	#GameStateManager.start_player_movement(actor, global_coords)
 
 
 

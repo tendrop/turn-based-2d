@@ -1,8 +1,6 @@
 extends CharacterBody2D
 class_name Actor
 
-signal on_movement_complete
-
 enum ACTOR_STATE { IDLE, MOVING }
 var __current_actor_state: ACTOR_STATE = ACTOR_STATE.IDLE
 
@@ -71,9 +69,8 @@ func __stop_movement() -> void:
 	SignalManager.on_stop_camera_follow.emit()
 	__current_actor_state = ACTOR_STATE.IDLE
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	
-	# TODO let game state mananger know its done
-	on_movement_complete.emit() 
+	GameStateManager.handle_player_movement_complete()
+
 
 func __mouse_actions_enabled() -> bool:
 	match GameStateManager.current_game_state:

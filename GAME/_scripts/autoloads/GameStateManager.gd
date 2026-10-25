@@ -3,7 +3,8 @@ extends Node
 enum GAME_STATE {
 	PLAYER_IDLE,  ## it's player's turn and they're not doing anything
 	OBJECT_SELECTED, ## it's player's turn and they've left-clicked on something
-	PLAYER_PLOTTING_MOVEMENT ## it's player's turn and they're plotting out movement
+	PLAYER_PLOTTING_MOVEMENT, ## it's player's turn and they're plotting out movement
+	PLAYER_SECOND_EXECUTION_TASK
 }
 
 var __current_game_state: GAME_STATE = GAME_STATE.PLAYER_IDLE
@@ -43,6 +44,9 @@ var current_game_state: GAME_STATE:
 			__current_game_state = new_state
 
 
+var active_player_task: Statics.PLAYER_TASK = Statics.PLAYER_TASK.NONE
+
+
 var __current_actor: Actor = null
 var current_actor: Actor:
 	get:
@@ -77,17 +81,19 @@ func __select_object(obj: Node2D) -> void:
 		print("did not select it")
 
 
-## called by KeyHandler when backspace is pressed
+## called by KeyHandler when 'clear_selection' is pressed (currently mapped to [Z])
 func try_clear_selection() -> void:
 	match current_game_state:
 		GAME_STATE.OBJECT_SELECTED:
 			current_game_state = GAME_STATE.PLAYER_IDLE
 
 
-# called by MovementPlotter after player pushed spacebar
-func start_player_movement(actor: Actor, coords: Array[Vector2]) -> void:
-	# TODO disable keyboard/mouse
-	# this might need to be awaited
-	actor.do_movement(coords)
-	print("is this printed before movement is done?")
-	# TODO go to second action if not infiltrating or sniping, otherwise back to idle state
+func handle_player_movement_complete() -> void:
+	# TODO: if player has another action, show player execution panel again. 
+	##      otherwise go to PLAYER_IDLE
+	match active_player_task:
+		Statics.PLAYER_TASK.INFILTRATE:
+			active_player_task = Statics.PLAYER_TASK.NONE
+			current_game_state = GAME_STATE.PLAYER_IDLE
+		Statics.PLAYER_TASK.MOVE:
+			push_error("handle_player_movement_complete not implemented for player task move")

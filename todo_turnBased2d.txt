@@ -37,7 +37,8 @@ IndiGLO is player UI accent color
 	-- WORKER: base unit. only thing that can [capture and/or build] structures. basic weapon.
 -- BANDWIDTH: unit cap
 -- DATUM: meta-currency to track meta-game state progress. get from completing missions, destroying stuff, etc
--- EXECUTIONS: number of actions can take in your turn. need a tracker in GUI
+-- EXECUTIONS: number of ACTIONS can take in your turn. need a tracker in GUI
+-- ACTION: cast a spell, make a purchase, or have an actor perform a Pair of TASKS
 -- U / Unit: distance measurement. 32px = 1 unit (so actors are 1 unit large)
 | World Layers |
 
@@ -138,18 +139,17 @@ Style Box (for panels) resource
 ~ WASD to navigate panel (in addidtion to arrow keys)	
 	~ need cursor to start inside panel
 
-* don't show hover circle during movement
+~ don't show hover circle during movement
 
-* hide top-right panel before moving
-* utilize actor.on_movement_complete in GameStateManager to know when to shift into next state
+~ hide top-right panel before moving
 
-* camera follows actor as moves
+~ camera follows actor as moves
 ~ disable keyboard and mouse while moving
 	~ then reenable when done
 	~* what happens when no points are placed?
 
 * TODO go to second action if not infiltrating or sniping, otherwise back to idle state
-
+	-- GameStateManager.handle_player_movement_complete
 
 ~ commit button into enter with standard enter symbol
 

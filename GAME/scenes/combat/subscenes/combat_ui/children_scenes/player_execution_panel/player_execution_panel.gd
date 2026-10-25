@@ -26,4 +26,5 @@ func _on_t1_execute_button_pressed() -> void:
 	if not self.visible:
 		return
 	## TODO: just assumming movement for now
+	GameStateManager.active_player_task = Statics.PLAYER_TASK.MOVE
 	GameStateManager.current_game_state = GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT
