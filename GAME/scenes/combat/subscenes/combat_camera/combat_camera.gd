@@ -33,6 +33,9 @@ func _on_stop_camera_follow() -> void:
 	__following = null
 
 func _unhandled_input(event: InputEvent) -> void:
+	if is_instance_valid(__following) and __following:
+		return 
+	
 	# hold right-click to pan camera
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		if event.pressed:
