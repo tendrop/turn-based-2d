@@ -129,11 +129,15 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
+* Z to remove points instead of backspace
+* C to start movement (COMMIT)
+* hide top-right panel before moving
+* utilize actor.on_movement_complete in GameStateManager to know when to shift into next state
+
 * camera follows actor as moves
-* disable keyboard and mouse while moving
-	* then reenable when done
-	
-* what happens when no points are placed?
+~ disable keyboard and mouse while moving
+	~ then reenable when done
+	~* what happens when no points are placed?
 
 * TODO go to second action if not infiltrating or sniping, otherwise back to idle state
 

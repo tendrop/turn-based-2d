@@ -20,13 +20,18 @@ var __movement_destination: Vector2 = Vector2.INF
 func _physics_process(delta: float) -> void:
 	match __current_actor_state:
 		ACTOR_STATE.MOVING:
-			if __movement_destination == Vector2.INF and __movement_coords.size() > 0:
-				__movement_destination = __movement_coords.pop_back()
+			if __movement_destination == Vector2.INF:
+				if __movement_coords.size() > 0:
+					__movement_destination = __movement_coords.pop_back()
+				else:
+					__stop_movement()
+					return
 			elif __has_reached_current_destination():
 				if __movement_coords.size() > 0:
 					__movement_destination = __movement_coords.pop_back()
 				else:
 					__stop_movement()
+					return
 			__move_towards_destination(delta)
 
 
@@ -57,6 +62,7 @@ func activate_me() -> void:
 func do_movement(coords: Array[Vector2]) -> void:
 	#TODO lock camera to me
 	__movement_coords = coords
+	SignalManager.on_start_camera_follow.emit(self)
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	set_deferred("__current_actor_state", ACTOR_STATE.MOVING)
 	
@@ -66,6 +72,7 @@ func __stop_movement() -> void:
 	# TODO unlock camera
 	# TODO let game state mananger know its done
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	SignalManager.on_stop_camera_follow.emit()
 	on_movement_complete.emit() 
 
 func __mouse_actions_enabled() -> bool:

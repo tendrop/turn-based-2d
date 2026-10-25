@@ -2,6 +2,12 @@ extends Node
 
 @warning_ignore_start("unused_signal")
 
+######## CAMERA
+## emitted by: Actor
+## heard by: CombatCamera
+signal on_start_camera_follow(n: Node2D)
+signal on_stop_camera_follow
+
 ############ KEYHANDLER
 
 ## emitted by KeyHandler
