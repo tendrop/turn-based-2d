@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 	self.zoom = self.zoom.lerp(__target_zoom, 1.0 - exp(-ZOOM_SPEED * delta))
 	if is_instance_valid(__following) and __following:
 		#self.global_position = self.global_position.move_toward(__following.global_position, 100 * delta)
-		self.global_position = self.global_position.lerp(__following.global_position, 1.0 - pow(0.5, delta))
+		self.global_position = self.global_position.lerp(__following.global_position, 1.0 - pow(0.8, delta))
 
 func _on_start_camera_follow(n: Node2D) -> void:
 	__following = n

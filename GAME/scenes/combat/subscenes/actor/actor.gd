@@ -68,11 +68,11 @@ func do_movement(coords: Array[Vector2]) -> void:
 	
 
 func __stop_movement() -> void:
-	__current_actor_state = ACTOR_STATE.IDLE
-	# TODO unlock camera
-	# TODO let game state mananger know its done
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	SignalManager.on_stop_camera_follow.emit()
+	__current_actor_state = ACTOR_STATE.IDLE
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	# TODO let game state mananger know its done
 	on_movement_complete.emit() 
 
 func __mouse_actions_enabled() -> bool:

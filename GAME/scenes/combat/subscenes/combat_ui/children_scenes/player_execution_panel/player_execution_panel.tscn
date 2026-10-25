@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://clscdotkr0up1" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_execution_panel/player_execution_panel.gd" id="1_1gnpe"]
 [ext_resource type="ButtonGroup" uid="uid://4gqyh1byu54a" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_execution_panel/task_one_button_group.tres" id="1_o5m3u"]
-[ext_resource type="Texture2D" uid="uid://dcd4anonko740" path="res://assets/pngs/enter_symbol.png" id="3_1gnpe"]
+[ext_resource type="Texture2D" uid="uid://ckii0y7ubb08k" path="res://assets/svgs/play.svg" id="3_1gnpe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5m3u"]
 content_margin_left = 4.0
@@ -69,6 +69,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 22)
 layout_mode = 2
 toggle_mode = true
+button_pressed = true
 button_group = ExtResource("1_o5m3u")
 text = "MOVE"
 
@@ -115,17 +116,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TaskOneContainer/T1_ExecuteButton/HBoxContainer" unique_id=663225417]
-modulate = Color(0, 1, 0.6901961, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-offset_transform_enabled = true
-offset_transform_position = Vector2(11, 0)
-theme_override_font_sizes/font_size = 14
-text = "[ ENTER ]"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/TaskOneContainer/T1_ExecuteButton/HBoxContainer" unique_id=1246528926]
 modulate = Color(0, 1, 0.6901961, 1)
 texture_filter = 4
@@ -133,7 +123,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-offset_transform_position = Vector2(-15, 0)
+offset_transform_position = Vector2(15, 0)
 texture = ExtResource("3_1gnpe")
+
+[node name="Label" type="Label" parent="MarginContainer/TaskOneContainer/T1_ExecuteButton/HBoxContainer" unique_id=663225417]
+modulate = Color(0, 1, 0.6901961, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(-15, 0)
+theme_override_font_sizes/font_size = 14
+text = "[E]xecute Action"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/TaskOneContainer/T1_ExecuteButton" to="." method="_on_t1_execute_button_pressed"]

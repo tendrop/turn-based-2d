@@ -11,6 +11,7 @@ func _on_object_selected(n: Node2D) -> void:
 	if n is Actor and n.owner_group == Statics.GROUPS.PLAYER_ACTORS:
 		# player actor that can take actions is selected
 		%T1_ActorName.text = n.display_name
+		%T1_MoveButton.grab_focus()
 		self.visible = true
 		
 	else:

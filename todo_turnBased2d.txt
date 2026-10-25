@@ -136,7 +136,9 @@ Style Box (for panels) resource
 * F for fire weapon
 
 ~ WASD to navigate panel (in addidtion to arrow keys)	
-	* need cursor to start inside panel
+	~ need cursor to start inside panel
+
+* don't show hover circle during movement
 
 * hide top-right panel before moving
 * utilize actor.on_movement_complete in GameStateManager to know when to shift into next state
