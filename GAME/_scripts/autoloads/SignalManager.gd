@@ -20,9 +20,9 @@ signal on_world_left_clicked()
 ## heard by MovementPlotter
 signal on_try_remove_movement_pivot_point()
 
-## emitted by KeyHandler
-## heard by PlayerExecutionManager
-signal on_enter_key_pressed()
+### emitted by KeyHandler
+### heard by PlayerExecutionPanel
+signal on_execute_player_action()
 
 ## emitted by KeyHandler
 ## heard by MovementPlotter

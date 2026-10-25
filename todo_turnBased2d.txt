@@ -129,10 +129,14 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-* Z to remove points instead of backspace
-* E for execute instead of ENTER and SPACEBAR
-	* put spacebar back into UI Accept
-* WASD to navigate panel (in addidtion to arrow keys)	
+~ Z to remove points instead of backspace (and close panel)
+~ E for execute instead of ENTER and SPACEBAR
+	~ put spacebar back into UI Accept
+~ C for commit movement
+* F for fire weapon
+
+~ WASD to navigate panel (in addidtion to arrow keys)	
+	* need cursor to start inside panel
 
 * hide top-right panel before moving
 * utilize actor.on_movement_complete in GameStateManager to know when to shift into next state

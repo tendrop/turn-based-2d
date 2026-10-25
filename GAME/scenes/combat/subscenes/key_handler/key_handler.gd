@@ -25,11 +25,16 @@ func _unhandled_input(event: InputEvent) -> void:
 						SignalManager.on_world_left_clicked.emit()
 						get_viewport().set_input_as_handled()
 	
-	elif event.is_action_pressed("ui_accept"):
-		SignalManager.on_enter_key_pressed.emit()
-		get_viewport().set_input_as_handled()
+	#elif event.is_action_pressed("ui_accept"):
+		#SignalManager.on_enter_key_pressed.emit()
+		#get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("execute_player_action"):
+		match GameStateManager.current_game_state:
+			GameStateManager.GAME_STATE.OBJECT_SELECTED:
+				SignalManager.on_execute_player_action.emit()
+				get_viewport().set_input_as_handled()
 		
-	elif event.is_action_pressed("start_player_action"):
+	elif event.is_action_pressed("commit_player_movement"):
 		match GameStateManager.current_game_state:
 			GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
 				SignalManager.on_start_player_action_pressed.emit()
