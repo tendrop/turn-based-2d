@@ -129,12 +129,14 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
+* camera follows actor as moves
 * disable keyboard and mouse while moving
 	* then reenable when done
 	
 * what happens when no points are placed?
 
 * TODO go to second action if not infiltrating or sniping, otherwise back to idle state
+
 
 ~ commit button into enter with standard enter symbol
 

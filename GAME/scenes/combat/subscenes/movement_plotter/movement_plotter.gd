@@ -1,7 +1,6 @@
 extends Node2D
 class_name Movement_Plotter
 
-
 const MOVEMENT_PLOT_MARKER = preload("uid://qk15eo4ekh33")
 
 var __actor: Actor = null
@@ -12,6 +11,8 @@ var __saved_line_color: Color = Statics.ColorDict[Statics.COLORS.GRAY_50]
 var __plot_markers: Array[MovementPlotMarker] = []
 
 var __disable_further_mvmt: bool = false
+
+var __movement_active: bool = false
 
 func _ready() -> void:
 	SignalManager.on_start_player_movement_plotting.connect(_on_start_player_movement_plotting)
@@ -27,7 +28,9 @@ func _process(_delta: float) -> void:
 
 
 func _draw() -> void:
-	if __actor:
+	if not __actor:
+		self.set_process(false)
+	else:
 		## note: change z-axis of this node to change line's z-axis
 		# https://docs.godotengine.org/en/stable/tutorials/2d/custom_drawing_in_2d.html
 
@@ -49,9 +52,6 @@ func _draw() -> void:
 			2.0,
 			true
 		)
-		
-	else:
-		self.set_process(false)
 
 
 func _on_world_left_clicked() -> void:
@@ -111,6 +111,7 @@ func _on_world_left_clicked() -> void:
 
 
 func _on_start_player_movement_plotting(a: Actor) -> void:
+	__movement_active = false
 	__disable_further_mvmt = false
 	__local_starting_pos = to_local(a.global_position)
 	__actor = a
@@ -125,23 +126,28 @@ func _on_start_player_movement_plotting(a: Actor) -> void:
 func _on_stop_player_movement_plotting() -> void:
 	__disable_further_mvmt = true
 	__actor = null
+	for marker: MovementPlotMarker in __plot_markers:
+		marker.queue_free()
 	%RayCast.enabled = true
 	%ContactPoint.visible = false
 	$UiUpdateTimer.stop()
-	self.set_process(false)
+	set_deferred("set_process", false)
 
 
 func _on_try_remove_movement_pivot_point() -> void:
 	if __saved_line_coords.size() > 1:
 		__saved_line_coords.pop_back()
-		var marker: MovementPlotMarker = __plot_markers.pop_back()
-		if marker:
+		var marker = __plot_markers.pop_back()
+		if is_instance_valid(marker) and marker is MovementPlotMarker:
 			marker.queue_free()
 		__disable_further_mvmt = false
 		%RayCast.position = __saved_line_coords[__saved_line_coords.size() - 1]
 
 
 func _on_make_player_move() -> void:
+	if __movement_active:
+		return
+	__movement_active = true
 	var actor: Actor = __actor
 	_on_stop_player_movement_plotting()
 	var global_coords: Array[Vector2] = []

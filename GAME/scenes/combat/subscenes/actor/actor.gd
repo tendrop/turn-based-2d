@@ -57,6 +57,7 @@ func activate_me() -> void:
 func do_movement(coords: Array[Vector2]) -> void:
 	#TODO lock camera to me
 	__movement_coords = coords
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	set_deferred("__current_actor_state", ACTOR_STATE.MOVING)
 	
 
@@ -64,6 +65,7 @@ func __stop_movement() -> void:
 	__current_actor_state = ACTOR_STATE.IDLE
 	# TODO unlock camera
 	# TODO let game state mananger know its done
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	on_movement_complete.emit() 
 
 func __mouse_actions_enabled() -> bool:
