@@ -40,6 +40,11 @@ signal on_show_player_task_two(a: Actor)
 signal on_object_selected(n: Node2D)
 signal on_object_selection_cleared()
 
+## emitted by: Actor
+## heard by: GameStateManager
+signal on_actor_activated(a: Actor)
+
+
 ## emitted by: lots
 ## heard by: ScrollingLog (in CombatUi)
 signal on_print_message_to_log(msg: String)

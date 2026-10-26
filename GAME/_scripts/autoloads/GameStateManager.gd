@@ -2,7 +2,7 @@ extends Node
 
 enum GAME_STATE {
 	PLAYER_IDLE,  ## it's player's turn and they're not doing anything
-	OBJECT_SELECTED, ## it's player's turn and they've left-clicked on something
+	PLAYER_ACTOR_ACTIVATED, ## PlayerExecutionPanel is shown to player so they can have an actor doing something
 	PLAYER_PLOTTING_MOVEMENT ## it's player's turn and they're plotting out movement
 }
 
@@ -12,16 +12,15 @@ var current_game_state: GAME_STATE:
 		return __current_game_state
 	set(new_state):
 		if new_state == __current_game_state:
-			# do nothing
-			if new_state != GAME_STATE.OBJECT_SELECTED:
-				push_warning("attempted to change state, but already in %s" % GAME_STATE.keys()[current_game_state])
+			return
 		else:
 			# EXIT tasks for current state
 			match __current_game_state:
 				GAME_STATE.PLAYER_IDLE:
 					pass
-				GAME_STATE.OBJECT_SELECTED:
-					SignalManager.on_object_selection_cleared.emit()
+				
+				GAME_STATE.PLAYER_ACTOR_ACTIVATED:
+					pass
 				
 				GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
 					SignalManager.on_stop_player_movement_plotting.emit()
@@ -29,14 +28,16 @@ var current_game_state: GAME_STATE:
 			# ENTER tasks for new state
 			match new_state:
 				GAME_STATE.PLAYER_IDLE:
-					current_actor = null
+					if activated_actor:
+						activated_actor.remove_activation_circle()
+						activated_actor = null
 					__active_player_task = Statics.PLAYER_TASK.NONE
-					
-				GAME_STATE.OBJECT_SELECTED:
+				
+				GAME_STATE.PLAYER_ACTOR_ACTIVATED:
 					pass
 				
 				GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
-					SignalManager.on_start_player_movement_plotting.emit(current_actor)
+					SignalManager.on_start_player_movement_plotting.emit(activated_actor)
 				
 			print("Change GameState from '%s' to '%s'" % [ \
 				GAME_STATE.keys()[__current_game_state],
@@ -48,43 +49,28 @@ var current_game_state: GAME_STATE:
 var __active_player_task: Statics.PLAYER_TASK = Statics.PLAYER_TASK.NONE
 var __player_task_count: int = 0
 
-#var __previous_actor: Actor = null
-var __current_actor: Actor = null
-var current_actor: Actor:
-	get:
-		return __current_actor
-	set(value):
-		#__previous_actor = __current_actor
-		__current_actor = value
+var activated_actor: Actor = null
+var selected_actor: Actor = null
+
+func _ready() -> void:
+	SignalManager.on_object_selected.connect(_on_object_selected)
+	SignalManager.on_object_selection_cleared.connect(_on_object_selection_cleared)
 
 
-func try_select_object(obj: Node2D) -> void:
-	if "display_name" in obj:
-		print("selcting %s when state is %s" % [obj.display_name, GAME_STATE.keys()[current_game_state]])
-		match current_game_state:
-			GAME_STATE.PLAYER_IDLE, GAME_STATE.OBJECT_SELECTED:
-				print("trying to select it...")
-				__select_object(obj)
+func _on_object_selected(n: Node2D) -> void:
+	if n and n is Actor:
+		selected_actor = n
 
 
-func __select_object(obj: Node2D) -> void:
-	if current_actor != obj:
-		print("selecting object")
-		SignalManager.on_object_selected.emit(obj)
-		if obj is Actor:
-			current_actor = obj
-		else:
-			current_actor = null
-		current_game_state = GAME_STATE.OBJECT_SELECTED
-	else:
-		print("did not select it")
+func _on_object_selection_cleared() -> void:
+	selected_actor = null
 
 
-## called by KeyHandler when 'clear_selection' is pressed (currently mapped to [Z])
-func try_clear_selection() -> void:
-	match current_game_state:
-		GAME_STATE.OBJECT_SELECTED:
-			current_game_state = GAME_STATE.PLAYER_IDLE
+func try_activate_actor(actor: Actor) -> void:
+	if actor != selected_actor: return
+	activated_actor = actor
+	current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
+	SignalManager.on_actor_activated.emit(actor)
 
 
 func start_player_task(task_number: int, task_type: Statics.PLAYER_TASK) -> void:
@@ -110,5 +96,5 @@ func handle_player_movement_complete() -> void:
 				current_game_state = GAME_STATE.PLAYER_IDLE
 			
 			Statics.PLAYER_TASK.MOVE:
-				SignalManager.on_show_player_task_two.emit(current_actor)
+				SignalManager.on_show_player_task_two.emit(activated_actor)
 				

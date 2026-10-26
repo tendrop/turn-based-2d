@@ -11,6 +11,10 @@
 
 [node name="KeyHandler" parent="." unique_id=227509208 instance=ExtResource("1_kaxju")]
 
+[node name="MovementPlotter" parent="." unique_id=1240884466 instance=ExtResource("6_6m7m3")]
+
+[node name="DoodadManager" parent="." unique_id=2081016043 instance=ExtResource("5_d0tbs")]
+
 [node name="CombatUi" parent="." unique_id=1977580954 instance=ExtResource("1_n7x52")]
 
 [node name="CombatCamera" parent="." unique_id=1902928079 instance=ExtResource("2_1pw7v")]
@@ -22,7 +26,3 @@ display_name = "Onzer"
 [node name="Actor2" parent="." unique_id=265465293 instance=ExtResource("3_n426y")]
 position = Vector2(119, -54)
 display_name = "Act2"
-
-[node name="DoodadManager" parent="." unique_id=2081016043 instance=ExtResource("5_d0tbs")]
-
-[node name="MovementPlotter" parent="." unique_id=1240884466 instance=ExtResource("6_6m7m3")]

@@ -3,7 +3,7 @@ class_name PlayerExecutionPanel
 
 
 func _ready() -> void:
-	SignalManager.on_object_selected.connect(_on_object_selected)
+	SignalManager.on_actor_activated.connect(_on_actor_activated)
 	SignalManager.on_object_selection_cleared.connect(_on_object_selection_cleared)
 	SignalManager.on_execute_player_action.connect(_on_t1_execute_button_pressed)
 	SignalManager.on_show_player_task_two.connect(_on_show_player_task_two)
@@ -14,9 +14,9 @@ func _on_show_player_task_two(actor: Actor) -> void:
 
 
 ## show for task #1 when player Actor is selected
-func _on_object_selected(n: Node2D) -> void:
-	if n is Actor and n.owner_group == Statics.GROUPS.PLAYER_ACTORS:
-		__setup_panel_design(n, true)
+func _on_actor_activated(a: Actor) -> void:
+	if a.owner_group == Statics.GROUPS.PLAYER_ACTORS:
+		__setup_panel_design(a, true)
 	else:
 		self.visible = false
 
@@ -54,3 +54,4 @@ func _on_t1_execute_button_pressed() -> void:
 		push_error("player_execution_panel._on_t1_execute_button_pressed can only handle MOVE for now")
 	
 	GameStateManager.start_player_task(1, my_task)
+	self.visible = false

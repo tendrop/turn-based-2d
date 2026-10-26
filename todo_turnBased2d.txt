@@ -42,8 +42,11 @@ IndiGLO is player UI accent color
 -- U / Unit: distance measurement. 32px = 1 unit (so actors are 1 unit large)
 | World Layers |
 
+7 - movement plotting line
+8 - Selection/Hover Circle
+9 - Activation Circle
 10 - Actor
-
+11 - Icons ([!] collision icon; lock icon)
 
 | Collision Layers|
 1 - Wall (currently being used for actor)
@@ -130,8 +133,8 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-* node selected is no longer an independent state, it's just for showing stuff in the lower-middle info panel
-	--> object selected state is now PLAYER_ACTOR_ACTIVATED
+~ node selected is no longer an independent state, it's just for showing stuff in the lower-middle info panel
+~	--> object selected state is now PLAYER_ACTOR_ACTIVATED
 * Q button to activate, or click on actor that is already selected
 ?? selection window at bottom needs to be switchable while player execution window is open so that player can click on enemies?
 	-- hover circle: transparent white (doodad)
@@ -142,6 +145,7 @@ Style Box (for panels) resource
 	-- instead null it out when entering idle
 	-- `done, but needs testing`
 
+?? should E also confirm movement?
 
 
 | Future Branch |
