@@ -135,7 +135,8 @@ Style Box (for panels) resource
 | THIS BRANCH TODO |
 ~ node selected is no longer an independent state, it's just for showing stuff in the lower-middle info panel
 ~	--> object selected state is now PLAYER_ACTOR_ACTIVATED
-* Q button to activate, or click on actor that is already selected
+~Q button to activate, or click on actor that is already selected `double-click done, need activate hotkey`
+
 ?? selection window at bottom needs to be switchable while player execution window is open so that player can click on enemies?
 	-- hover circle: transparent white (doodad)
 	-- select circle: pure white (doodad)
@@ -145,7 +146,9 @@ Style Box (for panels) resource
 	-- instead null it out when entering idle
 	-- `done, but needs testing`
 
-?? should E also confirm movement?
+?? should E also confirm movement instead of C?
+
+* do second action (move only for now)
 
 
 | Future Branch |

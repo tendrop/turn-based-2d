@@ -55,3 +55,9 @@ func _on_t1_execute_button_pressed() -> void:
 	
 	GameStateManager.start_player_task(1, my_task)
 	self.visible = false
+
+
+func _on_t2_execute_button_pressed() -> void:
+	if not self.visible:
+		return
+	# TODO

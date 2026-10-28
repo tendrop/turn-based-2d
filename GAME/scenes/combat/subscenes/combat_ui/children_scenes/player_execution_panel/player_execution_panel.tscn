@@ -195,4 +195,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/TaskOneContainer/Turn1_ExecuteButton" to="." method="_on_t1_execute_button_pressed"]
-[connection signal="pressed" from="MarginContainer/TaskOneContainer/Turn2_ExecuteButton" to="." method="_on_t1_execute_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TaskOneContainer/Turn2_ExecuteButton" to="." method="_on_t2_execute_button_pressed"]

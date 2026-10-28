@@ -80,12 +80,17 @@ func __mouse_actions_enabled() -> bool:
 			return false
 
 
+func activate_me() -> void:
+	GameStateManager.try_activate_actor(self)
+	$ActivationCircleSprite.visible = true
+
+
+
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if __mouse_actions_enabled():
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 			if GameStateManager.selected_actor == self:
-				GameStateManager.try_activate_actor(self)
-				$ActivationCircleSprite.visible = true
+				activate_me()
 			else:
 				SignalManager.on_print_message_to_log.emit("%s clicked" % display_name)
 				SignalManager.on_object_selected.emit(self)

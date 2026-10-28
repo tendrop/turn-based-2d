@@ -28,9 +28,6 @@ func _unhandled_input(event: InputEvent) -> void:
 					GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
 						SignalManager.on_world_left_clicked.emit()
 	
-	#elif event.is_action_pressed("ui_accept"):
-		#SignalManager.on_enter_key_pressed.emit()
-		#get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("execute_player_action"):
 		match GameStateManager.current_game_state:
 			GameStateManager.GAME_STATE.PLAYER_ACTOR_ACTIVATED:
@@ -42,4 +39,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
 				SignalManager.on_start_player_action_pressed.emit()
 		get_viewport().set_input_as_handled()
+	
+	elif event.is_action_pressed("activate_selected_actor"):
+		if GameStateManager.selected_actor:
+			GameStateManager.selected_actor.activate_me()
+			get_viewport().set_input_as_handled()
 	

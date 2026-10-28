@@ -27,6 +27,7 @@ func _process(delta: float) -> void:
 		self.global_position = self.global_position.lerp(__following.global_position, 1.0 - pow(0.1, delta))
 
 func _on_start_camera_follow(n: Node2D) -> void:
+	set_deferred("global_position", n.global_position)
 	__following = n
 
 func _on_stop_camera_follow() -> void:
