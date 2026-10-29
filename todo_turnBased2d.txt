@@ -37,8 +37,8 @@ IndiGLO is player UI accent color
 	-- WORKER: base unit. only thing that can [capture and/or build] structures. basic weapon.
 -- BANDWIDTH: unit cap
 -- DATUM: meta-currency to track meta-game state progress. get from completing missions, destroying stuff, etc
--- EXECUTIONS: number of ACTIONS can take in your turn. need a tracker in GUI
--- ACTION: cast a spell, make a purchase, or have an actor perform a Pair of TASKS
+-- EXECUTIONS: number of actions can take in your turn. need a tracker in GUI
+	-- available actions: cast a spell, make a purchase, or have an actor perform a Pair of TASKS
 -- U / Unit: distance measurement. 32px = 1 unit (so actors are 1 unit large)
 | World Layers |
 
@@ -149,7 +149,9 @@ Style Box (for panels) resource
 ?? should E also confirm movement instead of C?
 
 * do second action (move only for now)
+	* can't slect other actors during second action
 
+* track Cycle# and remaining Executions on bar along top
 
 | Future Branch |
 * F for fire weapon

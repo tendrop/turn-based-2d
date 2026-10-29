@@ -6,16 +6,36 @@ enum GAME_STATE {
 	PLAYER_PLOTTING_MOVEMENT ## it's player's turn and they're plotting out movement
 }
 
-var __current_game_state: GAME_STATE = GAME_STATE.PLAYER_IDLE
+
+var ___current_cycle: int = 1
+var current_cycle: int:
+	get:
+		return ___current_cycle
+	set(value):
+		___current_cycle = value
+		SignalManager.on_cycle_count_changed.emit(value)
+
+
+var max_executions: int = 2
+var ___used_executions: int = 0
+var used_executions: int:
+	get:
+		return ___used_executions
+	set(value):
+		___used_executions = value
+		SignalManager.on_execution_count_changed.emit(value, max_executions)
+
+
+var ___current_game_state: GAME_STATE = GAME_STATE.PLAYER_IDLE
 var current_game_state: GAME_STATE:
 	get:
-		return __current_game_state
+		return ___current_game_state
 	set(new_state):
-		if new_state == __current_game_state:
+		if new_state == ___current_game_state:
 			return
 		else:
 			# EXIT tasks for current state
-			match __current_game_state:
+			match ___current_game_state:
 				GAME_STATE.PLAYER_IDLE:
 					pass
 				
@@ -32,6 +52,7 @@ var current_game_state: GAME_STATE:
 						activated_actor.remove_activation_circle()
 						activated_actor = null
 					__active_player_task = Statics.PLAYER_TASK.NONE
+					__player_task_count = 0
 				
 				GAME_STATE.PLAYER_ACTOR_ACTIVATED:
 					pass
@@ -40,10 +61,10 @@ var current_game_state: GAME_STATE:
 					SignalManager.on_start_player_movement_plotting.emit(activated_actor)
 				
 			print("Change GameState from '%s' to '%s'" % [ \
-				GAME_STATE.keys()[__current_game_state],
+				GAME_STATE.keys()[___current_game_state],
 				GAME_STATE.keys()[new_state] \
 				])
-			__current_game_state = new_state
+			___current_game_state = new_state
 
 
 var __active_player_task: Statics.PLAYER_TASK = Statics.PLAYER_TASK.NONE
@@ -82,13 +103,15 @@ func start_player_task(task_number: int, task_type: Statics.PLAYER_TASK) -> void
 			GameStateManager.current_game_state = GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT
 
 
-func handle_player_movement_complete() -> void:
+func handle_player_execution_task_complete() -> void:
 	#  if player has another action, show player execution panel again. 
 	if __player_task_count == 2:
 		# second task done, always return to idle
 		current_game_state = GAME_STATE.PLAYER_IDLE
 		
 	else:
+		current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
+		__player_task_count = 2
 		# single task done
 		match __active_player_task:
 			Statics.PLAYER_TASK.INFILTRATE:

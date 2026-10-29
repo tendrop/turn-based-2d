@@ -69,7 +69,7 @@ func __stop_movement() -> void:
 	SignalManager.on_stop_camera_follow.emit()
 	__current_actor_state = ACTOR_STATE.IDLE
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	GameStateManager.handle_player_movement_complete()
+	GameStateManager.handle_player_execution_task_complete()
 
 
 func __mouse_actions_enabled() -> bool:
