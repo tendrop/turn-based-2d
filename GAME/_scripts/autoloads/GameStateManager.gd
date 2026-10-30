@@ -3,10 +3,12 @@ extends Node
 enum GAME_STATE {
 	PLAYER_IDLE,  ## it's player's turn and they're not doing anything
 	PLAYER_ACTOR_ACTIVATED, ## PlayerExecutionPanel is shown to player so they can have an actor doing something
-	PLAYER_PLOTTING_MOVEMENT ## it's player's turn and they're plotting out movement
+	PLAYER_PLOTTING_MOVEMENT, ## it's player's turn and they're plotting out movement
+	ENEMY_TURN
 }
 
 
+## changed when ENEMY_TURN is over
 var ___current_cycle: int = 1
 var current_cycle: int:
 	get:
@@ -16,14 +18,17 @@ var current_cycle: int:
 		SignalManager.on_cycle_count_changed.emit(value)
 
 
-var max_executions: int = 2
-var ___used_executions: int = 0
-var used_executions: int:
+var max_executions: int = 1
+var ___remaining_executions: int = 0
+var remaining_executions: int:
 	get:
-		return ___used_executions
+		return ___remaining_executions
 	set(value):
-		___used_executions = value
+		___remaining_executions = value
 		SignalManager.on_execution_count_changed.emit(value, max_executions)
+		if ___remaining_executions == 0:
+			push_warning("NOW DO ENEMY TURN")
+			current_game_state = GAME_STATE.ENEMY_TURN
 
 
 var ___current_game_state: GAME_STATE = GAME_STATE.PLAYER_IDLE
@@ -44,6 +49,11 @@ var current_game_state: GAME_STATE:
 				
 				GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
 					SignalManager.on_stop_player_movement_plotting.emit()
+				
+				GAME_STATE.ENEMY_TURN:
+					remaining_executions = max_executions
+					current_cycle += 1
+			
 			
 			# ENTER tasks for new state
 			match new_state:
@@ -59,6 +69,9 @@ var current_game_state: GAME_STATE:
 				
 				GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
 					SignalManager.on_start_player_movement_plotting.emit(activated_actor)
+				
+				GAME_STATE.ENEMY_TURN:
+					pass
 				
 			print("Change GameState from '%s' to '%s'" % [ \
 				GAME_STATE.keys()[___current_game_state],
@@ -76,6 +89,7 @@ var selected_actor: Actor = null
 func _ready() -> void:
 	SignalManager.on_object_selected.connect(_on_object_selected)
 	SignalManager.on_object_selection_cleared.connect(_on_object_selection_cleared)
+	remaining_executions = max_executions
 
 
 func _on_object_selected(n: Node2D) -> void:
@@ -108,6 +122,7 @@ func handle_player_execution_task_complete() -> void:
 	if __player_task_count == 2:
 		# second task done, always return to idle
 		current_game_state = GAME_STATE.PLAYER_IDLE
+		remaining_executions -= 1
 		
 	else:
 		current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED

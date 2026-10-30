@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bs5val2k1emxy"]
 
+[ext_resource type="Script" uid="uid://bcq0qdotkaett" path="res://scenes/combat/subscenes/combat_ui/children_scenes/top_bar/top_bar.gd" id="1_pfk02"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jm7d1"]
 bg_color = Color(0, 0, 0, 1)
 border_width_bottom = 1
@@ -24,6 +26,7 @@ grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_jm7d1")
+script = ExtResource("1_pfk02")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1862467131]
 layout_mode = 2

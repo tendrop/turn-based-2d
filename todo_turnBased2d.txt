@@ -148,10 +148,18 @@ Style Box (for panels) resource
 
 ?? should E also confirm movement instead of C?
 
-* do second action (move only for now)
-	* can't slect other actors during second action
+~ do second action (move only for now)
+	~ can't slect other actors during second action
 
-* track Cycle# and remaining Executions on bar along top
+~ track Cycle# and remaining Executions on bar along top
+
+* if actor is activated, don't allow second actor to be activated at same time (can have 2 teal circles)
+
+* do fake enemy turn
+	* Opposition Response banner, then just put in a timer for now
+	* EnemyAi script/node
+	* send on_enemy_turn_over signal back to GameStateManager
+
 
 | Future Branch |
 * F for fire weapon

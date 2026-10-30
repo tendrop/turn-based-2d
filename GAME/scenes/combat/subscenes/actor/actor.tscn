@@ -2,12 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cq4qhjalj6hgt" path="res://scenes/combat/subscenes/actor/actor.gd" id="1_6v7qs"]
 [ext_resource type="Texture2D" uid="uid://cik502lu0cubg" path="res://assets/pngs/selection_circle.png" id="2_h0qbu"]
+[ext_resource type="Texture2D" uid="uid://dl35rojnsqmfs" path="res://assets/pngs/temp_32.png" id="3_p35yq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm35l"]
 radius = 26.076809
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bm35l"]
-size = Vector2(32, 32)
 
 [node name="Actor" type="CharacterBody2D" unique_id=265465293 groups=["player_actors"]]
 input_pickable = true
@@ -27,7 +25,7 @@ texture = ExtResource("2_h0qbu")
 [node name="ActorSprite" type="Sprite2D" parent="." unique_id=876451860]
 z_index = 10
 z_as_relative = false
-texture = SubResource("PlaceholderTexture2D_bm35l")
+texture = ExtResource("3_p35yq")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

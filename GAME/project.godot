@@ -23,7 +23,7 @@ GameStateManager="*uid://r4c1klqth3lb"
 [display]
 
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep_height"
+window/stretch/aspect="expand"
 
 [file_customization]
 
