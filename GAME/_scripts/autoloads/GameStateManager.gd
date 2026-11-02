@@ -103,6 +103,8 @@ func _on_object_selection_cleared() -> void:
 
 func try_activate_actor(actor: Actor) -> void:
 	if actor != selected_actor: return
+	if activated_actor:
+		activated_actor.remove_activation_circle()
 	activated_actor = actor
 	current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
 	SignalManager.on_actor_activated.emit(actor)
