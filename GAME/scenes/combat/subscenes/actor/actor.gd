@@ -40,14 +40,20 @@ func __has_reached_current_destination() -> bool:
 func __move_towards_destination(delta: float) -> void:
 	var distance: float = self.global_position.distance_to(__movement_destination)
 	var max_speed: float = distance / delta
-	var movement: Vector2 = min(Statics.MOVEMENT_SPEED, max_speed) \
-		* self.global_position.direction_to(__movement_destination) \
-		* delta
-		
+	var direction: Vector2 = self.global_position.direction_to(__movement_destination)
+	
+	var movement: Vector2 = min(Statics.MOVEMENT_SPEED, max_speed) * direction * delta
+	
 	var collision = move_and_collide(movement)
 	
 	if collision:
 		__stop_movement()
+	
+	var flip_scale : float = 0.5
+	if direction.x < 0:
+		flip_scale = -0.5
+	if %ActorSprite.scale.x != flip_scale:
+		%ActorSprite.scale.x = flip_scale
 	
 	self.velocity = Vector2.ZERO
 

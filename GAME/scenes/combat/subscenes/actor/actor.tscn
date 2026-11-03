@@ -24,10 +24,13 @@ scale = Vector2(0.45, 0.45)
 texture = ExtResource("2_p35yq")
 
 [node name="ActorSprite" type="Sprite2D" parent="." unique_id=876451860]
+unique_name_in_owner = true
 z_index = 10
 z_as_relative = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_p35yq")
+
+[node name="EverythingThatNeedsFlippedGoHere" type="Node" parent="ActorSprite" unique_id=1100775441]
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
