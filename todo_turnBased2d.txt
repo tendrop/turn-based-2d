@@ -157,8 +157,16 @@ Style Box (for panels) resource
 
 * do fake enemy turn
 	* Opposition Response banner, then just put in a timer for now
-	* EnemyAi script/node
-	* send on_enemy_turn_over signal back to GameStateManager
+	~ EnemyAi script/node
+	~ send on_enemy_turn_over signal back to GameStateManager
+
+
+~ don't allow to clear when on second action
+* activation circle should have a solid background so can't see movement line until edge of circle
+
+
+* [R] for "Run Action" (or Q for Queue Execution) instead of E for execution?
+	-- sESDF for movement instead of WASD
 
 
 | Future Branch |

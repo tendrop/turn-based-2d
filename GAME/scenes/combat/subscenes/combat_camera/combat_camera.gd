@@ -8,7 +8,7 @@ var __is_panning : bool = false
 @export var MIN_ZOOM: float = 0.75
 @export var MAX_ZOOM: float = 1.25
 @export var ZOOM_STEP: float = 0.05
-@export var ZOOM_SPEED: float = 10.0
+@export var ZOOM_SPEED: float = 5.0
 var __target_zoom: Vector2 = Vector2.ONE
 
 var __following: Node2D = null
@@ -50,7 +50,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			__is_panning = false
 			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	elif event is InputEventMouseMotion and __is_panning:
-		position += -event.relative / zoom
+		var new_pos: Vector2 = self.position + (-event.relative / zoom)
+		set_deferred("position", new_pos)
+		#position += -event.relative / zoom
 		get_viewport().set_input_as_handled()
 	
 	# zoom with mouse wheel

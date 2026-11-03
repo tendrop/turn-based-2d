@@ -79,3 +79,6 @@ signal on_move_hover_circle(visible: bool, global_loc: Vector2)
 signal on_start_player_movement_plotting(actor: Actor)
 signal on_stop_player_movement_plotting
 signal on_make_movement_plot_marker_doodad(global_pos: Vector2)
+
+signal on_start_enemy_turn
+signal on_end_enemy_turn

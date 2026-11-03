@@ -15,12 +15,12 @@ func _unhandled_input(event: InputEvent) -> void:
 				SignalManager.on_object_selection_cleared.emit()
 				
 			GameStateManager.GAME_STATE.PLAYER_ACTOR_ACTIVATED:
-				SignalManager.on_object_selection_cleared.emit()
-				GameStateManager.current_game_state = GameStateManager.GAME_STATE.PLAYER_IDLE
+				GameStateManager.try_deactivate_actor()
 				
 			GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
 				SignalManager.on_try_remove_movement_pivot_point.emit()
 		get_viewport().set_input_as_handled()
+	
 	elif event is InputEventMouseButton and event.pressed:
 		match (event as InputEventMouseButton).button_index:
 			MOUSE_BUTTON_LEFT:

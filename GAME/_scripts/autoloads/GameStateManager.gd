@@ -27,7 +27,6 @@ var remaining_executions: int:
 		___remaining_executions = value
 		SignalManager.on_execution_count_changed.emit(value, max_executions)
 		if ___remaining_executions == 0:
-			push_warning("NOW DO ENEMY TURN")
 			current_game_state = GAME_STATE.ENEMY_TURN
 
 
@@ -71,7 +70,7 @@ var current_game_state: GAME_STATE:
 					SignalManager.on_start_player_movement_plotting.emit(activated_actor)
 				
 				GAME_STATE.ENEMY_TURN:
-					pass
+					SignalManager.on_start_enemy_turn.emit()
 				
 			print("Change GameState from '%s' to '%s'" % [ \
 				GAME_STATE.keys()[___current_game_state],
@@ -89,6 +88,7 @@ var selected_actor: Actor = null
 func _ready() -> void:
 	SignalManager.on_object_selected.connect(_on_object_selected)
 	SignalManager.on_object_selection_cleared.connect(_on_object_selection_cleared)
+	SignalManager.on_end_enemy_turn.connect(_on_end_enemy_turn)
 	remaining_executions = max_executions
 
 
@@ -101,6 +101,10 @@ func _on_object_selection_cleared() -> void:
 	selected_actor = null
 
 
+func _on_end_enemy_turn() -> void:
+	current_game_state = GAME_STATE.PLAYER_IDLE
+
+
 func try_activate_actor(actor: Actor) -> void:
 	if actor != selected_actor: return
 	if activated_actor:
@@ -108,6 +112,14 @@ func try_activate_actor(actor: Actor) -> void:
 	activated_actor = actor
 	current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
 	SignalManager.on_actor_activated.emit(actor)
+
+
+func try_deactivate_actor() -> void:
+	if activated_actor \
+	and current_game_state == GAME_STATE.PLAYER_ACTOR_ACTIVATED \
+	and __player_task_count == 0:
+		SignalManager.on_object_selection_cleared.emit()
+		self.current_game_state = GAME_STATE.PLAYER_IDLE
 
 
 func start_player_task(task_number: int, task_type: Statics.PLAYER_TASK) -> void:
