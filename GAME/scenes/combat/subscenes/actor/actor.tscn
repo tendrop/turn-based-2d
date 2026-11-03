@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://vqyv3wh7y3sn"]
 
 [ext_resource type="Script" uid="uid://cq4qhjalj6hgt" path="res://scenes/combat/subscenes/actor/actor.gd" id="1_6v7qs"]
-[ext_resource type="Texture2D" uid="uid://cik502lu0cubg" path="res://assets/pngs/selection_circle.png" id="2_h0qbu"]
+[ext_resource type="Texture2D" uid="uid://b5k478wspq5a7" path="res://assets/pngs/activation_circle/activation_circle.png" id="2_p35yq"]
 [ext_resource type="Texture2D" uid="uid://ctyd0no1pj0nx" path="res://assets/pngs/temp_64.png" id="3_p35yq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm35l"]
@@ -21,7 +21,7 @@ modulate = Color(0, 1, 0.6901961, 1)
 z_index = 9
 z_as_relative = false
 scale = Vector2(0.45, 0.45)
-texture = ExtResource("2_h0qbu")
+texture = ExtResource("2_p35yq")
 
 [node name="ActorSprite" type="Sprite2D" parent="." unique_id=876451860]
 z_index = 10

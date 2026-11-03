@@ -163,13 +163,22 @@ Style Box (for panels) resource
 
 ~ don't allow to clear when on second action
 * activation circle should have a solid background so can't see movement line until edge of circle
+	* don't allow to put down point unless X away from center (16px normalized)
+
+* flip facing based on direction of movement
 
 
 * [R] for "Run Action" (or Q for Queue Execution) instead of E for execution?
 	-- sESDF for movement instead of WASD
 
 
+
 | Future Branch |
+* mob scene init
+	* Enemy turn handler moves random mob towards random player (for now)
+	
+* lock when base-to-base with something
+
 * F for fire weapon
 * seperate areas for projectiles to impact againstq
 	-- 3 total (player_projectile_collision, enemy_projectile_collision, any_projectile_collision)
@@ -177,3 +186,5 @@ Style Box (for panels) resource
 * TODO go to second action if not infiltrating or sniping, otherwise back to idle state
 	-- GameStateManager.handle_player_movement_complete
 	* does second movement actually work?
+	
+8 reaction fire does 50% damage and occurs whenever an opponent takes an action within units FoV and LoS (unless they are infiltrating)
