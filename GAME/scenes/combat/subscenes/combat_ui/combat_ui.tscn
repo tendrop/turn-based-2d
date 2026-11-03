@@ -96,3 +96,26 @@ offset_right = 0.0
 grow_horizontal = 0
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, 12)
+
+[node name="TurnBanner" type="Label" parent="MainUi" unique_id=410232327]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -126.5
+offset_right = 126.5
+offset_bottom = 33.0
+grow_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 50)
+theme_override_font_sizes/font_size = 32
+text = "Opposition Response"
+
+[node name="TurnBannerTimer" type="Timer" parent="MainUi/TurnBanner" unique_id=1173130649]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="MainUi/TurnBanner/TurnBannerTimer" to="." method="_on_turn_banner_timer_timeout"]

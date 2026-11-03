@@ -155,8 +155,8 @@ Style Box (for panels) resource
 
 ~ if actor is activated, don't allow second actor to be activated at same time (can have 2 teal circles)z
 
-* do fake enemy turn
-	* Opposition Response banner, then just put in a timer for now
+~ do fake enemy turn
+	~ Opposition Response banner, then just put in a timer for now
 	~ EnemyAi script/node
 	~ send on_enemy_turn_over signal back to GameStateManager
 
