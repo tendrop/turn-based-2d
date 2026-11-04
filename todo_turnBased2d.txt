@@ -167,10 +167,10 @@ Style Box (for panels) resource
 
 ~ flip facing based on direction of movement
 
-* [Q] for clear
-* [R] for "Run Action" (or Q for Queue Execution) instead of E for execution?
-	-- sESDF for movement instead of WASD
-* keep same "execute" key for confirm movement
+~ [Q] for clear
+~ [R] for "Run Action" (or Q for Queue Execution) instead of E for execution?
+~	-- sESDF for movement instead of WASD
+~ keep same "execute" key for confirm movement
 
 
 | Future Branch |
@@ -188,3 +188,7 @@ Style Box (for panels) resource
 	* does second movement actually work?
 	
 8 reaction fire does 50% damage and occurs whenever an opponent takes an action within units FoV and LoS (unless they are infiltrating)
+
+https://www.dafont.com/zeroes.font?l[]=10&l[]=1
+https://www.dafont.com/256-bytes.font?l[]=10&l[]=1
+https://www.dafont.com/quadaptor.font?l[]=10&l[]=1
