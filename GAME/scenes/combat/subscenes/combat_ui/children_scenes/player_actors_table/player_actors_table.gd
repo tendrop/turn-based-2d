@@ -80,12 +80,12 @@ func _on_select_next_player_actor() -> void:
 		
 		var actor: Actor = __player_actors.keys()[index]
 		__player_actors[actor].select(0)
-		GameStateManager.try_select_object(actor)
+		SignalManager.on_object_selected.emit(actor)
 		
 	else:
 		# select first entry if nothing is selected
 		__player_actors[__player_actors.keys()[0]].select(0)
-		GameStateManager.try_select_object(__player_actors.keys()[0])
+		SignalManager.on_object_selected.emit(__player_actors.keys()[0])
 
 
 func _on_object_selection_cleared() -> void:

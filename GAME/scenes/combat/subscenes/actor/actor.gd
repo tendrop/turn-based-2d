@@ -40,51 +40,66 @@ func __has_reached_current_destination() -> bool:
 func __move_towards_destination(delta: float) -> void:
 	var distance: float = self.global_position.distance_to(__movement_destination)
 	var max_speed: float = distance / delta
-	var movement: Vector2 = min(Statics.MOVEMENT_SPEED, max_speed) \
-		* self.global_position.direction_to(__movement_destination) \
-		* delta
-		
+	var direction: Vector2 = self.global_position.direction_to(__movement_destination)
+	
+	var movement: Vector2 = min(Statics.MOVEMENT_SPEED, max_speed) * direction * delta
+	
 	var collision = move_and_collide(movement)
 	
 	if collision:
 		__stop_movement()
 	
+	var flip_scale : float = 0.5
+	if direction.x < 0:
+		flip_scale = -0.5
+	if %ActorSprite.scale.x != flip_scale:
+		%ActorSprite.scale.x = flip_scale
+	
 	self.velocity = Vector2.ZERO
-
-func activate_me() -> void:
-	#TODO selection circle
-	print("%s was activated" % display_name)
-	SignalManager.on_player_actor_activated.emit(self)
 
 
 func do_movement(coords: Array[Vector2]) -> void:
-	#TODO lock camera to me
+	SignalManager.on_object_selection_cleared.emit()
 	__movement_coords = coords
+	# lock camera to me
 	SignalManager.on_start_camera_follow.emit(self)
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	set_deferred("__current_actor_state", ACTOR_STATE.MOVING)
 	
 
+func remove_activation_circle() -> void:
+	$ActivationCircleSprite.visible = false
+
+
 func __stop_movement() -> void:
 	SignalManager.on_stop_camera_follow.emit()
 	__current_actor_state = ACTOR_STATE.IDLE
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	GameStateManager.handle_player_movement_complete()
+	GameStateManager.handle_player_actor_task_complete()
 
 
 func __mouse_actions_enabled() -> bool:
 	match GameStateManager.current_game_state:
-		GameStateManager.GAME_STATE.PLAYER_IDLE, GameStateManager.GAME_STATE.OBJECT_SELECTED:
+		GameStateManager.GAME_STATE.PLAYER_IDLE, GameStateManager.GAME_STATE.PLAYER_ACTOR_ACTIVATED:
 			return true
 		_:
 			return false
 
 
+func activate_me() -> void:
+	GameStateManager.try_activate_actor(self)
+	$ActivationCircleSprite.visible = true
+
+
+
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if __mouse_actions_enabled():
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-			SignalManager.on_print_message_to_log.emit("%s clicked" % display_name)
-			GameStateManager.try_select_object(self)
+			if GameStateManager.selected_actor == self:
+				activate_me()
+			else:
+				SignalManager.on_print_message_to_log.emit("%s clicked" % display_name)
+				SignalManager.on_object_selected.emit(self)
 
 
 func _on_mouse_entered() -> void:

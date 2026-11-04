@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://baptberhrvlg" path="res://scenes/combat/subscenes/key_handler/key_handler.tscn" id="1_kaxju"]
 [ext_resource type="PackedScene" uid="uid://uoxwu5km2540" path="res://scenes/combat/subscenes/combat_ui/combat_ui.tscn" id="1_n7x52"]
 [ext_resource type="PackedScene" uid="uid://bf8w8h7oytew0" path="res://scenes/combat/subscenes/combat_camera/combat_camera.tscn" id="2_1pw7v"]
+[ext_resource type="PackedScene" uid="uid://j268h2yrh66t" path="res://scenes/combat/subscenes/enemy_turn_handler/enemy_turn_handler.tscn" id="2_7eb1b"]
 [ext_resource type="PackedScene" uid="uid://vqyv3wh7y3sn" path="res://scenes/combat/subscenes/actor/actor.tscn" id="3_n426y"]
 [ext_resource type="PackedScene" uid="uid://beutckbanthtt" path="res://scenes/combat/subscenes/doodad_manager/doodad_manager.tscn" id="5_d0tbs"]
 [ext_resource type="PackedScene" uid="uid://cpmn1tj82vhle" path="res://scenes/combat/subscenes/movement_plotter/movement_plotter.tscn" id="6_6m7m3"]
@@ -10,6 +11,12 @@
 [node name="PrimaryCombat" type="Node2D" unique_id=384078481]
 
 [node name="KeyHandler" parent="." unique_id=227509208 instance=ExtResource("1_kaxju")]
+
+[node name="EnemyTurnHandler" parent="." unique_id=145104329 instance=ExtResource("2_7eb1b")]
+
+[node name="MovementPlotter" parent="." unique_id=1240884466 instance=ExtResource("6_6m7m3")]
+
+[node name="DoodadManager" parent="." unique_id=2081016043 instance=ExtResource("5_d0tbs")]
 
 [node name="CombatUi" parent="." unique_id=1977580954 instance=ExtResource("1_n7x52")]
 
@@ -22,7 +29,3 @@ display_name = "Onzer"
 [node name="Actor2" parent="." unique_id=265465293 instance=ExtResource("3_n426y")]
 position = Vector2(119, -54)
 display_name = "Act2"
-
-[node name="DoodadManager" parent="." unique_id=2081016043 instance=ExtResource("5_d0tbs")]
-
-[node name="MovementPlotter" parent="." unique_id=1240884466 instance=ExtResource("6_6m7m3")]

@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://clfsbu88lhtpd" path="res://assets/pngs/exclamation_point.png" id="2_x2h10"]
 
 [node name="MovementPlotter" type="Node2D" unique_id=1240884466]
+z_index = 7
+z_as_relative = false
 script = ExtResource("1_otmdd")
 
 [node name="UiUpdateTimer" type="Timer" parent="." unique_id=273936419]
@@ -13,6 +15,8 @@ wait_time = 0.2
 unique_name_in_owner = true
 visible = false
 self_modulate = Color(1, 0.6901961, 0, 1)
+z_index = 11
+z_as_relative = false
 texture = ExtResource("2_x2h10")
 
 [node name="RayCast" type="RayCast2D" parent="." unique_id=215766014]

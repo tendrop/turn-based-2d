@@ -5,10 +5,10 @@ class_name CombatCamera
 var __is_panning : bool = false
 
 # for zooming
-@export var MIN_ZOOM: float = 0.5
-@export var MAX_ZOOM: float = 1.0
-@export var ZOOM_STEP: float = 0.1
-@export var ZOOM_SPEED: float = 10.0
+@export var MIN_ZOOM: float = 0.75
+@export var MAX_ZOOM: float = 1.25
+@export var ZOOM_STEP: float = 0.05
+@export var ZOOM_SPEED: float = 5.0
 var __target_zoom: Vector2 = Vector2.ONE
 
 var __following: Node2D = null
@@ -24,13 +24,17 @@ func _process(delta: float) -> void:
 	self.zoom = self.zoom.lerp(__target_zoom, 1.0 - exp(-ZOOM_SPEED * delta))
 	if is_instance_valid(__following) and __following:
 		#self.global_position = self.global_position.move_toward(__following.global_position, 100 * delta)
-		self.global_position = self.global_position.lerp(__following.global_position, 1.0 - pow(0.1, delta))
+		self.global_position = self.global_position.lerp(__following.global_position, 1.0 - pow(0.8, delta))
+
 
 func _on_start_camera_follow(n: Node2D) -> void:
+	set_deferred("global_position", n.global_position)
 	__following = n
+
 
 func _on_stop_camera_follow() -> void:
 	__following = null
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if is_instance_valid(__following) and __following:
@@ -46,7 +50,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			__is_panning = false
 			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	elif event is InputEventMouseMotion and __is_panning:
-		position += -event.relative / zoom
+		var new_pos: Vector2 = self.position + (-event.relative / zoom)
+		set_deferred("position", new_pos)
+		#position += -event.relative / zoom
 		get_viewport().set_input_as_handled()
 	
 	# zoom with mouse wheel

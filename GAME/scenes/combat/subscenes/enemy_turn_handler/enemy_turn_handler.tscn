@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://j268h2yrh66t"]
+
+[ext_resource type="Script" uid="uid://cf62b1ljj5h6m" path="res://scenes/combat/subscenes/enemy_turn_handler/enemy_turn_handler.gd" id="1_q3gb8"]
+
+[node name="EnemyTurnHandler" type="Node" unique_id=145104329]
+script = ExtResource("1_q3gb8")
+
+[node name="Timer" type="Timer" parent="." unique_id=1702671685]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

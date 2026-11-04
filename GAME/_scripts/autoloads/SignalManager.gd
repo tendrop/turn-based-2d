@@ -30,6 +30,14 @@ signal on_start_player_action_pressed()
 
 
 ############## update CombatUI elements
+## emitted by: gameStateManager
+## heard by: CombatUi
+signal on_cycle_count_changed(cycle: int)
+
+## emitted by: GameStateManager
+## heard by: CombatUi
+signal on_action_count_changed(current_exe: int, max_exe: int)
+
 ## emitted by: GameStateManager
 ## heard by: PlayerExecutionPanel
 signal on_show_player_task_two(a: Actor)
@@ -39,6 +47,11 @@ signal on_show_player_task_two(a: Actor)
 ## heard by: CombatUi
 signal on_object_selected(n: Node2D)
 signal on_object_selection_cleared()
+
+## emitted by: Actor
+## heard by: GameStateManager
+signal on_actor_activated(a: Actor)
+
 
 ## emitted by: lots
 ## heard by: ScrollingLog (in CombatUi)
@@ -66,3 +79,6 @@ signal on_move_hover_circle(visible: bool, global_loc: Vector2)
 signal on_start_player_movement_plotting(actor: Actor)
 signal on_stop_player_movement_plotting
 signal on_make_movement_plot_marker_doodad(global_pos: Vector2)
+
+signal on_start_enemy_turn
+signal on_end_enemy_turn

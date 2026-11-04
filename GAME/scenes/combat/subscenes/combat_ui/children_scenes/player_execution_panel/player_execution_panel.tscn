@@ -52,7 +52,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "Set Execution Task (1 of 2)"
+text = "Define Task (1 of 2)"
 horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="MarginContainer/TaskOneContainer" unique_id=763813590]
@@ -152,7 +152,7 @@ size_flags_horizontal = 3
 offset_transform_enabled = true
 offset_transform_position = Vector2(-15, 0)
 theme_override_font_sizes/font_size = 14
-text = "[E]xecute Action"
+text = "[R]un Task"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -190,9 +190,9 @@ size_flags_horizontal = 3
 offset_transform_enabled = true
 offset_transform_position = Vector2(-15, 0)
 theme_override_font_sizes/font_size = 14
-text = "[E]xecute Action"
+text = "[R]un Task "
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/TaskOneContainer/Turn1_ExecuteButton" to="." method="_on_t1_execute_button_pressed"]
-[connection signal="pressed" from="MarginContainer/TaskOneContainer/Turn2_ExecuteButton" to="." method="_on_t1_execute_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TaskOneContainer/Turn2_ExecuteButton" to="." method="_on_t2_execute_button_pressed"]
