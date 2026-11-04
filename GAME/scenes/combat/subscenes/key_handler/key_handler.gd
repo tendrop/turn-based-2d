@@ -32,10 +32,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		match GameStateManager.current_game_state:
 			GameStateManager.GAME_STATE.PLAYER_ACTOR_ACTIVATED:
 				SignalManager.on_execute_player_action.emit()
-		get_viewport().set_input_as_handled()
-		
-	elif event.is_action_pressed("commit_player_movement"):
-		match GameStateManager.current_game_state:
 			GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
 				SignalManager.on_start_player_action_pressed.emit()
 		get_viewport().set_input_as_handled()

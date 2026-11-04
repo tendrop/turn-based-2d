@@ -146,7 +146,7 @@ Style Box (for panels) resource
 	-- instead null it out when entering idle
 	-- `done, but needs testing`
 
-?? should E also confirm movement instead of C?
+
 
 ~ do second action (move only for now)
 	~ can't slect other actors during second action
@@ -162,15 +162,15 @@ Style Box (for panels) resource
 
 
 ~ don't allow to clear when on second action
-* activation circle should have a solid background so can't see movement line until edge of circle
-	* don't allow to put down point unless X away from center (16px normalized)
+~ activation circle should have a solid background so can't see movement line until edge of circle
+	?? don't allow to put down point unless X away from center (16px normalized)?
 
-* flip facing based on direction of movement
+~ flip facing based on direction of movement
 
-
+* [Q] for clear
 * [R] for "Run Action" (or Q for Queue Execution) instead of E for execution?
 	-- sESDF for movement instead of WASD
-
+* keep same "execute" key for confirm movement
 
 
 | Future Branch |
