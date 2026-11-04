@@ -18,15 +18,15 @@ var current_cycle: int:
 		SignalManager.on_cycle_count_changed.emit(value)
 
 
-var max_executions: int = 1
-var ___remaining_executions: int = 0
-var remaining_executions: int:
+var max_actions: int = 1
+var ___remaining_actions: int = 0
+var remaining_actions: int:
 	get:
-		return ___remaining_executions
+		return ___remaining_actions
 	set(value):
-		___remaining_executions = value
-		SignalManager.on_execution_count_changed.emit(value, max_executions)
-		if ___remaining_executions == 0:
+		___remaining_actions = value
+		SignalManager.on_action_count_changed.emit(value, max_actions)
+		if ___remaining_actions == 0:
 			current_game_state = GAME_STATE.ENEMY_TURN
 
 
@@ -50,7 +50,7 @@ var current_game_state: GAME_STATE:
 					SignalManager.on_stop_player_movement_plotting.emit()
 				
 				GAME_STATE.ENEMY_TURN:
-					remaining_executions = max_executions
+					remaining_actions = max_actions
 					current_cycle += 1
 			
 			
@@ -89,7 +89,7 @@ func _ready() -> void:
 	SignalManager.on_object_selected.connect(_on_object_selected)
 	SignalManager.on_object_selection_cleared.connect(_on_object_selection_cleared)
 	SignalManager.on_end_enemy_turn.connect(_on_end_enemy_turn)
-	remaining_executions = max_executions
+	remaining_actions = max_actions
 
 
 func _on_object_selected(n: Node2D) -> void:
@@ -131,12 +131,12 @@ func start_player_task(task_number: int, task_type: Statics.PLAYER_TASK) -> void
 			GameStateManager.current_game_state = GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT
 
 
-func handle_player_execution_task_complete() -> void:
+func handle_player_actor_task_complete() -> void:
 	#  if player has another action, show player execution panel again. 
 	if __player_task_count == 2:
 		# second task done, always return to idle
 		current_game_state = GAME_STATE.PLAYER_IDLE
-		remaining_executions -= 1
+		remaining_actions -= 1
 		
 	else:
 		current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED

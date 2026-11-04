@@ -29,10 +29,10 @@ func _on_object_selection_cleared() -> void:
 func __setup_panel_design(a: Actor, is_task_one: bool) -> void:
 	if is_task_one:
 		%ActorName.text = a.display_name
-		%TaskNumberLabel.text = "Set Execution Task (1 of 2)"
+		%TaskNumberLabel.text = "Define Task (1 of 2)"
 		%MoveButton.grab_focus()
 	else:
-		%TaskNumberLabel.text = "Set Execution Task (2 of 2)"
+		%TaskNumberLabel.text = "Define Task (2 of 2)"
 		%AttackButton.grab_focus()
 
 	# can't use these buttons in task #2

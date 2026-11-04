@@ -36,5 +36,5 @@ theme_override_constants/margin_bottom = 2
 [node name="Notes" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=119019122]
 layout_mode = 2
 text = "- [LEFT-CLICK] to set pivot point
-- [Z] to remove last pivot point
-- [C] to confirm movement"
+- [Q] to remove last pivot point
+- [R] to start movement"

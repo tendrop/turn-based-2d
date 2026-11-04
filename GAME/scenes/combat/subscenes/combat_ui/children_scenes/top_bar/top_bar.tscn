@@ -41,7 +41,7 @@ text = "Cycle: 1"
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_jm7d1")
 
-[node name="RemainingExecutions" type="Label" parent="HBoxContainer" unique_id=846074300]
+[node name="RemainingActions" type="Label" parent="HBoxContainer" unique_id=846074300]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Remaining Executions: 2/2"
+text = "Remaining Actions: 2/2"

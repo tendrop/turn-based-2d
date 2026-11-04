@@ -36,7 +36,7 @@ signal on_cycle_count_changed(cycle: int)
 
 ## emitted by: GameStateManager
 ## heard by: CombatUi
-signal on_execution_count_changed(current_exe: int, max_exe: int)
+signal on_action_count_changed(current_exe: int, max_exe: int)
 
 ## emitted by: GameStateManager
 ## heard by: PlayerExecutionPanel
