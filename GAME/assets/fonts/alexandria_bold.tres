@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" format=3 uid="uid://bxqnq1k7ekyqg"]
+
+[ext_resource type="FontFile" uid="uid://rv2tlcpg3d5r" path="res://assets/fonts/alexandria.ttf" id="1_f4tox"]
+
+[resource]
+base_font = ExtResource("1_f4tox")
+variation_embolden = 0.6
+spacing_top = -3
+spacing_bottom = -2

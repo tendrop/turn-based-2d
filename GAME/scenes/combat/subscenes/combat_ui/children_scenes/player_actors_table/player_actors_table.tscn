@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bvw64k3msl7oq"]
 
 [ext_resource type="Script" uid="uid://b14hdxdn4dx6c" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_actors_table/player_actors_table.gd" id="1_7hwv4"]
+[ext_resource type="FontVariation" uid="uid://cq1ew15k2avcl" path="res://assets/fonts/alexandria_v_centered.tres" id="1_j2i1r"]
 
 [node name="PlayerActorsTable" type="Tree" unique_id=1859567931]
 anchors_preset = 15
@@ -9,6 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
+theme_override_fonts/font = ExtResource("1_j2i1r")
 columns = 3
 column_titles_visible = true
 hide_root = true

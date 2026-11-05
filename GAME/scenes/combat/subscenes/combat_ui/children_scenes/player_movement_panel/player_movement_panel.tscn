@@ -37,4 +37,4 @@ theme_override_constants/margin_bottom = 2
 layout_mode = 2
 text = "- [LEFT-CLICK] to set pivot point
 - [Q] to remove last pivot point
-- [R] to start movement"
+- [E] to start movement"

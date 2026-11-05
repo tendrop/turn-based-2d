@@ -133,14 +133,18 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-* font variant embolden for bolding text
-* fix actor box alignment and column titles to ("ACTA")
+~ font variant embolden for bolding text -- use in actor name in execution panel
+* fix actor listbox alignment and column titles ("ACTA")
 * when scrolling logbox, consume scroll and dont zoom in camera
-* [R]un Task button looks weird b/c R is not centered in square parenthesis
+~ [R]un Task button looks weird b/c R is not centered in square parenthesis
 * don't highlight/hover when right-click drag is being used
 * little stutter at end of movement when moving camera with right-click drag
 * custom mouse cursors
 * tab focuses camera on selected actor
+
+* shouldn't be able to activate different actor when on Task#2
+
+?? camear might not need to follow, may be enough to snap to center pre movement?
 
 | Future Branch |
 * mob scene init
@@ -158,4 +162,5 @@ Style Box (for panels) resource
 	
 8 reaction fire does 50% damage and occurs whenever an opponent takes an action within units FoV and LoS (unless they are infiltrating)
 
-* minimap
+* minimap (dots only)
+	* click on region to move camera
