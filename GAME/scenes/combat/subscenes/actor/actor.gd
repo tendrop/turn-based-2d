@@ -88,8 +88,8 @@ func __mouse_actions_enabled() -> bool:
 
 func activate_me() -> void:
 	GameStateManager.try_activate_actor(self)
-	$ActivationCircleSprite.visible = true
-
+	if GameStateManager.activated_actor == self:
+		$ActivationCircleSprite.visible = true
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:

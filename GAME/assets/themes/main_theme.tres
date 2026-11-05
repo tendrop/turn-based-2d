@@ -61,6 +61,13 @@ border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
 corner_detail = 1
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_etupa"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+color = Color(0.2509804, 0.2509804, 0.2509804, 1)
+
 [sub_resource type="DPITexture" id="DPITexture_pefyd"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\" fill-opacity=\".37\"/></svg>
 "
@@ -252,6 +259,7 @@ Button/styles/focus = ExtResource("1_4fp8c")
 Button/styles/hover = SubResource("StyleBoxFlat_gxbo5")
 Button/styles/normal = SubResource("StyleBoxFlat_bg3bn")
 Button/styles/pressed = SubResource("StyleBoxFlat_c2reo")
+HSeparator/styles/separator = SubResource("StyleBoxLine_etupa")
 HSlider/icons/grabber = ExtResource("1_axncs")
 HSlider/icons/grabber_disabled = SubResource("DPITexture_pefyd")
 HSlider/icons/grabber_highlight = ExtResource("3_y0ixg")

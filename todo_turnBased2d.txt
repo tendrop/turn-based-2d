@@ -134,7 +134,7 @@ Style Box (for panels) resource
 
 | THIS BRANCH TODO |
 ~ font variant embolden for bolding text -- use in actor name in execution panel
-* fix actor listbox alignment and column titles ("ACTA")
+~ fix actor listbox alignment and column titles ("ACTA")
 * when scrolling logbox, consume scroll and dont zoom in camera
 ~ [R]un Task button looks weird b/c R is not centered in square parenthesis
 * don't highlight/hover when right-click drag is being used

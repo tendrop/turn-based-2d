@@ -2,17 +2,16 @@ extends Tree
 class_name PlayerActorsTable
 
 enum COLS {
-	ACTR,
-	TYPE,
-	INTG, 
-	STATE
+	Actor,
+	Intg, 
+	State
 }
 
 # actor names will be [type]_##
 const __columns: Dictionary[COLS, int] = {
-	COLS.ACTR: 0,
-	COLS.INTG: 1,
-	COLS.STATE: 2
+	COLS.Actor: 0,
+	COLS.Intg: 1,
+	COLS.State: 2
 }
 
 
@@ -28,19 +27,19 @@ func _ready():
 		set_column_title(__columns[col_name], COLS.keys()[col_name])
 	
 	set_column_title_alignment(0, HORIZONTAL_ALIGNMENT_LEFT)
-	set_column_custom_minimum_width(__columns[COLS.ACTR], 70)
-	set_column_custom_minimum_width(__columns[COLS.INTG], 40)
+	set_column_custom_minimum_width(__columns[COLS.Actor], 70)
+	set_column_custom_minimum_width(__columns[COLS.Intg], 40)
 	
 	# state column (shows buff/debuff icons) will be small then expand
-	set_column_custom_minimum_width(__columns[COLS.STATE], 40)
-	set_column_expand(__columns[COLS.STATE], true)
+	set_column_custom_minimum_width(__columns[COLS.State], 40)
+	set_column_expand(__columns[COLS.State], true)
 	
 	var root: TreeItem = create_item()
 	
 	for a: Actor in get_tree().get_nodes_in_group("player_actors"):
 		var tree_item: TreeItem = create_item(root)
-		tree_item.set_text(__columns[COLS.ACTR], a.display_name)
-		tree_item.set_text(__columns[COLS.INTG], str(round(a.current_integrity)))
+		tree_item.set_text(__columns[COLS.Actor], a.display_name)
+		tree_item.set_text(__columns[COLS.Intg], str(round(a.current_integrity)))
 		#tree_item.set_cell_mode(__columns[COLS.STATE], TreeItem.CELL_MODE_ICON)
 		#tree_item.set_icon_modulate(__columns[COLS.LOCK], Statics.ColorDict[Statics.COLORS.YELLOW])
 		
