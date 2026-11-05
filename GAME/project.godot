@@ -22,6 +22,7 @@ GameStateManager="*uid://r4c1klqth3lb"
 
 [display]
 
+window/size/mode=4
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -41,7 +42,7 @@ player_actors=""
 [gui]
 
 theme/custom="uid://c1ub1c2nv27f7"
-theme/custom_font="uid://70vi8t8xxbx6"
+theme/custom_font="uid://rv2tlcpg3d5r"
 
 [input]
 
