@@ -64,7 +64,6 @@ func _on_object_selected(n: Node2D) -> void:
 
 
 func _on_select_next_player_actor() -> void:
-	print("signal heard")
 	var tree_item: TreeItem = self.get_selected()
 	if tree_item:
 		# find index of current entry
@@ -80,11 +79,14 @@ func _on_select_next_player_actor() -> void:
 		var actor: Actor = __player_actors.keys()[index]
 		__player_actors[actor].select(0)
 		SignalManager.on_object_selected.emit(actor)
+		SignalManager.on_move_camera.emit(actor.global_position)
 		
 	else:
 		# select first entry if nothing is selected
-		__player_actors[__player_actors.keys()[0]].select(0)
-		SignalManager.on_object_selected.emit(__player_actors.keys()[0])
+		var actor: Actor = __player_actors.keys()[0]
+		__player_actors[actor].select(0)
+		SignalManager.on_object_selected.emit(actor)
+		SignalManager.on_move_camera.emit(actor.global_position)
 
 
 func _on_object_selection_cleared() -> void:

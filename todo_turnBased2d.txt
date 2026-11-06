@@ -138,13 +138,13 @@ Style Box (for panels) resource
 * when scrolling logbox, consume scroll and dont zoom in camera
 ~ [R]un Task button looks weird b/c R is not centered in square parenthesis
 * don't highlight/hover when right-click drag is being used
-* little stutter at end of movement when moving camera with right-click drag
+~ little stutter at end of movement when moving camera with right-click drag
 * custom mouse cursors
-* tab focuses camera on selected actor
+~ tab focuses camera on selected actor
 
-* shouldn't be able to activate different actor when on Task#2
+~ shouldn't be able to activate different actor when on Task#2
 
-?? camear might not need to follow, may be enough to snap to center pre movement?
+~?? camear might not need to follow, may be enough to snap to center pre movement?
 
 | Future Branch |
 * mob scene init

@@ -62,7 +62,8 @@ func do_movement(coords: Array[Vector2]) -> void:
 	SignalManager.on_object_selection_cleared.emit()
 	__movement_coords = coords
 	# lock camera to me
-	SignalManager.on_start_camera_follow.emit(self)
+	#SignalManager.on_start_camera_follow.emit(self)
+	SignalManager.on_move_camera.emit(self.global_position)
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	set_deferred("__current_actor_state", ACTOR_STATE.MOVING)
 	
@@ -72,7 +73,7 @@ func remove_activation_circle() -> void:
 
 
 func __stop_movement() -> void:
-	SignalManager.on_stop_camera_follow.emit()
+	#SignalManager.on_stop_camera_follow.emit()
 	__current_actor_state = ACTOR_STATE.IDLE
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	GameStateManager.handle_player_actor_task_complete()
