@@ -133,13 +133,16 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
+* when player contacts player, can't move afterward b/c contact
+	-- when contact another player, stutter back a few pixels until no longer overlap
+		(i.e., immediately reverse course b/c wasn't previously contacted)
 ~ font variant embolden for bolding text -- use in actor name in execution panel
 ~ fix actor listbox alignment and column titles ("ACTA")
-* when scrolling logbox, consume scroll and dont zoom in camera
+~ when scrolling logbox, consume scroll and dont zoom in camera
 ~ [R]un Task button looks weird b/c R is not centered in square parenthesis
 ~ don't highlight/hover when right-click drag is being used
 ~ little stutter at end of movement when moving camera with right-click drag
-* custom mouse cursors
+
 ~ tab focuses camera on selected actor
 
 ~ shouldn't be able to activate different actor when on Task#2
@@ -164,3 +167,5 @@ Style Box (for panels) resource
 
 * minimap (dots only)
 	* click on region to move camera
+	
+* custom mouse cursors

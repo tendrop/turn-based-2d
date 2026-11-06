@@ -10,6 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
+mouse_force_pass_scroll_events = false
 theme_override_fonts/font = ExtResource("1_j2i1r")
 columns = 3
 column_titles_visible = true
