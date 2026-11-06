@@ -137,7 +137,7 @@ Style Box (for panels) resource
 ~ fix actor listbox alignment and column titles ("ACTA")
 * when scrolling logbox, consume scroll and dont zoom in camera
 ~ [R]un Task button looks weird b/c R is not centered in square parenthesis
-* don't highlight/hover when right-click drag is being used
+~ don't highlight/hover when right-click drag is being used
 ~ little stutter at end of movement when moving camera with right-click drag
 * custom mouse cursors
 ~ tab focuses camera on selected actor

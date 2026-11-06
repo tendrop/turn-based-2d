@@ -7,6 +7,7 @@ func _ready() -> void:
 
 
 func _on_move_hover_circle(my_visible: bool, global_loc: Vector2) -> void:
+	if Input.get_current_cursor_shape() != Input.CURSOR_ARROW: return
 	self.visible = my_visible
 	if my_visible and global_loc != Vector2.INF:
 		self.set_deferred("global_position", global_loc)

@@ -62,8 +62,8 @@ func do_movement(coords: Array[Vector2]) -> void:
 	SignalManager.on_object_selection_cleared.emit()
 	__movement_coords = coords
 	# lock camera to me
-	#SignalManager.on_start_camera_follow.emit(self)
 	SignalManager.on_move_camera.emit(self.global_position)
+	#SignalManager.on_start_camera_follow.emit(self)
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	set_deferred("__current_actor_state", ACTOR_STATE.MOVING)
 	
