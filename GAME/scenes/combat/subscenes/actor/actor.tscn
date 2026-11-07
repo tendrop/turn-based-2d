@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ctyd0no1pj0nx" path="res://assets/pngs/temp_64.png" id="3_p35yq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm35l"]
-radius = 26.076809
+radius = 26.0
 
 [node name="Actor" type="CharacterBody2D" unique_id=265465293 groups=["player_actors"]]
 input_pickable = true
