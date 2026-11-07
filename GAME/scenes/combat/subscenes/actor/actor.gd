@@ -73,6 +73,11 @@ func __move_towards_destination(delta: float) -> void:
 				__knockback_direction = -direction
 			else:
 				__stop_movement()
+		else:
+			# shouldn't have a second collision b/c just on return path.
+			# but, if do, then just stop
+			push_error("uh-oh: actor collided with something again post-collision")
+			__stop_movement()
 	
 	var flip_scale : float = 0.5
 	if direction.x < 0:

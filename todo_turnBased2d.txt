@@ -133,28 +133,13 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-* when player contacts player, can't move afterward b/c contact
-	-- when contact another player, stutter back a few pixels until no longer overlap
-		(i.e., immediately reverse course b/c wasn't previously contacted)
-~ font variant embolden for bolding text -- use in actor name in execution panel
-~ fix actor listbox alignment and column titles ("ACTA")
-~ when scrolling logbox, consume scroll and dont zoom in camera
-~ [R]un Task button looks weird b/c R is not centered in square parenthesis
-~ don't highlight/hover when right-click drag is being used
-~ little stutter at end of movement when moving camera with right-click drag
-
-~ tab focuses camera on selected actor
-
-~ shouldn't be able to activate different actor when on Task#2
-
-~?? camear might not need to follow, may be enough to snap to center pre movement?
-
-| Future Branch |
 * mob scene init
 	* Enemy turn handler moves random mob towards random player (for now)
 	
 * lock when base-to-base with something
 
+
+| Future Branch |
 * F for fire weapon
 * seperate areas for projectiles to impact againstq
 	-- 3 total (player_projectile_collision, enemy_projectile_collision, any_projectile_collision)
