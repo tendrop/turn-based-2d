@@ -7,6 +7,7 @@ extends Node
 ## heard by: CombatCamera
 signal on_start_camera_follow(n: Node2D)
 signal on_stop_camera_follow
+signal on_move_camera(global_loc: Vector2)
 
 ############ KEYHANDLER
 

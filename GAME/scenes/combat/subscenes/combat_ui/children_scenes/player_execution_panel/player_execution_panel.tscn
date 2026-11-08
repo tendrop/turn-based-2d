@@ -2,7 +2,13 @@
 
 [ext_resource type="Script" uid="uid://clscdotkr0up1" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_execution_panel/player_execution_panel.gd" id="1_1gnpe"]
 [ext_resource type="ButtonGroup" uid="uid://4gqyh1byu54a" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_execution_panel/task_one_button_group.tres" id="1_o5m3u"]
+[ext_resource type="FontVariation" uid="uid://bxqnq1k7ekyqg" path="res://assets/fonts/alexandria_bold.tres" id="2_68kjl"]
 [ext_resource type="Texture2D" uid="uid://ckii0y7ubb08k" path="res://assets/svgs/play.svg" id="3_1gnpe"]
+[ext_resource type="FontFile" uid="uid://rv2tlcpg3d5r" path="res://assets/fonts/alexandria.ttf" id="3_x0xnw"]
+[ext_resource type="FontVariation" uid="uid://ch5fvuoxbqmro" path="res://assets/fonts/alexandria_nudge_up.tres" id="6_ir0j6"]
+
+[sub_resource type="FontVariation" id="FontVariation_68kjl"]
+base_font = ExtResource("3_x0xnw")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5m3u"]
 content_margin_left = 4.0
@@ -40,11 +46,13 @@ layout_mode = 2
 
 [node name="TaskOneContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1486618296]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="ActorName" type="Label" parent="MarginContainer/TaskOneContainer" unique_id=1844488465]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("2_68kjl")
+theme_override_font_sizes/font_size = 18
 text = "[ACTOR NAME]"
 horizontal_alignment = 1
 
@@ -56,7 +64,7 @@ text = "Define Task (1 of 2)"
 horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="MarginContainer/TaskOneContainer" unique_id=763813590]
-custom_minimum_size = Vector2(0, 2)
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
 [node name="VBoxContainer" type="GridContainer" parent="MarginContainer/TaskOneContainer" unique_id=1102453681]
@@ -94,6 +102,7 @@ text = "ATTACK"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 22)
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_68kjl")
 toggle_mode = true
 button_group = ExtResource("1_o5m3u")
 text = "BIG SHOT"
@@ -117,7 +126,7 @@ text = "INTERACT"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/TaskOneContainer" unique_id=1793936259]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 13
 
 [node name="Turn1_ExecuteButton" type="Button" parent="MarginContainer/TaskOneContainer" unique_id=1042607897]
 unique_name_in_owner = true
@@ -142,7 +151,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-offset_transform_position = Vector2(15, 0)
+offset_transform_position = Vector2(15, 1)
 texture = ExtResource("3_1gnpe")
 
 [node name="Label" type="Label" parent="MarginContainer/TaskOneContainer/Turn1_ExecuteButton/HBoxContainer" unique_id=663225417]
@@ -151,8 +160,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
 offset_transform_position = Vector2(-15, 0)
+theme_override_fonts/font = ExtResource("6_ir0j6")
 theme_override_font_sizes/font_size = 14
-text = "[R]un Task"
+text = "[E]xecute Task"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -180,7 +190,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
-offset_transform_position = Vector2(15, 0)
+offset_transform_position = Vector2(15, 1)
 texture = ExtResource("3_1gnpe")
 
 [node name="Label" type="Label" parent="MarginContainer/TaskOneContainer/Turn2_ExecuteButton/HBoxContainer" unique_id=234062236]
@@ -189,8 +199,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
 offset_transform_position = Vector2(-15, 0)
+theme_override_fonts/font = ExtResource("6_ir0j6")
 theme_override_font_sizes/font_size = 14
-text = "[R]un Task "
+text = "{E}xecute Task"
 horizontal_alignment = 1
 vertical_alignment = 1
 

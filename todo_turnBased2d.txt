@@ -3,7 +3,7 @@
 
 -- Black #000000
 -- 85% Gray: #262626 (for disabled controls)
--- 75% Gray: #404040 (hover)
+-- 75% Gray: #404040 (hover; panelContainer borders)
 -- 66% Gray: #545454 (select)
 -- 50% Gray #808080 (select + hover)
 -- 33% Gray #A8A8A8
@@ -133,52 +133,13 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-~ node selected is no longer an independent state, it's just for showing stuff in the lower-middle info panel
-~	--> object selected state is now PLAYER_ACTOR_ACTIVATED
-~Q button to activate, or click on actor that is already selected `double-click done, need activate hotkey`
-
-?? selection window at bottom needs to be switchable while player execution window is open so that player can click on enemies?
-	-- hover circle: transparent white (doodad)
-	-- select circle: pure white (doodad)
-	-- activated circle (attached to actor, not in doodad, so moves with actor): INDIGLO
-
-* don't null out current actor in GameStateManager when exiting ObjectSelected,
-	-- instead null it out when entering idle
-	-- `done, but needs testing`
-
-
-
-~ do second action (move only for now)
-	~ can't slect other actors during second action
-
-~ track Cycle# and remaining Executions on bar along top
-
-~ if actor is activated, don't allow second actor to be activated at same time (can have 2 teal circles)z
-
-~ do fake enemy turn
-	~ Opposition Response banner, then just put in a timer for now
-	~ EnemyAi script/node
-	~ send on_enemy_turn_over signal back to GameStateManager
-
-
-~ don't allow to clear when on second action
-~ activation circle should have a solid background so can't see movement line until edge of circle
-	?? don't allow to put down point unless X away from center (16px normalized)?
-
-~ flip facing based on direction of movement
-
-~ [Q] for clear
-~ [R] for "Run Action" (or Q for Queue Execution) instead of E for execution?
-~	-- sESDF for movement instead of WASD
-~ keep same "execute" key for confirm movement
-
-
-| Future Branch |
 * mob scene init
 	* Enemy turn handler moves random mob towards random player (for now)
 	
 * lock when base-to-base with something
 
+
+| Future Branch |
 * F for fire weapon
 * seperate areas for projectiles to impact againstq
 	-- 3 total (player_projectile_collision, enemy_projectile_collision, any_projectile_collision)
@@ -189,6 +150,7 @@ Style Box (for panels) resource
 	
 8 reaction fire does 50% damage and occurs whenever an opponent takes an action within units FoV and LoS (unless they are infiltrating)
 
-https://www.dafont.com/zeroes.font?l[]=10&l[]=1
-https://www.dafont.com/256-bytes.font?l[]=10&l[]=1
-https://www.dafont.com/quadaptor.font?l[]=10&l[]=1
+* minimap (dots only)
+	* click on region to move camera
+	
+* custom mouse cursors

@@ -18,6 +18,7 @@ func _ready() -> void:
 	__target_zoom = self.zoom
 	SignalManager.on_start_camera_follow.connect(_on_start_camera_follow)
 	SignalManager.on_stop_camera_follow.connect(_on_stop_camera_follow)
+	SignalManager.on_move_camera.connect(_on_move_camera)
 
 
 func _process(delta: float) -> void:
@@ -25,6 +26,10 @@ func _process(delta: float) -> void:
 	if is_instance_valid(__following) and __following:
 		#self.global_position = self.global_position.move_toward(__following.global_position, 100 * delta)
 		self.global_position = self.global_position.lerp(__following.global_position, 1.0 - pow(0.8, delta))
+
+
+func _on_move_camera(global_loc: Vector2) -> void:
+	self.global_position = global_loc
 
 
 func _on_start_camera_follow(n: Node2D) -> void:

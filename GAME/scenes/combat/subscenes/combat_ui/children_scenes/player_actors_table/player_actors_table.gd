@@ -2,17 +2,16 @@ extends Tree
 class_name PlayerActorsTable
 
 enum COLS {
-	ACTR,
-	TYPE,
-	INTG, 
-	STATE
+	Actor,
+	Intg, 
+	State
 }
 
 # actor names will be [type]_##
 const __columns: Dictionary[COLS, int] = {
-	COLS.ACTR: 0,
-	COLS.INTG: 1,
-	COLS.STATE: 2
+	COLS.Actor: 0,
+	COLS.Intg: 1,
+	COLS.State: 2
 }
 
 
@@ -28,19 +27,19 @@ func _ready():
 		set_column_title(__columns[col_name], COLS.keys()[col_name])
 	
 	set_column_title_alignment(0, HORIZONTAL_ALIGNMENT_LEFT)
-	set_column_custom_minimum_width(__columns[COLS.ACTR], 70)
-	set_column_custom_minimum_width(__columns[COLS.INTG], 40)
+	set_column_custom_minimum_width(__columns[COLS.Actor], 70)
+	set_column_custom_minimum_width(__columns[COLS.Intg], 40)
 	
 	# state column (shows buff/debuff icons) will be small then expand
-	set_column_custom_minimum_width(__columns[COLS.STATE], 40)
-	set_column_expand(__columns[COLS.STATE], true)
+	set_column_custom_minimum_width(__columns[COLS.State], 40)
+	set_column_expand(__columns[COLS.State], true)
 	
 	var root: TreeItem = create_item()
 	
 	for a: Actor in get_tree().get_nodes_in_group("player_actors"):
 		var tree_item: TreeItem = create_item(root)
-		tree_item.set_text(__columns[COLS.ACTR], a.display_name)
-		tree_item.set_text(__columns[COLS.INTG], str(round(a.current_integrity)))
+		tree_item.set_text(__columns[COLS.Actor], a.display_name)
+		tree_item.set_text(__columns[COLS.Intg], str(round(a.current_integrity)))
 		#tree_item.set_cell_mode(__columns[COLS.STATE], TreeItem.CELL_MODE_ICON)
 		#tree_item.set_icon_modulate(__columns[COLS.LOCK], Statics.ColorDict[Statics.COLORS.YELLOW])
 		
@@ -65,7 +64,6 @@ func _on_object_selected(n: Node2D) -> void:
 
 
 func _on_select_next_player_actor() -> void:
-	print("signal heard")
 	var tree_item: TreeItem = self.get_selected()
 	if tree_item:
 		# find index of current entry
@@ -81,11 +79,14 @@ func _on_select_next_player_actor() -> void:
 		var actor: Actor = __player_actors.keys()[index]
 		__player_actors[actor].select(0)
 		SignalManager.on_object_selected.emit(actor)
+		SignalManager.on_move_camera.emit(actor.global_position)
 		
 	else:
 		# select first entry if nothing is selected
-		__player_actors[__player_actors.keys()[0]].select(0)
-		SignalManager.on_object_selected.emit(__player_actors.keys()[0])
+		var actor: Actor = __player_actors.keys()[0]
+		__player_actors[actor].select(0)
+		SignalManager.on_object_selected.emit(actor)
+		SignalManager.on_move_camera.emit(actor.global_position)
 
 
 func _on_object_selection_cleared() -> void:
