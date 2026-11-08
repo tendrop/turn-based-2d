@@ -41,7 +41,6 @@ player_actors=""
 [gui]
 
 theme/custom="uid://c1ub1c2nv27f7"
-theme/custom_font="uid://rv2tlcpg3d5r"
 
 [input]
 
