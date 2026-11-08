@@ -68,10 +68,11 @@ func __move_towards_destination(delta: float) -> void:
 		if __knockback_direction == Vector2.INF:
 			var obj: Object = collision.get_collider()
 			if obj is Actor:
-				__knockback_stop_distance = self.global_position.distance_to(obj.global_position) + 10
+				__knockback_stop_distance = self.global_position.distance_to(obj.global_position) + 2
 				__collider_global_pos = obj.global_position
 				__knockback_direction = -direction
 			else:
+				## TODO: Lock if Mob?
 				__stop_movement()
 		else:
 			# shouldn't have a second collision b/c just on return path.
@@ -112,14 +113,6 @@ func __stop_movement() -> void:
 	GameStateManager.handle_player_actor_task_complete()
 
 
-func __mouse_actions_enabled() -> bool:
-	match GameStateManager.current_game_state:
-		GameStateManager.GAME_STATE.PLAYER_IDLE, GameStateManager.GAME_STATE.PLAYER_ACTOR_ACTIVATED:
-			return true
-		_:
-			return false
-
-
 func activate_me() -> void:
 	GameStateManager.try_activate_actor(self)
 	if GameStateManager.activated_actor == self:
@@ -127,7 +120,7 @@ func activate_me() -> void:
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if __mouse_actions_enabled():
+	if Statics.mouse_actions_enabled():
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 			if GameStateManager.selected_actor == self:
 				activate_me()
@@ -137,10 +130,10 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 
 func _on_mouse_entered() -> void:
-	if __mouse_actions_enabled():
+	if Statics.mouse_actions_enabled():
 		SignalManager.on_move_hover_circle.emit(true, self.global_position)
 
 
 func _on_mouse_exited() -> void:
-	if __mouse_actions_enabled():
+	if Statics.mouse_actions_enabled():
 		SignalManager.on_move_hover_circle.emit(false, Vector2.INF)

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://jlekxyyaxb5"]
+
+[ext_resource type="Script" uid="uid://bwo50ifn568la" path="res://scenes/combat/subscenes/mob/mob.gd" id="1_whxqe"]
+[ext_resource type="Texture2D" uid="uid://dd2fsuwnfc7g7" path="res://assets/pngs/temp_mob.png" id="2_ahpot"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bm35l"]
+radius = 30.0
+
+[node name="Mob" type="CharacterBody2D" unique_id=81382257 groups=["enemy_mobs"]]
+input_pickable = true
+motion_mode = 1
+script = ExtResource("1_whxqe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=103794573]
+shape = SubResource("CircleShape2D_bm35l")
+
+[node name="MobSprite" type="Sprite2D" parent="." unique_id=1064774876]
+self_modulate = Color(0.99607843, 0.38039216, 0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ahpot")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

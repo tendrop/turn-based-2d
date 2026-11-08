@@ -12,7 +12,7 @@ enum PLAYER_TASK {
 
 enum GROUPS {
 	PLAYER_ACTORS,
-	ENEMY_ACTORS
+	ENEMY_MOBS
 }
 
 
@@ -45,3 +45,11 @@ const ColorDict: Dictionary[COLORS, Color] = {
 	COLORS.GRAY_33: Color("A8A8A8"),
 	COLORS.GRAY_25: Color("C0C0C0")
 }
+
+
+static func mouse_actions_enabled() -> bool:
+	match GameStateManager.current_game_state:
+		GameStateManager.GAME_STATE.PLAYER_IDLE, GameStateManager.GAME_STATE.PLAYER_ACTOR_ACTIVATED:
+			return true
+		_:
+			return false
