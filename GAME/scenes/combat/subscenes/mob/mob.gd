@@ -1,9 +1,43 @@
 extends CharacterBody2D
 class_name Mob
 
+signal on_task_finished
+
 @export var display_name: String = "[Mob]"
 @export var owner_group: Statics.GROUPS = Statics.GROUPS.ENEMY_MOBS
 
+enum MOBSTATE { IDLE, MOVING }
+var current_mobstate: MOBSTATE = MOBSTATE.IDLE
+
+var target: Node2D = null
+
+
+func _physics_process(delta: float) -> void:
+	match current_mobstate:
+		MOBSTATE.MOVING:
+			if Statics.has_reached_current_destination(self.global_position, target.global_position):
+				__task_finished()
+			else:
+				__move_towards_target(delta)
+
+
+func do_task(my_task: Statics.ENEMY_TASK, my_target: Node2D) -> void:
+	self.target = my_target
+	match my_task:
+		Statics.ENEMY_TASK.MOVE:
+			current_mobstate = MOBSTATE.MOVING
+
+func __task_finished() -> void:
+	current_mobstate = MOBSTATE.IDLE
+	on_task_finished.emit()
+
+
+func __move_towards_target(delta: float) -> void:
+	var direction: Vector2 = self.global_position.direction_to(target.global_position)
+	var movement_velocity: Vector2 = direction * Statics.MOVEMENT_SPEED * delta
+	var collision = move_and_collide(movement_velocity)
+	if collision:
+		__task_finished()
 
 func _on_mouse_entered() -> void:
 	if Statics.mouse_actions_enabled():

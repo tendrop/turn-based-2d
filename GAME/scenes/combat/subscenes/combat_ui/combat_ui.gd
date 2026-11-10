@@ -21,17 +21,9 @@ func _on_object_selection_cleared() -> void:
 	%SelectionInfoContainer.visible = false
 
 
-func _on_start_enemy_turn() -> void:
-	%TurnBanner.text = "OPPOSITION RESPONSE"
+func _on_start_enemy_turn(_number_of_actions: int) -> void:
 	%TurnBanner.visible = true
-	%TurnBannerTimer.start()
 
 
 func _on_end_enemy_turn() -> void:
-	%TurnBanner.text = "EXECUTE ACTIONS"
-	%TurnBanner.visible = true
-	%TurnBannerTimer.start()
-
-
-func _on_turn_banner_timer_timeout() -> void:
 	%TurnBanner.visible = false

@@ -81,5 +81,7 @@ signal on_start_player_movement_plotting(actor: Actor)
 signal on_stop_player_movement_plotting
 signal on_make_movement_plot_marker_doodad(global_pos: Vector2)
 
-signal on_start_enemy_turn
+## EMITTED by: GameStateManager
+## HEARD BY: EnemyTurnHandler
+signal on_start_enemy_turn(number_of_actions: int)
 signal on_end_enemy_turn

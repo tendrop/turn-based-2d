@@ -28,7 +28,8 @@ func _physics_process(delta: float) -> void:
 				else:
 					__stop_movement()
 					return
-			elif __has_reached_current_destination() and __collider_global_pos == Vector2.INF:
+			elif Statics.has_reached_current_destination(self.global_position, __movement_destination) \
+			and __collider_global_pos == Vector2.INF:
 				if __movement_coords.size() > 0:
 					__movement_destination = __movement_coords.pop_back()
 				else:
@@ -37,9 +38,9 @@ func _physics_process(delta: float) -> void:
 			__move_towards_destination(delta)
 
 
-func __has_reached_current_destination() -> bool:
-	#print("%0.1f" % self.global_position.distance_to(__movement_destination))
-	return self.global_position.distance_to(__movement_destination) <= Statics.REACHED_DESTINATION_THRESHOLD
+#func __has_reached_current_destination() -> bool:
+	##print("%0.1f" % self.global_position.distance_to(__movement_destination))
+	#return self.global_position.distance_to(__movement_destination) <= Statics.REACHED_DESTINATION_THRESHOLD
 
 
 func __move_towards_destination(delta: float) -> void:
@@ -60,7 +61,7 @@ func __move_towards_destination(delta: float) -> void:
 			return
 		else:
 			movement_velocity = __knockback_direction * Statics.MOVEMENT_SPEED * delta
-		
+	
 	
 	var collision = move_and_collide(movement_velocity)
 	

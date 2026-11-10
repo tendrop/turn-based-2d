@@ -17,7 +17,10 @@ var current_cycle: int:
 		___current_cycle = value
 		SignalManager.on_cycle_count_changed.emit(value)
 
+## EMENY ACTIONS
+var total_enemy_actions: int = 1
 
+## PLAYER ACTIONS
 var max_actions: int = 1
 var ___remaining_actions: int = 0
 var remaining_actions: int:
@@ -70,7 +73,7 @@ var current_game_state: GAME_STATE:
 					SignalManager.on_start_player_movement_plotting.emit(activated_actor)
 				
 				GAME_STATE.ENEMY_TURN:
-					SignalManager.on_start_enemy_turn.emit()
+					SignalManager.on_start_enemy_turn.emit(total_enemy_actions)
 				
 			print("Change GameState from '%s' to '%s'" % [ \
 				GAME_STATE.keys()[___current_game_state],

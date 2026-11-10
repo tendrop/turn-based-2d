@@ -10,6 +10,11 @@ enum PLAYER_TASK {
 	INFILTRATE
 }
 
+enum ENEMY_TASK {
+	MOVE
+}
+
+
 enum GROUPS {
 	PLAYER_ACTORS,
 	ENEMY_MOBS
@@ -53,3 +58,6 @@ static func mouse_actions_enabled() -> bool:
 			return true
 		_:
 			return false
+			
+static func has_reached_current_destination(my_global_pos: Vector2, destination_pos: Vector2) -> bool:
+	return my_global_pos.distance_to(destination_pos) <= Statics.REACHED_DESTINATION_THRESHOLD
