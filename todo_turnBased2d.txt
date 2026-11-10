@@ -140,6 +140,11 @@ Style Box (for panels) resource
 
 | THIS BRANCH TODO |
 ~ hover and select is screwed up again
+* dont move mouse back to actor when activated, thats annoying
+* disable scrolling when actor is activated
+	* button to center camera on activated actor instead
+
+* when movement is beyond max, show dot where max would be placed on line
 
 * stop when at end of movement Max
 * need an obstacle	

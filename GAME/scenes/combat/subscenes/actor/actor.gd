@@ -81,9 +81,9 @@ func __move_towards_destination(delta: float) -> void:
 			push_error("uh-oh: actor collided with something again post-collision")
 			__stop_movement()
 	
-	var flip_scale : float = 0.5
+	var flip_scale : float = Statics.UNIT_SCALE
 	if direction.x < 0:
-		flip_scale = -0.5
+		flip_scale = -flip_scale
 	if %ActorSprite.scale.x != flip_scale:
 		%ActorSprite.scale.x = flip_scale
 	

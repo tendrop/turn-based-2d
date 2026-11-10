@@ -5,11 +5,19 @@ signal on_task_finished
 
 @export var display_name: String = "[Mob]"
 @export var owner_group: Statics.GROUPS = Statics.GROUPS.ENEMY_MOBS
+var max_movement_units: float = 8.0
+var __max_movement_pixels: float
+
 
 enum MOBSTATE { IDLE, MOVING }
 var current_mobstate: MOBSTATE = MOBSTATE.IDLE
 
 var target: Node2D = null
+var __travelled_pixels: float
+var __last_position: Vector2
+
+func _ready() -> void:
+	__max_movement_pixels = max_movement_units * Statics.PIXELS_TO_UNITS_CONVERSION
 
 
 func _physics_process(delta: float) -> void:
@@ -25,6 +33,8 @@ func do_task(my_task: Statics.ENEMY_TASK, my_target: Node2D) -> void:
 	self.target = my_target
 	match my_task:
 		Statics.ENEMY_TASK.MOVE:
+			__travelled_pixels = 0
+			__last_position = self.global_position
 			current_mobstate = MOBSTATE.MOVING
 
 func __task_finished() -> void:
@@ -33,11 +43,28 @@ func __task_finished() -> void:
 
 
 func __move_towards_target(delta: float) -> void:
+	var frame_dist: float = self.global_position.distance_to(__last_position)
+	__travelled_pixels += frame_dist
+	if __travelled_pixels >= __max_movement_pixels:
+		print("moved to max pixels")
+		__task_finished()
+		return
+	
+	__last_position = self.global_position
 	var direction: Vector2 = self.global_position.direction_to(target.global_position)
 	var movement_velocity: Vector2 = direction * Statics.MOVEMENT_SPEED * delta
 	var collision = move_and_collide(movement_velocity)
 	if collision:
 		__task_finished()
+		return
+	
+	var flip_scale : float = Statics.UNIT_SCALE
+	if direction.x < 0:
+		flip_scale = -flip_scale
+	if %MobSprite.scale.x != flip_scale:
+		%MobSprite.scale.x = flip_scale
+
+###########################################################
 
 func _on_mouse_entered() -> void:
 	if Statics.mouse_actions_enabled():

@@ -45,6 +45,12 @@ func _on_start_enemy_turn(number_of_actions: int) -> void:
 					target = get_tree().get_nodes_in_group("player_actors")[0]
 			
 			## tell mob to do the task
+			SignalManager.on_print_message_to_log.emit(
+				"%s Task #%d: %s" % [
+					mob.display_name, task_count, Statics.ENEMY_TASK.keys()[task]
+				]
+			)
+
 			mob.do_task(task, target)
 			await mob.on_task_finished
 			task_count += 1

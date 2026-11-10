@@ -28,7 +28,7 @@ position = Vector2(-45, -59)
 display_name = "Onzer"
 
 [node name="Actor2" parent="." unique_id=265465293 instance=ExtResource("3_n426y")]
-position = Vector2(119, -54)
+position = Vector2(440, -254)
 display_name = "Act2"
 
 [node name="Mob" parent="." unique_id=81382257 instance=ExtResource("8_7tpiq")]
