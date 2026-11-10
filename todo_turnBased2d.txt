@@ -19,6 +19,12 @@ AND THEN ONLY INDIGLO AND IBM COLORBLIND palette
 IndiGLO is player UI accent color 
 -- #00ffb0 (0, 255, 176)
 
+IndiGLO/White is the player's colors
+Blue/Purple is Computer-generated colors
+Orange/Red is hell-generated colors
+Yellow is warning color, used for UI stuff only (icons etc,. to draw attention b/c not a color that's seen much)
+
+
 * FONT SHOULD BE IN 4s
 	-- built for 16px, can do 8px, 12px, 20px
 
@@ -133,17 +139,13 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-* hover and select is screwed up again
-
-* mob scene init
-	* remove player turn start
-	* Enemy turn handler moves random mob towards random player (for now)
+~ hover and select is screwed up again
 
 * stop when at end of movement Max
-* navigation script import
-
 * need an obstacle	
+* navigation script import
 * lock when base-to-base with something
+	* show actor lock icon in player panel
 
 
 | Future Branch |

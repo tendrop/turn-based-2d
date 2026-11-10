@@ -98,6 +98,8 @@ func _ready() -> void:
 func _on_object_selected(n: Node2D) -> void:
 	if n and n is Actor:
 		selected_actor = n
+	else:
+		selected_actor = null
 
 
 func _on_object_selection_cleared() -> void:
