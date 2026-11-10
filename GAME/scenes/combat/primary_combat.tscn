@@ -32,4 +32,4 @@ position = Vector2(119, -54)
 display_name = "Act2"
 
 [node name="Mob" parent="." unique_id=81382257 instance=ExtResource("8_7tpiq")]
-position = Vector2(29, 104)
+position = Vector2(-105, -60)

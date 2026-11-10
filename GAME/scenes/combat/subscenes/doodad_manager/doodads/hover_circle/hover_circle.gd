@@ -9,9 +9,14 @@ func _ready() -> void:
 
 func _on_move_hover_circle(my_visible: bool, global_loc: Vector2) -> void:
 	if Input.get_current_cursor_shape() != Input.CURSOR_ARROW: return
-	self.visible = my_visible
-	if my_visible and global_loc != Vector2.INF:
-		self.set_deferred("global_position", global_loc)
+	if my_visible:
+		self.visible = true
+		self.global_position = global_loc
+	else:
+		# only hide if it's being called by same thing that made it show
+		# up in the first place
+		if global_loc == self.global_position:
+			self.visible = false
 
 
 func _on_hide() -> void:

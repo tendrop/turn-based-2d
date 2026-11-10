@@ -46,7 +46,7 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	if Statics.mouse_actions_enabled():
-		SignalManager.on_move_hover_circle.emit(false, Vector2.INF)
+		SignalManager.on_move_hover_circle.emit(false, self.global_position)
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:

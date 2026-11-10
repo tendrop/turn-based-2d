@@ -108,7 +108,6 @@ func remove_activation_circle() -> void:
 
 
 func __stop_movement() -> void:
-	#SignalManager.on_stop_camera_follow.emit()
 	__current_actor_state = ACTOR_STATE.IDLE
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	GameStateManager.handle_player_actor_task_complete()
@@ -137,4 +136,4 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	if Statics.mouse_actions_enabled():
-		SignalManager.on_move_hover_circle.emit(false, Vector2.INF)
+		SignalManager.on_move_hover_circle.emit(false, self.global_position)
