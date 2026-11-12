@@ -1,5 +1,9 @@
 
-| TODO DRIVE: ARENA |
+| TODO 2D TURN BASED |
+Brush size: 2
+Hardness: 75%
+Spacing: 15%
+
 
 -- Black #000000
 -- 85% Gray: #262626 (for disabled controls)
@@ -141,7 +145,7 @@ Style Box (for panels) resource
 | THIS BRANCH TODO |
 ~ hover and select is screwed up again
 ~ dont move mouse back to actor when activated, thats annoying
-* disable scrolling when actor is activated
+* disable panning when actor is activated
 	* button to center camera on activated actor instead
 
 * need to be able to see ring/disk under unit at all times

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cvdxkkex1mrj3"]
+
+[ext_resource type="Texture2D" uid="uid://cyrffxtp002o3" path="res://assets/pngs/temp_obstacle_128.png" id="1_l8lo5"]
+
+[node name="Obstacle" type="Node2D" unique_id=1431285537]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=744231662]
+texture = ExtResource("1_l8lo5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=513886196]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=269740291]
+polygon = PackedVector2Array(-8, -62, 11, -58, 31, -37, 23, -32, 43, -29, 49, -15, 30, 4, 36, 10, 22, 23, 31, 27, 26, 52, 1, 54, 6, 60, -18, 65, -28, 57, -36, 63, -60, 39, -58, 16, -56, -7, -43, -26, -58, -33, -50, -59, -33, -63)

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://beutckbanthtt" path="res://scenes/combat/subscenes/doodad_manager/doodad_manager.tscn" id="5_d0tbs"]
 [ext_resource type="PackedScene" uid="uid://cpmn1tj82vhle" path="res://scenes/combat/subscenes/movement_plotter/movement_plotter.tscn" id="6_6m7m3"]
 [ext_resource type="PackedScene" uid="uid://jlekxyyaxb5" path="res://scenes/combat/subscenes/mob/mob.tscn" id="8_7tpiq"]
+[ext_resource type="PackedScene" uid="uid://cvdxkkex1mrj3" path="res://scenes/combat/subscenes/obstacle/obstacle.tscn" id="9_8vbkd"]
 
 [node name="PrimaryCombat" type="Node2D" unique_id=384078481]
 
@@ -24,12 +25,15 @@
 [node name="CombatCamera" parent="." unique_id=1902928079 instance=ExtResource("2_1pw7v")]
 
 [node name="Actor" parent="." unique_id=440467227 instance=ExtResource("3_n426y")]
-position = Vector2(-45, -59)
+position = Vector2(147, 6)
 display_name = "Onzer"
 
 [node name="Actor2" parent="." unique_id=265465293 instance=ExtResource("3_n426y")]
-position = Vector2(440, -254)
+position = Vector2(360, 4)
 display_name = "Act2"
 
 [node name="Mob" parent="." unique_id=81382257 instance=ExtResource("8_7tpiq")]
-position = Vector2(-105, -60)
+position = Vector2(-182, -2)
+
+[node name="Obstacle" parent="." unique_id=1431285537 instance=ExtResource("9_8vbkd")]
+position = Vector2(13, -1)
