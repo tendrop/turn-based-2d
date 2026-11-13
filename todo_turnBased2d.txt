@@ -149,13 +149,14 @@ Style Box (for panels) resource
 	* button to center camera on activated actor instead
 
 * need to be able to see ring/disk under unit at all times
+	-- faint black, with assumption that background will not be full black. if go full black, then needs to be white
 	* collision should be 1 px beyond this disk
 
 * when movement is beyond max, show dot where max would be placed on line
 
-* stop when at end of movement Max
-* need an obstacle	
-* navigation script import
+~ stop when at end of movement Max
+~ need an obstacle	
+~ navigation script import
 * lock when base-to-base with something
 	* show actor lock icon in player panel
 
