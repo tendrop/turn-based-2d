@@ -149,6 +149,7 @@ Style Box (for panels) resource
 	* button to center camera on activated actor instead
 
 * need to be able to see ring/disk under unit at all times
+	* collision should be 1 px beyond this disk
 
 * when movement is beyond max, show dot where max would be placed on line
 

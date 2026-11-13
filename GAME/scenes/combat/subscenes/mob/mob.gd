@@ -51,7 +51,8 @@ func __move_towards_target(delta: float) -> void:
 		return
 	
 	__last_position = self.global_position
-	var direction: Vector2 = self.global_position.direction_to(target.global_position)
+	#var direction: Vector2 = self.global_position.direction_to(target.global_position)
+	var direction: Vector2 = %MobContextBasedSteering.steer(target)
 	var movement_velocity: Vector2 = direction * Statics.MOVEMENT_SPEED * delta
 	var collision = move_and_collide(movement_velocity)
 	if collision:

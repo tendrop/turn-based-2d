@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bwo50ifn568la" path="res://scenes/combat/subscenes/mob/mob.gd" id="1_whxqe"]
 [ext_resource type="Texture2D" uid="uid://dd2fsuwnfc7g7" path="res://assets/pngs/temp_mob.png" id="2_ahpot"]
+[ext_resource type="Script" uid="uid://mb65d70bgwj5" path="res://scenes/combat/subscenes/mob/mob_context_based_steering.gd" id="3_3f66a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm35l"]
 radius = 30.0
@@ -19,6 +20,10 @@ unique_name_in_owner = true
 self_modulate = Color(0.99607843, 0.38039216, 0, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ahpot")
+
+[node name="MobContextBasedSteering" type="Node2D" parent="." unique_id=872536731]
+unique_name_in_owner = true
+script = ExtResource("3_3f66a")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
