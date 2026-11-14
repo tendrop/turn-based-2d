@@ -143,10 +143,25 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-~ hover and select is screwed up again
-~ dont move mouse back to actor when activated, thats annoying
-* disable panning when actor is activated
-	* button to center camera on activated actor instead
+* ACTOR move_and_slide instead of collide
+
+* MOB
+	* https://www.youtube.com/watch?v=cx49GTfLwZU
+	* move_and_slide instead of collide
+	* use DRIVE "am i stuck and need to reverse" code to see if movement should be ended early
+	* replace contect based steering with two ShapeCast2D node
+		* 2 shapecasts in a node2d container; own separate script
+		* use "add_exception" to exclude target and self
+		* have one shapecast fixed on target (target_path)
+			-- if target path is obstructed, rotate potential_path away from target_path until unobstructed. set current_direction
+			-- just because a collision exists doesn't mean change direction. need to be within a certain distance.
+				-- while travelling current_direction, periodically check new rotated potential paths
+					-- if potential_path's direction is a smaller angle than current_direction (when compared against target_path), update current_direction ot potential_path's direction
+						-- i.e., if potential_path ends up overlaying target_path, the angle will be 0
+
+* obstacles should be circular
+	?? tiles instead of disks if circles dont jive with UI feel  (but collisin shapes still round)?
+
 
 * obstacles need to be rounded - hard corners make context based steering flip out
 	* it's the width, doesn't know how wide it is.
@@ -161,20 +176,21 @@ Style Box (for panels) resource
 		* should be its own subnode (will need to use add_exception for parent then, since actual parent is subnode)
 	
 	* or just use 2d path?
-~ need to be able to see ring/disk under unit at all times
-~	-- faint black, with assumption that background will not be full black. if go full black, then needs to be white
-~	* collision should be 1 px beyond this disk
+	
 
-* when movement is beyond max, show dot where max would be placed on line
-
-~ stop when at end of movement Max
-~ need an obstacle	
-~ navigation script import
-* lock when base-to-base with something
-	* show actor lock icon in player panel
 
 
 | Future Branch |
+* red background =  enemy turn; blue background = player turn
+
+* * when player movement is beyond max, show dot where max would be placed on line
+
+* disable panning when actor is activated
+	* button to center camera on activated actor instead
+
+* lock when base-to-base with something
+	* show actor lock icon in player panel
+
 * F for fire weapon
 * seperate areas for projectiles to impact againstq
 	-- 3 total (player_projectile_collision, enemy_projectile_collision, any_projectile_collision)
