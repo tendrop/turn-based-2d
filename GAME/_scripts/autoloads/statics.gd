@@ -3,6 +3,7 @@ class_name Statics
 const PIXELS_TO_UNITS_CONVERSION: float = 32
 const REACHED_DESTINATION_THRESHOLD: float = 1.0
 const MOVEMENT_SPEED: float = 100.0
+const UNIT_SCALE: float = 0.5
 
 enum PLAYER_TASK {
 	NONE,
@@ -10,9 +11,14 @@ enum PLAYER_TASK {
 	INFILTRATE
 }
 
+enum ENEMY_TASK {
+	MOVE
+}
+
+
 enum GROUPS {
 	PLAYER_ACTORS,
-	ENEMY_ACTORS
+	ENEMY_MOBS
 }
 
 
@@ -45,3 +51,14 @@ const ColorDict: Dictionary[COLORS, Color] = {
 	COLORS.GRAY_33: Color("A8A8A8"),
 	COLORS.GRAY_25: Color("C0C0C0")
 }
+
+
+static func mouse_actions_enabled() -> bool:
+	match GameStateManager.current_game_state:
+		GameStateManager.GAME_STATE.PLAYER_IDLE, GameStateManager.GAME_STATE.PLAYER_ACTOR_ACTIVATED:
+			return true
+		_:
+			return false
+			
+static func has_reached_current_destination(my_global_pos: Vector2, destination_pos: Vector2) -> bool:
+	return my_global_pos.distance_to(destination_pos) <= Statics.REACHED_DESTINATION_THRESHOLD

@@ -1,6 +1,6 @@
 [gd_resource type="FontVariation" format=3 uid="uid://ch5fvuoxbqmro"]
 
-[ext_resource type="FontFile" uid="uid://rv2tlcpg3d5r" path="res://assets/fonts/alexandria.ttf" id="1_x02xn"]
+[ext_resource type="FontFile" uid="uid://synjy6nt3tgu" path="res://assets/fonts/alexandria.ttf" id="1_x02xn"]
 
 [resource]
 base_font = ExtResource("1_x02xn")

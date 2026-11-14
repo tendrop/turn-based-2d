@@ -4,7 +4,7 @@
 [ext_resource type="ButtonGroup" uid="uid://4gqyh1byu54a" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_execution_panel/task_one_button_group.tres" id="1_o5m3u"]
 [ext_resource type="FontVariation" uid="uid://bxqnq1k7ekyqg" path="res://assets/fonts/alexandria_bold.tres" id="2_68kjl"]
 [ext_resource type="Texture2D" uid="uid://ckii0y7ubb08k" path="res://assets/svgs/play.svg" id="3_1gnpe"]
-[ext_resource type="FontFile" uid="uid://rv2tlcpg3d5r" path="res://assets/fonts/alexandria.ttf" id="3_x0xnw"]
+[ext_resource type="FontFile" uid="uid://synjy6nt3tgu" path="res://assets/fonts/alexandria.ttf" id="3_x0xnw"]
 [ext_resource type="FontVariation" uid="uid://ch5fvuoxbqmro" path="res://assets/fonts/alexandria_nudge_up.tres" id="6_ir0j6"]
 
 [sub_resource type="FontVariation" id="FontVariation_68kjl"]

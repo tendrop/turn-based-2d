@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cxyqmkaq7bfdc" path="res://assets/svgs/circle16_indiglo.svg" id="3_y0ixg"]
 [ext_resource type="StyleBox" uid="uid://bu1hhurv82p4r" path="res://assets/themes/main_theme_sub_themes/new_style_box_flat.tres" id="4_y0ixg"]
 [ext_resource type="StyleBox" uid="uid://cafjlvai0yry2" path="res://assets/themes/main_theme_sub_themes/Black_noBorder_StyleBoxFloat.tres" id="6_0f6i3"]
-[ext_resource type="FontFile" uid="uid://70vi8t8xxbx6" path="res://assets/fonts/Mx437_Wang_Pro_Mono.ttf" id="7_0f6i3"]
+[ext_resource type="FontFile" uid="uid://synjy6nt3tgu" path="res://assets/fonts/alexandria.ttf" id="7_0f6i3"]
 [ext_resource type="FontVariation" uid="uid://c82e0wt6ach5q" path="res://assets/fonts/alexandria_tight.tres" id="7_etupa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgdp2"]

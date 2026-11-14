@@ -28,7 +28,8 @@ func _physics_process(delta: float) -> void:
 				else:
 					__stop_movement()
 					return
-			elif __has_reached_current_destination() and __collider_global_pos == Vector2.INF:
+			elif Statics.has_reached_current_destination(self.global_position, __movement_destination) \
+			and __collider_global_pos == Vector2.INF:
 				if __movement_coords.size() > 0:
 					__movement_destination = __movement_coords.pop_back()
 				else:
@@ -37,9 +38,9 @@ func _physics_process(delta: float) -> void:
 			__move_towards_destination(delta)
 
 
-func __has_reached_current_destination() -> bool:
-	#print("%0.1f" % self.global_position.distance_to(__movement_destination))
-	return self.global_position.distance_to(__movement_destination) <= Statics.REACHED_DESTINATION_THRESHOLD
+#func __has_reached_current_destination() -> bool:
+	##print("%0.1f" % self.global_position.distance_to(__movement_destination))
+	#return self.global_position.distance_to(__movement_destination) <= Statics.REACHED_DESTINATION_THRESHOLD
 
 
 func __move_towards_destination(delta: float) -> void:
@@ -60,7 +61,7 @@ func __move_towards_destination(delta: float) -> void:
 			return
 		else:
 			movement_velocity = __knockback_direction * Statics.MOVEMENT_SPEED * delta
-		
+	
 	
 	var collision = move_and_collide(movement_velocity)
 	
@@ -68,10 +69,11 @@ func __move_towards_destination(delta: float) -> void:
 		if __knockback_direction == Vector2.INF:
 			var obj: Object = collision.get_collider()
 			if obj is Actor:
-				__knockback_stop_distance = self.global_position.distance_to(obj.global_position) + 10
+				__knockback_stop_distance = self.global_position.distance_to(obj.global_position) + 2
 				__collider_global_pos = obj.global_position
 				__knockback_direction = -direction
 			else:
+				## TODO: Lock if Mob?
 				__stop_movement()
 		else:
 			# shouldn't have a second collision b/c just on return path.
@@ -79,9 +81,9 @@ func __move_towards_destination(delta: float) -> void:
 			push_error("uh-oh: actor collided with something again post-collision")
 			__stop_movement()
 	
-	var flip_scale : float = 0.5
+	var flip_scale : float = Statics.UNIT_SCALE
 	if direction.x < 0:
-		flip_scale = -0.5
+		flip_scale = -flip_scale
 	if %ActorSprite.scale.x != flip_scale:
 		%ActorSprite.scale.x = flip_scale
 	
@@ -106,18 +108,9 @@ func remove_activation_circle() -> void:
 
 
 func __stop_movement() -> void:
-	#SignalManager.on_stop_camera_follow.emit()
 	__current_actor_state = ACTOR_STATE.IDLE
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	GameStateManager.handle_player_actor_task_complete()
-
-
-func __mouse_actions_enabled() -> bool:
-	match GameStateManager.current_game_state:
-		GameStateManager.GAME_STATE.PLAYER_IDLE, GameStateManager.GAME_STATE.PLAYER_ACTOR_ACTIVATED:
-			return true
-		_:
-			return false
 
 
 func activate_me() -> void:
@@ -127,7 +120,7 @@ func activate_me() -> void:
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if __mouse_actions_enabled():
+	if Statics.mouse_actions_enabled():
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 			if GameStateManager.selected_actor == self:
 				activate_me()
@@ -137,10 +130,10 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 
 func _on_mouse_entered() -> void:
-	if __mouse_actions_enabled():
+	if Statics.mouse_actions_enabled():
 		SignalManager.on_move_hover_circle.emit(true, self.global_position)
 
 
 func _on_mouse_exited() -> void:
-	if __mouse_actions_enabled():
-		SignalManager.on_move_hover_circle.emit(false, Vector2.INF)
+	if Statics.mouse_actions_enabled():
+		SignalManager.on_move_hover_circle.emit(false, self.global_position)
