@@ -33,7 +33,7 @@ position = Vector2(360, 4)
 display_name = "Act2"
 
 [node name="Mob" parent="." unique_id=81382257 instance=ExtResource("8_7tpiq")]
-position = Vector2(-182, -2)
+position = Vector2(-129, -4)
 
 [node name="Obstacle" parent="." unique_id=1431285537 instance=ExtResource("9_8vbkd")]
 position = Vector2(13, -1)

@@ -148,9 +148,22 @@ Style Box (for panels) resource
 * disable panning when actor is activated
 	* button to center camera on activated actor instead
 
-* need to be able to see ring/disk under unit at all times
-	-- faint black, with assumption that background will not be full black. if go full black, then needs to be white
-	* collision should be 1 px beyond this disk
+* obstacles need to be rounded - hard corners make context based steering flip out
+	* it's the width, doesn't know how wide it is.
+		* so either need to move and slide, or get rid of context based steering and use a raycast span (shapecast) to find direction
+		-- use "exclude_parent" and "add_exception" (and "clear_exceptions") to not report collisions with player actor
+		-- just because a collision exists doesn't mean change direction. need to be within a certain distance.
+		* 2 shapecasts, one for current path and another for target path. they overlap if have a clear path.
+		** ie, use target path until an obstacle is detected, then switch to current path. 
+			-- target path stays locked to target, and switches back if cleared
+			-- mob travels current path originally set direction until an alternate current path, which is closer to player_path that degree_diff of set path, exists
+			-- the switches to new current_path
+		* should be its own subnode (will need to use add_exception for parent then, since actual parent is subnode)
+	
+	* or just use 2d path?
+~ need to be able to see ring/disk under unit at all times
+~	-- faint black, with assumption that background will not be full black. if go full black, then needs to be white
+~	* collision should be 1 px beyond this disk
 
 * when movement is beyond max, show dot where max would be placed on line
 
