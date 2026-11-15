@@ -2,15 +2,24 @@
 
 [ext_resource type="PackedScene" uid="uid://baptberhrvlg" path="res://scenes/combat/subscenes/key_handler/key_handler.tscn" id="1_kaxju"]
 [ext_resource type="PackedScene" uid="uid://uoxwu5km2540" path="res://scenes/combat/subscenes/combat_ui/combat_ui.tscn" id="1_n7x52"]
+[ext_resource type="Script" uid="uid://cfkpxy5vdut5l" path="res://scenes/combat/primary_combat.gd" id="1_nf71s"]
 [ext_resource type="PackedScene" uid="uid://bf8w8h7oytew0" path="res://scenes/combat/subscenes/combat_camera/combat_camera.tscn" id="2_1pw7v"]
 [ext_resource type="PackedScene" uid="uid://j268h2yrh66t" path="res://scenes/combat/subscenes/enemy_turn_handler/enemy_turn_handler.tscn" id="2_7eb1b"]
 [ext_resource type="PackedScene" uid="uid://vqyv3wh7y3sn" path="res://scenes/combat/subscenes/actor/actor.tscn" id="3_n426y"]
 [ext_resource type="PackedScene" uid="uid://beutckbanthtt" path="res://scenes/combat/subscenes/doodad_manager/doodad_manager.tscn" id="5_d0tbs"]
 [ext_resource type="PackedScene" uid="uid://cpmn1tj82vhle" path="res://scenes/combat/subscenes/movement_plotter/movement_plotter.tscn" id="6_6m7m3"]
 [ext_resource type="PackedScene" uid="uid://jlekxyyaxb5" path="res://scenes/combat/subscenes/mob/mob.tscn" id="8_7tpiq"]
+[ext_resource type="Script" uid="uid://c1cq4lcs1mulh" path="res://scenes/combat/world_navigation.gd" id="8_xb72r"]
 [ext_resource type="PackedScene" uid="uid://cvdxkkex1mrj3" path="res://scenes/combat/subscenes/obstacle/obstacle.tscn" id="9_8vbkd"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_bm35l"]
+vertices = PackedVector2Array(-563.0469, -314, 557, -314, 89.53906, -73.96094, 24.476563, -77.9375, 15.109375, -79.92969, -13.640625, -81.078125, -16.296875, -80.453125, -59.132813, -83.09375, 557, 305.97656, 84.49219, 78.84375, -564.9375, 305.0078, -57.867188, 89.28125)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(0, 4, 5), PackedInt32Array(0, 5, 6, 7), PackedInt32Array(2, 1, 8, 9), PackedInt32Array(9, 8, 10, 11), PackedInt32Array(10, 0, 7, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-580, -331, 574, -331, 574, 323, -582, 322)])
+agent_radius = 17.0
+
 [node name="PrimaryCombat" type="Node2D" unique_id=384078481]
+script = ExtResource("1_nf71s")
 
 [node name="KeyHandler" parent="." unique_id=227509208 instance=ExtResource("1_kaxju")]
 
@@ -24,16 +33,24 @@
 
 [node name="CombatCamera" parent="." unique_id=1902928079 instance=ExtResource("2_1pw7v")]
 
-[node name="Actor" parent="." unique_id=440467227 instance=ExtResource("3_n426y")]
+[node name="WorldNavigation" type="NavigationRegion2D" parent="." unique_id=1427679525]
+navigation_polygon = SubResource("NavigationPolygon_bm35l")
+script = ExtResource("8_xb72r")
+
+[node name="Obstacle" parent="WorldNavigation" unique_id=1431285537 instance=ExtResource("9_8vbkd")]
+position = Vector2(13, -1)
+
+[node name="Actor" parent="WorldNavigation" unique_id=440467227 instance=ExtResource("3_n426y")]
 position = Vector2(147, 6)
 display_name = "Onzer"
 
-[node name="Actor2" parent="." unique_id=265465293 instance=ExtResource("3_n426y")]
+[node name="Actor2" parent="WorldNavigation" unique_id=265465293 instance=ExtResource("3_n426y")]
 position = Vector2(360, 4)
 display_name = "Act2"
 
-[node name="Mob" parent="." unique_id=81382257 instance=ExtResource("8_7tpiq")]
+[node name="Mob" parent="WorldNavigation" unique_id=81382257 instance=ExtResource("8_7tpiq")]
 position = Vector2(-129, -4)
 
-[node name="Obstacle" parent="." unique_id=1431285537 instance=ExtResource("9_8vbkd")]
-position = Vector2(13, -1)
+[node name="Mob2" parent="WorldNavigation" unique_id=1320896995 instance=ExtResource("8_7tpiq")]
+position = Vector2(-69, 167)
+display_name = "MOB2"

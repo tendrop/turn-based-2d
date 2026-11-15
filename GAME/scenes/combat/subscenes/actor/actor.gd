@@ -53,10 +53,10 @@ func __move_towards_destination() -> void:
 	for i: int in get_slide_collision_count():
 		last_collision = get_slide_collision(i)
 		var collider: Node2D = last_collision.get_collider()
-		#if "display_name" in collider:
-			#print("%s collided with %s" % [self.display_name, collider.display_name])
-		#else:
-			#print("%s collided with UNKNOWN" % self.display_name)
+		if "display_name" in collider:
+			print("%s collided with %s" % [self.display_name, collider.display_name])
+		else:
+			print("%s collided with UNKNOWN" % self.display_name)
 	
 	# track stuck-age
 	if last_collision:

@@ -143,9 +143,16 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-* ACTOR move_and_slide instead of collide
+~ ACTOR move_and_slide instead of collide
+
+-- need NavigationAgent2D with avoidance_enabled = true
+	-- need NaviagtionObstacle2d for obstacles
 
 * MOB
+	~ copy over collision stuff and sprite flip from ACTOR
+	~ limit travel difference ala old func
+	
+	-- https://docs.godotengine.org/en/4.6/tutorials/navigation/navigation_using_navigationpathqueryobjects.html
 	* https://www.youtube.com/watch?v=cx49GTfLwZU
 	* move_and_slide instead of collide
 	* use DRIVE "am i stuck and need to reverse" code to see if movement should be ended early
@@ -159,8 +166,10 @@ Style Box (for panels) resource
 					-- if potential_path's direction is a smaller angle than current_direction (when compared against target_path), update current_direction ot potential_path's direction
 						-- i.e., if potential_path ends up overlaying target_path, the angle will be 0
 
-* obstacles should be circular
+* obstacles collisionShape should be circular
+	* obstacles NaviagtionObstacle2d shape should be a rough polygon to prevent curved pathing
 	?? tiles instead of disks if circles dont jive with UI feel  (but collisin shapes still round)?
+		-- or just add more circles to UI feel (Circles OS)
 
 
 * obstacles need to be rounded - hard corners make context based steering flip out
@@ -177,6 +186,7 @@ Style Box (for panels) resource
 	
 	* or just use 2d path?
 	
+
 
 
 
