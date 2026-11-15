@@ -143,64 +143,25 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-~ ACTOR move_and_slide instead of collide
 
--- need NavigationAgent2D with avoidance_enabled = true
-	-- need NaviagtionObstacle2d for obstacles
-
-* MOB
-	~ copy over collision stuff and sprite flip from ACTOR
-	~ limit travel difference ala old func
+* obstacles collisionShape and obstacle2d should not have any cutins
+	-- can be circle or polygon, just now corner traps
 	
-	-- https://docs.godotengine.org/en/4.6/tutorials/navigation/navigation_using_navigationpathqueryobjects.html
-	* https://www.youtube.com/watch?v=cx49GTfLwZU
-	* move_and_slide instead of collide
-	* use DRIVE "am i stuck and need to reverse" code to see if movement should be ended early
-	* replace contect based steering with two ShapeCast2D node
-		* 2 shapecasts in a node2d container; own separate script
-		* use "add_exception" to exclude target and self
-		* have one shapecast fixed on target (target_path)
-			-- if target path is obstructed, rotate potential_path away from target_path until unobstructed. set current_direction
-			-- just because a collision exists doesn't mean change direction. need to be within a certain distance.
-				-- while travelling current_direction, periodically check new rotated potential paths
-					-- if potential_path's direction is a smaller angle than current_direction (when compared against target_path), update current_direction ot potential_path's direction
-						-- i.e., if potential_path ends up overlaying target_path, the angle will be 0
+~ red background =  enemy turn; blue background = player turn
 
-* obstacles collisionShape should be circular
-	* obstacles NaviagtionObstacle2d shape should be a rough polygon to prevent curved pathing
-	?? tiles instead of disks if circles dont jive with UI feel  (but collisin shapes still round)?
-		-- or just add more circles to UI feel (Circles OS)
-
-
-* obstacles need to be rounded - hard corners make context based steering flip out
-	* it's the width, doesn't know how wide it is.
-		* so either need to move and slide, or get rid of context based steering and use a raycast span (shapecast) to find direction
-		-- use "exclude_parent" and "add_exception" (and "clear_exceptions") to not report collisions with player actor
-		-- just because a collision exists doesn't mean change direction. need to be within a certain distance.
-		* 2 shapecasts, one for current path and another for target path. they overlap if have a clear path.
-		** ie, use target path until an obstacle is detected, then switch to current path. 
-			-- target path stays locked to target, and switches back if cleared
-			-- mob travels current path originally set direction until an alternate current path, which is closer to player_path that degree_diff of set path, exists
-			-- the switches to new current_path
-		* should be its own subnode (will need to use add_exception for parent then, since actual parent is subnode)
-	
-	* or just use 2d path?
-	
-
-
-
-
-| Future Branch |
-* red background =  enemy turn; blue background = player turn
-
-* * when player movement is beyond max, show dot where max would be placed on line
+* when player movement is beyond max, show dot where max would be placed on line
 
 * disable panning when actor is activated
-	* button to center camera on activated actor instead
+	* center on activated actor upon activation
+
 
 * lock when base-to-base with something
 	* show actor lock icon in player panel
 
+
+
+| Future Branch |
+* R for "Run Script" (spells)
 * F for fire weapon
 * seperate areas for projectiles to impact againstq
 	-- 3 total (player_projectile_collision, enemy_projectile_collision, any_projectile_collision)

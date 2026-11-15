@@ -22,8 +22,20 @@ func _on_object_selection_cleared() -> void:
 
 
 func _on_start_enemy_turn(_number_of_actions: int) -> void:
+	%TurnBanner.text = "OPPOSITION RESPONSE"
+	%TurnBanner.self_modulate = Statics.ColorDict[Statics.COLORS.RED]
 	%TurnBanner.visible = true
+	RenderingServer.set_default_clear_color(Color("#190000"))
+	%TurnBannerTimer.start()
 
 
 func _on_end_enemy_turn() -> void:
+	%TurnBanner.text = "CONTROL RETURNED"
+	%TurnBanner.self_modulate = Color.WHITE
+	%TurnBanner.visible = true
+	RenderingServer.set_default_clear_color(Color("#000019"))
+	%TurnBannerTimer.start()
+
+
+func _on_turn_banner_timer_timeout() -> void:
 	%TurnBanner.visible = false
