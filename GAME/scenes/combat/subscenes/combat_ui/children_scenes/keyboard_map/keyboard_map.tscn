@@ -2,6 +2,15 @@
 
 [ext_resource type="Script" uid="uid://by2t3twauswr2" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map.gd" id="1_1er2b"]
 [ext_resource type="PackedScene" uid="uid://frffsep4wyts" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map_button/keyboard_map_button.tscn" id="1_ge8jo"]
+[ext_resource type="Script" uid="uid://tcp2nku68dly" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map_button/individual_buttons/q_button.gd" id="3_7aamf"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_1er2b"]
+device = -1
+keycode = 81
+unicode = 113
+
+[sub_resource type="Shortcut" id="Shortcut_oy1u4"]
+events = [SubResource("InputEventKey_1er2b")]
 
 [node name="KeyboardMap" type="PanelContainer" unique_id=73729806]
 offset_right = 40.0
@@ -26,6 +35,7 @@ theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
 [node name="KeyboardSetupLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1059983843]
+unique_name_in_owner = true
 layout_mode = 2
 text = "CURRENT KEYBOARD SETTING"
 
@@ -39,6 +49,8 @@ columns = 4
 [node name="Q_Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1803774164 instance=ExtResource("1_ge8jo")]
 unique_name_in_owner = true
 layout_mode = 2
+shortcut = SubResource("Shortcut_oy1u4")
+script = ExtResource("3_7aamf")
 
 [node name="W_Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1111212638 instance=ExtResource("1_ge8jo")]
 unique_name_in_owner = true

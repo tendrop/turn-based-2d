@@ -2,6 +2,17 @@ extends Button
 class_name KeyboardMapButton
 
 
+func _ready() -> void:
+	var key_letter: String = "?"
+	if self.shortcut != null:
+		for e in self.shortcut.events:
+			if e is InputEventKey and e.physical_keycode != KEY_NONE:
+				var local := DisplayServer.keyboard_get_keycode_from_physical(e.physical_keycode)
+				key_letter = OS.get_keycode_string(local)
+				break
+	%Key.text = key_letter
+
+
 func reset_to_default() -> void:
 	%CurrentAction.text = ""
 	self.disabled = true

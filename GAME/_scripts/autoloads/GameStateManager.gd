@@ -80,7 +80,8 @@ var current_game_state: GAME_STATE:
 				GAME_STATE.ENEMY_TURN:
 					SignalManager.on_start_enemy_turn.emit(total_enemy_actions)
 			
-			___current_game_state = new_state	
+			___current_game_state = new_state
+			SignalManager.on_game_state_changed.emit(new_state)
 
 
 var __active_player_task: Statics.PLAYER_TASK = Statics.PLAYER_TASK.NONE

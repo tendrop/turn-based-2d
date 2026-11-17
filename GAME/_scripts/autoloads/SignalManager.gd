@@ -73,6 +73,9 @@ signal on_select_next_player_actor()
 ## heard by: PlayerMovementPanel
 signal on_update_player_movement_distance(dist: float)
 
+## emitted by: GameStateManager
+## heard by: KeyboardMap
+signal on_game_state_changed(new_state: GameStateManager.GAME_STATE)
 
 ############### DooDads
 signal on_move_hover_circle(visible: bool, global_loc: Vector2)

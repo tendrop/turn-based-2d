@@ -143,6 +143,13 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
+!! SHORTCUT IS JUST KEY RIGHT NOW, NEED IT TO BE PHYSICAL KEYCODE !!
+
+draw out keymaps for each phase
+?? each key hears change and updates itself, instead of having KeyboardMap do it?
+
+* fake borders -- put in background panel that is white colored, remove borders from individual cells, space everything 1 px
+* button should flash when hotkey is pressed
 
 ~ obstacles collisionShape and obstacle2d should not have any cutins
 	-- can be circle or polygon, just now corner traps
