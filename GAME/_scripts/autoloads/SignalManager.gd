@@ -53,6 +53,9 @@ signal on_show_player_task_two(a: Actor)
 ## emitted by: GameStateManager
 ## heard by: CombatUi
 signal on_object_selected(n: Node2D)
+
+## emitted by: Q Button
+## heard by: 
 signal on_object_selection_cleared()
 
 ## emitted by: Actor

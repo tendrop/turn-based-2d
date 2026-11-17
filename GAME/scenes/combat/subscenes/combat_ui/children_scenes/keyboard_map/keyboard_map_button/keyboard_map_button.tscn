@@ -7,6 +7,7 @@ custom_minimum_size = Vector2(65, 45)
 offset_right = 65.0
 offset_bottom = 45.0
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 16
 script = ExtResource("1_cwhon")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1258158682]
@@ -38,3 +39,5 @@ theme_override_font_sizes/font_size = 16
 text = "Action
 Here"
 horizontal_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
