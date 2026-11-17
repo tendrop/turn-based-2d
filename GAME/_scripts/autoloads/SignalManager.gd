@@ -9,6 +9,12 @@ signal on_start_camera_follow(n: Node2D)
 signal on_stop_camera_follow
 signal on_move_camera(global_loc: Vector2)
 
+## WORLD BAKING
+## emitted by Mob; heard by world_navigation.gd
+signal on_rebake_world(mob_thats_moving: Mob)
+## emitted by world_navigation.gd; heardyby mob
+signal on_world_rebake_complete
+
 ############ KEYHANDLER
 
 ## emitted by KeyHandler

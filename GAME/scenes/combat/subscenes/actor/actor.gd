@@ -7,7 +7,7 @@ var __current_actor_state: ACTOR_STATE = ACTOR_STATE.IDLE
 @export var display_name: String = "[Actor]"
 @export var owner_group: Statics.GROUPS = Statics.GROUPS.PLAYER_ACTORS
 
-var __knockback_stop_distance: float
+#var __knockback_stop_distance: float
 
 var current_integrity: float = 1.2
 var max_movement_distance: float = 8.0
@@ -18,8 +18,10 @@ var __movement_destination: Vector2 = Vector2.INF
 var __knockback_direction: Vector2
 var __collider_global_pos: Vector2
 
+var __stuck_frames: int = 0
+const MAX_STUCK_FRAMES: int = 10
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	match __current_actor_state:
 		ACTOR_STATE.MOVING:
 			if __movement_destination == Vector2.INF:
@@ -35,59 +37,96 @@ func _physics_process(delta: float) -> void:
 				else:
 					__stop_movement()
 					return
-			__move_towards_destination(delta)
+			__move_towards_destination()
 
 
 #func __has_reached_current_destination() -> bool:
 	##print("%0.1f" % self.global_position.distance_to(__movement_destination))
 	#return self.global_position.distance_to(__movement_destination) <= Statics.REACHED_DESTINATION_THRESHOLD
 
-
-func __move_towards_destination(delta: float) -> void:
-	var movement_velocity: Vector2
-	var direction: Vector2
-	
-	if __collider_global_pos == Vector2.INF:
-		# not colliding/knockback-ing
-		var distance: float = self.global_position.distance_to(__movement_destination)
-		var max_speed: float = distance / delta
-		direction = self.global_position.direction_to(__movement_destination)
-		movement_velocity = min(Statics.MOVEMENT_SPEED, max_speed) * direction * delta
-	else:
-		# knocking back; check distance first
-		var knock_dist: float = self.global_position.distance_to(__collider_global_pos)
-		if knock_dist >= __knockback_stop_distance:
-			__stop_movement()
-			return
+func __move_towards_destination() -> void:
+	var direction: Vector2 = self.global_position.direction_to(__movement_destination)
+	self.velocity = direction * Statics.MOVEMENT_SPEED
+	var prev_position : Vector2 = self.global_position
+	move_and_slide()
+	var last_collision: KinematicCollision2D = null
+	for i: int in get_slide_collision_count():
+		last_collision = get_slide_collision(i)
+		var collider: Node2D = last_collision.get_collider()
+		if "display_name" in collider:
+			print("%s collided with %s" % [self.display_name, collider.display_name])
 		else:
-			movement_velocity = __knockback_direction * Statics.MOVEMENT_SPEED * delta
+			print("%s collided with UNKNOWN" % self.display_name)
 	
-	
-	var collision = move_and_collide(movement_velocity)
-	
-	if collision:
-		if __knockback_direction == Vector2.INF:
-			var obj: Object = collision.get_collider()
-			if obj is Actor:
-				__knockback_stop_distance = self.global_position.distance_to(obj.global_position) + 2
-				__collider_global_pos = obj.global_position
-				__knockback_direction = -direction
-			else:
-				## TODO: Lock if Mob?
+	# track stuck-age
+	if last_collision:
+		#print(global_position.distance_to(prev_position))
+		#if self.global_position.distance_to(prev_position) < 0.16 and not velocity.is_zero_approx():
+		var dist_squared: float = global_position.distance_squared_to(prev_position)
+		#print(dist_squared)
+		if dist_squared < 0.03 and not velocity.is_zero_approx():
+			__stuck_frames += 1
+			print("frame %d: %.6f" % [__stuck_frames, dist_squared])
+			if __stuck_frames > MAX_STUCK_FRAMES:
+				print("STUCK!!!!!!")
 				__stop_movement()
-		else:
-			# shouldn't have a second collision b/c just on return path.
-			# but, if do, then just stop
-			push_error("uh-oh: actor collided with something again post-collision")
-			__stop_movement()
+		elif dist_squared > 1:
+			__stuck_frames = 0
 	
+	# flip sprite and its children
 	var flip_scale : float = Statics.UNIT_SCALE
 	if direction.x < 0:
 		flip_scale = -flip_scale
 	if %ActorSprite.scale.x != flip_scale:
 		%ActorSprite.scale.x = flip_scale
 	
-	self.velocity = Vector2.ZERO
+	
+	
+#func __move_towards_destination(delta: float) -> void:
+	#var movement_velocity: Vector2
+	#var direction: Vector2
+	#
+	#if __collider_global_pos == Vector2.INF:
+		## not colliding/knockback-ing
+		#var distance: float = self.global_position.distance_to(__movement_destination)
+		#var max_speed: float = distance / delta
+		#direction = self.global_position.direction_to(__movement_destination)
+		#movement_velocity = min(Statics.MOVEMENT_SPEED, max_speed) * direction * delta
+	#else:
+		## knocking back; check distance first
+		#var knock_dist: float = self.global_position.distance_to(__collider_global_pos)
+		#if knock_dist >= __knockback_stop_distance:
+			#__stop_movement()
+			#return
+		#else:
+			#movement_velocity = __knockback_direction * Statics.MOVEMENT_SPEED * delta
+	#
+	#
+	#var collision = move_and_collide(movement_velocity)
+	#
+	#if collision:
+		#if __knockback_direction == Vector2.INF:
+			#var obj: Object = collision.get_collider()
+			#if obj is Actor:
+				#__knockback_stop_distance = self.global_position.distance_to(obj.global_position) + 2
+				#__collider_global_pos = obj.global_position
+				#__knockback_direction = -direction
+			#else:
+				### TODO: Lock if Mob?
+				#__stop_movement()
+		#else:
+			## shouldn't have a second collision b/c just on return path.
+			## but, if do, then just stop
+			#push_error("uh-oh: actor collided with something again post-collision")
+			#__stop_movement()
+	#
+	#var flip_scale : float = Statics.UNIT_SCALE
+	#if direction.x < 0:
+		#flip_scale = -flip_scale
+	#if %ActorSprite.scale.x != flip_scale:
+		#%ActorSprite.scale.x = flip_scale
+	#
+	#self.velocity = Vector2.ZERO
 
 
 func do_movement(coords: Array[Vector2]) -> void:
@@ -96,6 +135,7 @@ func do_movement(coords: Array[Vector2]) -> void:
 	__movement_destination = Vector2.INF
 	__collider_global_pos = Vector2.INF
 	__knockback_direction = Vector2.INF
+	__stuck_frames = 0
 	# lock camera to me
 	SignalManager.on_move_camera.emit(self.global_position)
 	#SignalManager.on_start_camera_follow.emit(self)

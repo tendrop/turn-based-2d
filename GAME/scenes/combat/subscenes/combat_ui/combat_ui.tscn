@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bvw64k3msl7oq" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_actors_table/player_actors_table.tscn" id="3_eljfe"]
 [ext_resource type="PackedScene" uid="uid://b1jcpgun526kw" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_execution_panel/player_execution_panel.tscn" id="4_sperb"]
 [ext_resource type="PackedScene" uid="uid://dmytrt6xjexjq" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_movement_panel/player_movement_panel.tscn" id="5_y6yq1"]
+[ext_resource type="FontVariation" uid="uid://bxqnq1k7ekyqg" path="res://assets/fonts/alexandria_bold.tres" id="7_agp65"]
+[ext_resource type="PackedScene" uid="uid://frffsep4wyts" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map_button/keyboard_map_button.tscn" id="8_oy1u4"]
 
 [node name="CombatUi" type="CanvasLayer" unique_id=1977580954]
 script = ExtResource("1_1sq4j")
@@ -38,16 +40,13 @@ offset_transform_position = Vector2(0, 16)
 [node name="SelectionInfoContainer" type="PanelContainer" parent="MainUi" unique_id=1999987526]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -85.0
-offset_top = -40.0
-offset_right = 85.0
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
+offset_top = 16.0
+offset_bottom = 40.0
+grow_horizontal = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MainUi/SelectionInfoContainer" unique_id=1592608962]
 texture_filter = 2
@@ -64,37 +63,47 @@ text = "This is size Mono 12"
 
 [node name="ScrollingLog" parent="MainUi" unique_id=1600343915 instance=ExtResource("2_vb2sj")]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -360.0
 offset_top = -120.0
-offset_right = 360.0
+offset_right = 0.0
 offset_bottom = 0.0
+grow_horizontal = 0
 grow_vertical = 0
 
 [node name="PlayerExecutionPanel" parent="MainUi" unique_id=733081911 instance=ExtResource("4_sperb")]
-visible = false
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 6
 anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-offset_left = -173.0
-offset_top = 16.0
+anchor_bottom = 0.5
+offset_left = -217.0
+offset_top = -85.0
 offset_right = 0.0
-offset_bottom = 95.0
+offset_bottom = 85.0
 grow_horizontal = 0
+grow_vertical = 2
 offset_transform_position = Vector2(0, 16)
 
 [node name="PlayerMovementPanel" parent="MainUi" unique_id=171472155 instance=ExtResource("5_y6yq1")]
 visible = false
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -123.0
-offset_top = 16.0
-offset_right = 0.0
-grow_horizontal = 0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -109.0
+offset_top = -116.0
+offset_right = 109.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
 offset_transform_position = Vector2(0, 16)
 
 [node name="TurnBanner" type="Label" parent="MainUi" unique_id=410232327]
@@ -110,5 +119,23 @@ offset_bottom = 33.0
 grow_horizontal = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, 50)
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("7_agp65")
+theme_override_font_sizes/font_size = 48
 text = "OPPOSITION RESPONSE"
+
+[node name="TurnBannerTimer" type="Timer" parent="MainUi/TurnBanner" unique_id=494753674]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="KeyboardMapButton" parent="MainUi" unique_id=1731479122 instance=ExtResource("8_oy1u4")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 0.0
+grow_vertical = 0
+
+[connection signal="timeout" from="MainUi/TurnBanner/TurnBannerTimer" to="." method="_on_turn_banner_timer_timeout"]

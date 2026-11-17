@@ -41,6 +41,11 @@ var current_game_state: GAME_STATE:
 		if new_state == ___current_game_state:
 			return
 		else:
+			print("Changing GameState from '%s' to '%s'" % [ \
+				GAME_STATE.keys()[___current_game_state],
+				GAME_STATE.keys()[new_state] \
+				])
+			
 			# EXIT tasks for current state
 			match ___current_game_state:
 				GAME_STATE.PLAYER_IDLE:
@@ -74,12 +79,8 @@ var current_game_state: GAME_STATE:
 				
 				GAME_STATE.ENEMY_TURN:
 					SignalManager.on_start_enemy_turn.emit(total_enemy_actions)
-				
-			print("Change GameState from '%s' to '%s'" % [ \
-				GAME_STATE.keys()[___current_game_state],
-				GAME_STATE.keys()[new_state] \
-				])
-			___current_game_state = new_state
+			
+			___current_game_state = new_state	
 
 
 var __active_player_task: Statics.PLAYER_TASK = Statics.PLAYER_TASK.NONE
@@ -87,6 +88,7 @@ var __player_task_count: int = 0
 
 var activated_actor: Actor = null
 var selected_actor: Actor = null
+
 
 func _ready() -> void:
 	SignalManager.on_object_selected.connect(_on_object_selected)
