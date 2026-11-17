@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://frffsep4wyts"]
+
+[ext_resource type="Script" uid="uid://5p5aeb1s8fx1" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map_button/keyboard_map_button.gd" id="1_cwhon"]
+
+[node name="KeyboardMapButton" type="Button" unique_id=1803774164]
+custom_minimum_size = Vector2(65, 45)
+offset_right = 65.0
+offset_bottom = 45.0
+size_flags_vertical = 3
+script = ExtResource("1_cwhon")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1258158682]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Key" type="Label" parent="MarginContainer" unique_id=876332135]
+unique_name_in_owner = true
+modulate = Color(0.5019608, 0.5019608, 0.5019608, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "k"
+
+[node name="CurrentAction" type="Label" parent="MarginContainer" unique_id=10224551]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 16
+text = "Action
+Here"
+horizontal_alignment = 1

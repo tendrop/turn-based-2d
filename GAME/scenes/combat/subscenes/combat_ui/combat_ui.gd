@@ -33,7 +33,7 @@ func _on_end_enemy_turn() -> void:
 	%TurnBanner.text = "CONTROL RETURNED"
 	%TurnBanner.self_modulate = Color.WHITE
 	%TurnBanner.visible = true
-	RenderingServer.set_default_clear_color(Color("#000019"))
+	RenderingServer.set_default_clear_color(Color("#00001e"))
 	%TurnBannerTimer.start()
 
 

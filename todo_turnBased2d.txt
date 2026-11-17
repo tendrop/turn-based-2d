@@ -144,7 +144,7 @@ Style Box (for panels) resource
 
 | THIS BRANCH TODO |
 
-* obstacles collisionShape and obstacle2d should not have any cutins
+~ obstacles collisionShape and obstacle2d should not have any cutins
 	-- can be circle or polygon, just now corner traps
 	
 ~ red background =  enemy turn; blue background = player turn
@@ -158,7 +158,20 @@ Style Box (for panels) resource
 * lock when base-to-base with something
 	* show actor lock icon in player panel
 
+* Activated and movement panels need to be more obvious
+	-- move to middle center
+		-- invert colors? have border be dayglo?
+	-- selected info to top-right corner
+	-- get rid of wasd navigation, and replace it with qwer-asdf-zxcv grid?
 
+
+
+left hand side: qwer-asdf-zxcv
+	-- banner above that says what mode (actor selected)
+	-- expands out to have activated info + engage button
+right hand side: log
+
+top-right corner: selected info
 
 | Future Branch |
 * R for "Run Script" (spells)
