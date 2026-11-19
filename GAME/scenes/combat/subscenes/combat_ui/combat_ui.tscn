@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bs5val2k1emxy" path="res://scenes/combat/subscenes/combat_ui/children_scenes/top_bar/top_bar.tscn" id="2_ogvnd"]
 [ext_resource type="PackedScene" uid="uid://cejd6hkhbjluy" path="res://scenes/combat/subscenes/combat_ui/children_scenes/scrolling_log/scrolling_log.tscn" id="2_vb2sj"]
 [ext_resource type="PackedScene" uid="uid://bvw64k3msl7oq" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_actors_table/player_actors_table.tscn" id="3_eljfe"]
-[ext_resource type="PackedScene" uid="uid://b1jcpgun526kw" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_execution_panel/player_execution_panel.tscn" id="4_sperb"]
 [ext_resource type="PackedScene" uid="uid://dmytrt6xjexjq" path="res://scenes/combat/subscenes/combat_ui/children_scenes/player_movement_panel/player_movement_panel.tscn" id="5_y6yq1"]
 [ext_resource type="FontVariation" uid="uid://bxqnq1k7ekyqg" path="res://assets/fonts/alexandria_bold.tres" id="7_agp65"]
 [ext_resource type="PackedScene" uid="uid://mn8jcvjyhxnr" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map.tscn" id="8_oy1u4"]
@@ -74,21 +73,6 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
-
-[node name="PlayerExecutionPanel" parent="MainUi" unique_id=733081911 instance=ExtResource("4_sperb")]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -217.0
-offset_top = -85.0
-offset_right = 0.0
-offset_bottom = 85.0
-grow_horizontal = 0
-grow_vertical = 2
-offset_transform_position = Vector2(0, 16)
 
 [node name="PlayerMovementPanel" parent="MainUi" unique_id=171472155 instance=ExtResource("5_y6yq1")]
 visible = false

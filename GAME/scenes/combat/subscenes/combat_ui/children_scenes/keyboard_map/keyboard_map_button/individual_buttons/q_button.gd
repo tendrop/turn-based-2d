@@ -4,10 +4,12 @@ class_name Q_KeyboardMapButton
 func _on_game_state_changed(new_state: GameStateManager.GAME_STATE) -> void:
 	match new_state:
 		GameStateManager.GAME_STATE.PLAYER_IDLE, \
-		GameStateManager.GAME_STATE.PLAYER_ACTOR_ACTIVATED, \
 		GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
 			%CurrentAction.text = "Cancel"
 			self.disabled = false
+		GameStateManager.GAME_STATE.PLAYER_ACTOR_ACTIVATED:
+			%CurrentAction.text = "Cancel"
+			self.disabled = GameStateManager.player_task_count > 0
 		_:
 			%CurrentAction.text = ""
 			self.disabled = true

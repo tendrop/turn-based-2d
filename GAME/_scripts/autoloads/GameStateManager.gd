@@ -30,6 +30,7 @@ var remaining_actions: int:
 		___remaining_actions = value
 		SignalManager.on_action_count_changed.emit(value, max_actions)
 		if ___remaining_actions == 0:
+			player_task_count = 0
 			current_game_state = GAME_STATE.ENEMY_TURN
 
 
@@ -69,8 +70,7 @@ var current_game_state: GAME_STATE:
 						activated_actor.remove_activation_circle()
 						activated_actor = null
 					__active_player_task = Statics.PLAYER_TASK.NONE
-					__player_task_count = 0
-				
+					
 				GAME_STATE.PLAYER_ACTOR_ACTIVATED:
 					pass
 				
@@ -85,7 +85,9 @@ var current_game_state: GAME_STATE:
 
 
 var __active_player_task: Statics.PLAYER_TASK = Statics.PLAYER_TASK.NONE
-var __player_task_count: int = 0
+## 0: player not activated // 1: player initial activation, no task done yet
+## 2: first task complete, ready for second
+var player_task_count: int = 0
 
 var activated_actor: Actor = null
 var selected_actor: Actor = null
@@ -116,27 +118,27 @@ func _on_end_enemy_turn() -> void:
 func try_activate_actor(actor: Actor) -> void:
 	if actor != selected_actor: return
 	if current_game_state != GAME_STATE.PLAYER_IDLE: return
-	if __player_task_count != 0: return
+	if player_task_count != 0: return
 	
 	if activated_actor:
 		activated_actor.remove_activation_circle()
 	activated_actor = actor
 	current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
+	player_task_count = 1
 	SignalManager.on_actor_activated.emit(actor)
 
 
 func try_deactivate_actor() -> void:
 	if activated_actor \
 	and current_game_state == GAME_STATE.PLAYER_ACTOR_ACTIVATED \
-	and __player_task_count == 0:
+	and player_task_count < 2:
 		SignalManager.on_object_selection_cleared.emit()
 		self.current_game_state = GAME_STATE.PLAYER_IDLE
 
 
-func start_player_task(task_number: int, task_type: Statics.PLAYER_TASK) -> void:
+func start_player_task(task_type: Statics.PLAYER_TASK) -> void:
 	__active_player_task = task_type
-	__player_task_count = task_number
-	
+
 	match task_type:
 		Statics.PLAYER_TASK.MOVE:
 			GameStateManager.current_game_state = GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT
@@ -144,20 +146,22 @@ func start_player_task(task_number: int, task_type: Statics.PLAYER_TASK) -> void
 
 func handle_player_actor_task_complete() -> void:
 	#  if player has another action, show player execution panel again. 
-	if __player_task_count == 2:
+	if player_task_count == 2:
 		# second task done, always return to idle
 		current_game_state = GAME_STATE.PLAYER_IDLE
 		remaining_actions -= 1
 		
 	else:
-		current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
-		__player_task_count = 2
 		# single task done
 		match __active_player_task:
 			Statics.PLAYER_TASK.INFILTRATE:
 				# no follow-up task allowed, return to IDLE
 				current_game_state = GAME_STATE.PLAYER_IDLE
+				return
 			
 			Statics.PLAYER_TASK.MOVE:
 				SignalManager.on_show_player_task_two.emit(activated_actor)
+		
+		player_task_count = 2
+		current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
 				

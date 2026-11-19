@@ -15,6 +15,19 @@
 [ext_resource type="Script" uid="uid://bqxgissp88hnh" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map_button/individual_buttons/c_button.gd" id="13_5kdwe"]
 [ext_resource type="Script" uid="uid://dggme2lsqojb" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map_button/individual_buttons/v_button.gd" id="14_7vv6a"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vv6a"]
+bg_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r83o5"]
+bg_color = Color(0.65882355, 0.65882355, 0.65882355, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65882355, 0.65882355, 0.65882355, 1)
+corner_detail = 1
+
 [sub_resource type="InputEventKey" id="InputEventKey_7aamf"]
 device = -1
 physical_keycode = 81
@@ -125,93 +138,103 @@ theme_override_constants/margin_bottom = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1683152864]
 layout_mode = 2
+theme_override_constants/separation = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1705668777]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=743760441]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7vv6a")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer" unique_id=1705668777]
+custom_minimum_size = Vector2(0, 21)
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="KeyboardSetupLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1059983843]
+[node name="KeyboardSetupLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1059983843]
 unique_name_in_owner = true
 layout_mode = 2
 text = "CURRENT KEYBOARD SETTING"
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=1231515352]
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=1886407948]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r83o5")
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/PanelContainer2" unique_id=1231515352]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/h_separation = -1
-theme_override_constants/v_separation = -1
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
 columns = 4
 
-[node name="Q_Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1803774164 instance=ExtResource("1_ge8jo")]
+[node name="Q_Button" parent="MarginContainer/VBoxContainer/PanelContainer2/GridContainer" unique_id=1803774164 instance=ExtResource("1_ge8jo")]
 unique_name_in_owner = true
 layout_mode = 2
 shortcut = SubResource("Shortcut_oy1u4")
 script = ExtResource("3_7aamf")
 
-[node name="W_Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1111212638 instance=ExtResource("1_ge8jo")]
+[node name="W_Button" parent="MarginContainer/VBoxContainer/PanelContainer2/GridContainer" unique_id=1111212638 instance=ExtResource("1_ge8jo")]
 unique_name_in_owner = true
 layout_mode = 2
 shortcut = SubResource("Shortcut_7vv6a")
 script = ExtResource("4_02r0s")
 
-[node name="E_Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=392037936 instance=ExtResource("1_ge8jo")]
+[node name="E_Button" parent="MarginContainer/VBoxContainer/PanelContainer2/GridContainer" unique_id=392037936 instance=ExtResource("1_ge8jo")]
 unique_name_in_owner = true
 layout_mode = 2
 shortcut = SubResource("Shortcut_r83o5")
 script = ExtResource("5_sjcl8")
 
-[node name="R_Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=186815773 instance=ExtResource("1_ge8jo")]
+[node name="R_Button" parent="MarginContainer/VBoxContainer/PanelContainer2/GridContainer" unique_id=186815773 instance=ExtResource("1_ge8jo")]
 unique_name_in_owner = true
 layout_mode = 2
 shortcut = SubResource("Shortcut_bvalm")
 script = ExtResource("6_knelw")
 
-[node name="A_Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1669619887 instance=ExtResource("1_ge8jo")]
+[node name="A_Button" parent="MarginContainer/VBoxContainer/PanelContainer2/GridContainer" unique_id=1669619887 instance=ExtResource("1_ge8jo")]
 unique_name_in_owner = true
 layout_mode = 2
 shortcut = SubResource("Shortcut_8lv0x")
 script = ExtResource("7_2bcap")
 
-[node name="S_Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1970394644 instance=ExtResource("1_ge8jo")]
+[node name="S_Button" parent="MarginContainer/VBoxContainer/PanelContainer2/GridContainer" unique_id=1970394644 instance=ExtResource("1_ge8jo")]
 unique_name_in_owner = true
 layout_mode = 2
 shortcut = SubResource("Shortcut_sptb0")
 script = ExtResource("8_vdtk0")
 
-[node name="D_Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1737489789 instance=ExtResource("1_ge8jo")]
+[node name="D_Button" parent="MarginContainer/VBoxContainer/PanelContainer2/GridContainer" unique_id=1737489789 instance=ExtResource("1_ge8jo")]
 unique_name_in_owner = true
 layout_mode = 2
 shortcut = SubResource("Shortcut_37rli")
 script = ExtResource("9_wfqe0")
 
-[node name="F_Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1002406899 instance=ExtResource("1_ge8jo")]
+[node name="F_Button" parent="MarginContainer/VBoxContainer/PanelContainer2/GridContainer" unique_id=1002406899 instance=ExtResource("1_ge8jo")]
 unique_name_in_owner = true
 layout_mode = 2
 shortcut = SubResource("Shortcut_pnbtr")
 script = ExtResource("10_7p2n1")
 
-[node name="Z_Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1663428118 instance=ExtResource("1_ge8jo")]
+[node name="Z_Button" parent="MarginContainer/VBoxContainer/PanelContainer2/GridContainer" unique_id=1663428118 instance=ExtResource("1_ge8jo")]
 unique_name_in_owner = true
 layout_mode = 2
 shortcut = SubResource("Shortcut_8wi3o")
 script = ExtResource("11_tadqx")
 
-[node name="X_Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1561126824 instance=ExtResource("1_ge8jo")]
+[node name="X_Button" parent="MarginContainer/VBoxContainer/PanelContainer2/GridContainer" unique_id=1561126824 instance=ExtResource("1_ge8jo")]
 unique_name_in_owner = true
 layout_mode = 2
 shortcut = SubResource("Shortcut_4y0e7")
 script = ExtResource("12_ruyjn")
 
-[node name="C_Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1025958748 instance=ExtResource("1_ge8jo")]
+[node name="C_Button" parent="MarginContainer/VBoxContainer/PanelContainer2/GridContainer" unique_id=1025958748 instance=ExtResource("1_ge8jo")]
 unique_name_in_owner = true
 layout_mode = 2
 shortcut = SubResource("Shortcut_5tuyh")
 script = ExtResource("13_5kdwe")
 
-[node name="V_Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=945803040 instance=ExtResource("1_ge8jo")]
+[node name="V_Button" parent="MarginContainer/VBoxContainer/PanelContainer2/GridContainer" unique_id=945803040 instance=ExtResource("1_ge8jo")]
 unique_name_in_owner = true
 layout_mode = 2
 shortcut = SubResource("Shortcut_3g5iu")

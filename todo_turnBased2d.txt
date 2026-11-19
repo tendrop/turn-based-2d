@@ -143,13 +143,27 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-!! SHORTCUT IS JUST KEY RIGHT NOW, NEED IT TO BE PHYSICAL KEYCODE !!
+* change the A and R in the font file
+
+* ACTOR MOVING needs to be it's own gamestate, so can disable/hide all keys when its occuring
+* if first action in actor activated, then can cancel out of movement. 
+	* if second action, then button is disabled
+* activated actor button should be disabled unless an actor is currently selected	
+
+
+* SignalManager.on_show_player_task_two (and one) is not needed
 
 draw out keymaps for each phase
 ?? each key hears change and updates itself, instead of having KeyboardMap do it?
 
-* fake borders -- put in background panel that is white colored, remove borders from individual cells, space everything 1 px
-* button should flash when hotkey is pressed
+
+UI DESIGN
+~ fake borders -- put in background panel that is white colored, remove borders from individual cells, space everything 1 px
+* titlebar above keys needs better display names, and show what task
+~ needs to not shift around (alignment stuff is weird)
+
+~ button should flash when hotkey is pressed
+~ hook up previous "e" actions to new keysf
 
 ~ obstacles collisionShape and obstacle2d should not have any cutins
 	-- can be circle or polygon, just now corner traps

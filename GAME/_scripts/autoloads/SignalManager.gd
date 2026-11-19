@@ -29,7 +29,7 @@ signal on_try_remove_movement_pivot_point()
 
 ### emitted by KeyHandler
 ### heard by PlayerExecutionPanel
-signal on_execute_player_action()
+#signal on_execute_player_action()
 
 ## emitted by KeyHandler
 ## heard by MovementPlotter
