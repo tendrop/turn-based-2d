@@ -143,15 +143,22 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
-* change the A and R in the font file
+~ change the A and R in the font file
+
+* combine PlayerMovementPanel and MovementPlotter into a single scene
+
+* get rid of on_actor_activated signal, just use gameState one
 
 * ACTOR MOVING needs to be it's own gamestate, so can disable/hide all keys when its occuring
+
 * if first action in actor activated, then can cancel out of movement. 
 	* if second action, then button is disabled
+
 * activated actor button should be disabled unless an actor is currently selected	
 
 
 * SignalManager.on_show_player_task_two (and one) is not needed
+	* but update titlebar above keymap with task number, make obvious
 
 draw out keymaps for each phase
 ?? each key hears change and updates itself, instead of having KeyboardMap do it?

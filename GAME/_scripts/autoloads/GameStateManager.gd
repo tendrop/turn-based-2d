@@ -56,7 +56,7 @@ var current_game_state: GAME_STATE:
 					pass
 				
 				GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
-					SignalManager.on_stop_player_movement_plotting.emit()
+					pass
 				
 				GAME_STATE.ENEMY_TURN:
 					remaining_actions = max_actions
@@ -70,12 +70,13 @@ var current_game_state: GAME_STATE:
 						activated_actor.remove_activation_circle()
 						activated_actor = null
 					__active_player_task = Statics.PLAYER_TASK.NONE
+					player_task_count = 0
 					
 				GAME_STATE.PLAYER_ACTOR_ACTIVATED:
 					pass
 				
 				GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
-					SignalManager.on_start_player_movement_plotting.emit(activated_actor)
+					pass
 				
 				GAME_STATE.ENEMY_TURN:
 					SignalManager.on_start_enemy_turn.emit(total_enemy_actions)
@@ -130,10 +131,14 @@ func try_activate_actor(actor: Actor) -> void:
 
 func try_deactivate_actor() -> void:
 	if activated_actor \
-	and current_game_state == GAME_STATE.PLAYER_ACTOR_ACTIVATED \
 	and player_task_count < 2:
-		SignalManager.on_object_selection_cleared.emit()
-		self.current_game_state = GAME_STATE.PLAYER_IDLE
+		match current_game_state:
+			GAME_STATE.PLAYER_ACTOR_ACTIVATED:
+				SignalManager.on_object_selection_cleared.emit()
+				self.current_game_state = GAME_STATE.PLAYER_IDLE
+			GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
+				player_task_count -= 1
+				self.current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
 
 
 func start_player_task(task_type: Statics.PLAYER_TASK) -> void:

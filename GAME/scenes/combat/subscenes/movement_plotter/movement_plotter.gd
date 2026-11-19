@@ -15,10 +15,10 @@ var __disable_further_mvmt: bool = false
 var __movement_active: bool = false
 
 func _ready() -> void:
-	SignalManager.on_start_player_movement_plotting.connect(_on_start_player_movement_plotting)
+	SignalManager.on_game_state_changed.connect(_on_game_state_changed)
 	SignalManager.on_world_left_clicked.connect(_on_world_left_clicked)
 	SignalManager.on_try_remove_movement_pivot_point.connect(_on_try_remove_movement_pivot_point)
-	SignalManager.on_start_player_action_pressed.connect(_on_make_player_move)
+	SignalManager.on_start_player_movement_pressed.connect(_on_make_player_move)
 	self.set_process(false)
 
 
@@ -111,6 +111,12 @@ func _on_world_left_clicked() -> void:
 		add_child(marker)
 
 
+func _on_game_state_changed(new_state: GameStateManager.GAME_STATE) -> void:
+	if new_state == GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
+		_on_start_player_movement_plotting(GameStateManager.activated_actor)
+	elif __actor != null:
+		_on_stop_player_movement_plotting()
+
 func _on_start_player_movement_plotting(a: Actor) -> void:
 	__movement_active = false
 	__disable_further_mvmt = false
@@ -132,7 +138,6 @@ func _on_stop_player_movement_plotting() -> void:
 	%RayCast.enabled = true
 	%ContactPoint.visible = false
 	$UiUpdateTimer.stop()
-	SignalManager.on_stop_player_movement_plotting.emit()
 	set_deferred("set_process", false)
 
 
@@ -144,6 +149,8 @@ func _on_try_remove_movement_pivot_point() -> void:
 			marker.queue_free()
 		__disable_further_mvmt = false
 		%RayCast.position = __saved_line_coords[__saved_line_coords.size() - 1]
+	else:
+		GameStateManager.try_deactivate_actor()
 
 
 func _on_make_player_move() -> void:
@@ -158,8 +165,6 @@ func _on_make_player_move() -> void:
 	SignalManager.on_move_hover_circle.emit(false, Vector2.INF)
 	%ContactPoint.visible = false
 	actor.do_movement(global_coords)
-	#GameStateManager.start_player_movement(actor, global_coords)
-
 
 
 func __get_total_distance(ignore_current_mouse_pos: bool) -> float:

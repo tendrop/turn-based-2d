@@ -3,13 +3,21 @@ class_name Q_KeyboardMapButton
 
 func _on_game_state_changed(new_state: GameStateManager.GAME_STATE) -> void:
 	match new_state:
-		GameStateManager.GAME_STATE.PLAYER_IDLE, \
-		GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
+		GameStateManager.GAME_STATE.PLAYER_IDLE:
 			%CurrentAction.text = "Cancel"
 			self.disabled = false
+			
+		GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
+			%CurrentAction.text = "Undo"
+			self.disabled = false
+			
 		GameStateManager.GAME_STATE.PLAYER_ACTOR_ACTIVATED:
-			%CurrentAction.text = "Cancel"
-			self.disabled = GameStateManager.player_task_count > 0
+			if GameStateManager.player_task_count > 0:
+				self.disabled = true
+				%CurrentAction.text = ""
+			else:
+				%CurrentAction.text = "Cancel"
+				self.disabled = false
 		_:
 			%CurrentAction.text = ""
 			self.disabled = true
@@ -25,6 +33,8 @@ func _on_pressed() -> void:
 			GameStateManager.try_deactivate_actor()
 			
 		GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
+			# will try to remove movement point. if no movement points,
+			#  then listener will try to deactivate actor
 			SignalManager.on_try_remove_movement_pivot_point.emit()
 		_:
 			push_error("%s was pressed but did not have an action assigned")
