@@ -7,6 +7,12 @@ enum GAME_STATE {
 	ENEMY_TURN
 }
 
+enum PLAYER_TASK_COUNT {
+	NOT_ACTIVATED,
+	FIRST,
+	SECOND
+}
+var current_player_task_count: PLAYER_TASK_COUNT = PLAYER_TASK_COUNT.NOT_ACTIVATED
 
 ## changed when ENEMY_TURN is over
 var ___current_cycle: int = 1
@@ -30,7 +36,7 @@ var remaining_actions: int:
 		___remaining_actions = value
 		SignalManager.on_action_count_changed.emit(value, max_actions)
 		if ___remaining_actions == 0:
-			player_task_count = 0
+			current_player_task_count = PLAYER_TASK_COUNT.NOT_ACTIVATED
 			current_game_state = GAME_STATE.ENEMY_TURN
 
 
@@ -70,7 +76,7 @@ var current_game_state: GAME_STATE:
 						activated_actor.remove_activation_circle()
 						activated_actor = null
 					__active_player_task = Statics.PLAYER_TASK.NONE
-					player_task_count = 0
+					current_player_task_count = PLAYER_TASK_COUNT.NOT_ACTIVATED
 					
 				GAME_STATE.PLAYER_ACTOR_ACTIVATED:
 					pass
@@ -86,9 +92,9 @@ var current_game_state: GAME_STATE:
 
 
 var __active_player_task: Statics.PLAYER_TASK = Statics.PLAYER_TASK.NONE
-## 0: player not activated // 1: player initial activation, no task done yet
-## 2: first task complete, ready for second
-var player_task_count: int = 0
+### 0: player not activated // 1: player initial activation, no task done yet
+### 2: first task complete, ready for second
+#var player_task_count: int = 0
 
 var activated_actor: Actor = null
 var selected_actor: Actor = null
@@ -119,26 +125,29 @@ func _on_end_enemy_turn() -> void:
 func try_activate_actor(actor: Actor) -> void:
 	if actor != selected_actor: return
 	if current_game_state != GAME_STATE.PLAYER_IDLE: return
-	if player_task_count != 0: return
+	if current_player_task_count != PLAYER_TASK_COUNT.NOT_ACTIVATED: return
 	
 	if activated_actor:
 		activated_actor.remove_activation_circle()
 	activated_actor = actor
 	current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
-	player_task_count = 1
+	current_player_task_count = PLAYER_TASK_COUNT.FIRST
 	SignalManager.on_actor_activated.emit(actor)
 
 
 func try_deactivate_actor() -> void:
 	if activated_actor \
-	and player_task_count < 2:
-		match current_game_state:
-			GAME_STATE.PLAYER_ACTOR_ACTIVATED:
-				SignalManager.on_object_selection_cleared.emit()
-				self.current_game_state = GAME_STATE.PLAYER_IDLE
-			GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
-				player_task_count -= 1
-				self.current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
+	and current_game_state == GAME_STATE.PLAYER_ACTOR_ACTIVATED \
+	and current_player_task_count != PLAYER_TASK_COUNT.SECOND:
+		# cant deactivate on second task
+		SignalManager.on_object_selection_cleared.emit()
+		self.current_game_state = GAME_STATE.PLAYER_IDLE
+
+
+func try_return_activated_actor_keymap() -> void:
+	match current_game_state:
+		GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
+			self.current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
 
 
 func start_player_task(task_type: Statics.PLAYER_TASK) -> void:
@@ -151,7 +160,7 @@ func start_player_task(task_type: Statics.PLAYER_TASK) -> void:
 
 func handle_player_actor_task_complete() -> void:
 	#  if player has another action, show player execution panel again. 
-	if player_task_count == 2:
+	if current_player_task_count == PLAYER_TASK_COUNT.SECOND:
 		# second task done, always return to idle
 		current_game_state = GAME_STATE.PLAYER_IDLE
 		remaining_actions -= 1
@@ -167,6 +176,5 @@ func handle_player_actor_task_complete() -> void:
 			Statics.PLAYER_TASK.MOVE:
 				SignalManager.on_show_player_task_two.emit(activated_actor)
 		
-		player_task_count = 2
+		current_player_task_count = PLAYER_TASK_COUNT.SECOND
 		current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
-				

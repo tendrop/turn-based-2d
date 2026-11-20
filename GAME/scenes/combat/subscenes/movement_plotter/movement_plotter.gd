@@ -150,7 +150,7 @@ func _on_try_remove_movement_pivot_point() -> void:
 		__disable_further_mvmt = false
 		%RayCast.position = __saved_line_coords[__saved_line_coords.size() - 1]
 	else:
-		GameStateManager.try_deactivate_actor()
+		GameStateManager.try_return_activated_actor_keymap()
 
 
 func _on_make_player_move() -> void:
