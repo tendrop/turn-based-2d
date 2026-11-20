@@ -21,17 +21,17 @@ agent_radius = 17.0
 [node name="PrimaryCombat" type="Node2D" unique_id=384078481]
 script = ExtResource("1_nf71s")
 
+[node name="CombatUi" parent="." unique_id=1977580954 instance=ExtResource("1_n7x52")]
+
 [node name="KeyHandler" parent="." unique_id=227509208 instance=ExtResource("1_kaxju")]
 
 [node name="EnemyTurnHandler" parent="." unique_id=145104329 instance=ExtResource("2_7eb1b")]
 
-[node name="MovementPlotter" parent="." unique_id=1240884466 instance=ExtResource("6_6m7m3")]
-
 [node name="DoodadManager" parent="." unique_id=2081016043 instance=ExtResource("5_d0tbs")]
 
-[node name="CombatUi" parent="." unique_id=1977580954 instance=ExtResource("1_n7x52")]
-
 [node name="CombatCamera" parent="." unique_id=1902928079 instance=ExtResource("2_1pw7v")]
+
+[node name="MovementPlotter" parent="." unique_id=1240884466 instance=ExtResource("6_6m7m3")]
 
 [node name="WorldNavigation" type="NavigationRegion2D" parent="." unique_id=1427679525]
 navigation_polygon = SubResource("NavigationPolygon_bm35l")
