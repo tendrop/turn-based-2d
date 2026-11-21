@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://by2t3twauswr2" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map.gd" id="1_1er2b"]
 [ext_resource type="PackedScene" uid="uid://frffsep4wyts" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map_button/keyboard_map_button.tscn" id="1_ge8jo"]
+[ext_resource type="StyleBox" uid="uid://ebo8b1prrinl" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/header_panel_sytle_box.tres" id="2_r83o5"]
 [ext_resource type="Script" uid="uid://tcp2nku68dly" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map_button/individual_buttons/q_button.gd" id="3_7aamf"]
 [ext_resource type="Script" uid="uid://8ds6y0mfaaef" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map_button/individual_buttons/w_button.gd" id="4_02r0s"]
 [ext_resource type="Script" uid="uid://brqvc4jy4xre1" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map_button/individual_buttons/e_button.gd" id="5_sjcl8"]
@@ -15,8 +16,9 @@
 [ext_resource type="Script" uid="uid://bqxgissp88hnh" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map_button/individual_buttons/c_button.gd" id="13_5kdwe"]
 [ext_resource type="Script" uid="uid://dggme2lsqojb" path="res://scenes/combat/subscenes/combat_ui/children_scenes/keyboard_map/keyboard_map_button/individual_buttons/v_button.gd" id="14_7vv6a"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vv6a"]
-bg_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvalm"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0.2509804, 0.2509804, 0.2509804, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r83o5"]
@@ -127,24 +129,26 @@ events = [SubResource("InputEventKey_4y0e7")]
 [node name="KeyboardMap" type="PanelContainer" unique_id=73729806]
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bvalm")
 script = ExtResource("1_1er2b")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1551338414]
 layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1683152864]
 layout_mode = 2
-theme_override_constants/separation = 2
+theme_override_constants/separation = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=743760441]
+[node name="HeaderPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=743760441]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_7vv6a")
+theme_override_styles/panel = ExtResource("2_r83o5")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer" unique_id=1705668777]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HeaderPanel" unique_id=1705668777]
 custom_minimum_size = Vector2(0, 21)
 layout_mode = 2
 theme_override_constants/margin_left = 4
@@ -152,7 +156,7 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="KeyboardSetupLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1059983843]
+[node name="KeyboardSetupLabel" type="Label" parent="MarginContainer/VBoxContainer/HeaderPanel/MarginContainer" unique_id=1059983843]
 unique_name_in_owner = true
 layout_mode = 2
 text = "CURRENT KEYBOARD SETTING"

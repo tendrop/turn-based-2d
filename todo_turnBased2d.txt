@@ -153,10 +153,11 @@ Style Box (for panels) resource
 * remove PlayerExecutionPanel
 
 * don't allow player to move if no destination points set
+	-- put message into log with yellow text (and eventually an error noise)r
 
 ~ get rid of on_actor_activated signal, just use gameState one
 
-* ACTOR MOVING needs to be it's own gamestate, so can disable/hide all keys when its occuring
+~ ACTOR MOVING needs to be it's own gamestate, so can disable/hide all keys when its occuring
 
 * if first action in actor activated, then can cancel out of movement. 
 	* if second action, then button is disabled
@@ -172,9 +173,8 @@ draw out keymaps for each phase
 
 
 UI DESIGN
-~ fake borders -- put in background panel that is white colored, remove borders from individual cells, space everything 1 px
-* titlebar above keys needs better display names, and show what task # is on
-	-- when activated, shift to indiglo
+~ fake borders -- put in background panel that is white colored, remove borders from individual cells, space everything 1 px~* titlebar above keys needs better display names, and show what task # is on
+	~-- when activated, shift to indiglo
 ~ needs to not shift around (alignment stuff is weird)
 
 ~ button should flash when hotkey is pressed
