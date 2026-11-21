@@ -38,7 +38,7 @@ bg_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
 border_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 
 [node name="KeyboardMapButton" type="Button" unique_id=1803774164]
-custom_minimum_size = Vector2(65, 45)
+custom_minimum_size = Vector2(70, 50)
 offset_right = 65.0
 offset_bottom = 45.0
 size_flags_vertical = 3

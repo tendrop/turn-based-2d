@@ -16,7 +16,7 @@ func _on_game_state_changed(new_state: GameStateManager.GAME_STATE) -> void:
 				self.disabled = true
 				%CurrentAction.text = ""
 			else:
-				%CurrentAction.text = "Cancel"
+				%CurrentAction.text = "Deactivate"
 				self.disabled = false
 		_:
 			%CurrentAction.text = ""

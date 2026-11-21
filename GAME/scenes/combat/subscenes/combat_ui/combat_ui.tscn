@@ -77,18 +77,17 @@ grow_vertical = 0
 [node name="PlayerMovementPanel" parent="MainUi" unique_id=171472155 instance=ExtResource("5_y6yq1")]
 visible = false
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -109.0
-offset_top = -116.0
-offset_right = 109.0
+offset_left = -120.5
+offset_right = 120.5
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
-offset_transform_position = Vector2(0, 16)
+offset_transform_enabled = true
 
 [node name="TurnBanner" type="Label" parent="MainUi" unique_id=410232327]
 unique_name_in_owner = true

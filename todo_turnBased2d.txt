@@ -145,14 +145,16 @@ Style Box (for panels) resource
 | THIS BRANCH TODO |
 ~ change the A and R in the font file
 
-* combine PlayerMovementPanel and MovementPlotter into a single scene
+~ combine PlayerMovementPanel and MovementPlotter into a single scene
 
 ~ player_task_count into an enum (NOT_ACTIVATED, FIRST, SECOND)
 	~ bug because counter is too easy to manipulate accidently
 
 * remove PlayerExecutionPanel
 
-* get rid of on_actor_activated signal, just use gameState one
+* don't allow player to move if no destination points set
+
+~ get rid of on_actor_activated signal, just use gameState one
 
 * ACTOR MOVING needs to be it's own gamestate, so can disable/hide all keys when its occuring
 

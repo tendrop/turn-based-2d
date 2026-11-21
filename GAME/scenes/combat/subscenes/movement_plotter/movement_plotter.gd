@@ -18,7 +18,7 @@ func _ready() -> void:
 	SignalManager.on_game_state_changed.connect(_on_game_state_changed)
 	SignalManager.on_world_left_clicked.connect(_on_world_left_clicked)
 	SignalManager.on_try_remove_movement_pivot_point.connect(_on_try_remove_movement_pivot_point)
-	SignalManager.on_start_player_movement_pressed.connect(_on_make_player_move)
+	#SignalManager.on_start_player_movement_pressed.connect(_on_make_player_move)
 	self.set_process(false)
 
 
@@ -114,6 +114,8 @@ func _on_world_left_clicked() -> void:
 func _on_game_state_changed(new_state: GameStateManager.GAME_STATE) -> void:
 	if new_state == GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
 		_on_start_player_movement_plotting(GameStateManager.activated_actor)
+	elif new_state == GameStateManager.GAME_STATE.PLAYER_MOVING:
+		_on_make_player_move()
 	elif __actor != null:
 		_on_stop_player_movement_plotting()
 

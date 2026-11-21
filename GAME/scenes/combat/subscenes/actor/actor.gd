@@ -7,7 +7,6 @@ var __current_actor_state: ACTOR_STATE = ACTOR_STATE.IDLE
 @export var display_name: String = "[Actor]"
 @export var owner_group: Statics.GROUPS = Statics.GROUPS.PLAYER_ACTORS
 
-#var __knockback_stop_distance: float
 
 var current_integrity: float = 1.2
 var max_movement_distance: float = 8.0

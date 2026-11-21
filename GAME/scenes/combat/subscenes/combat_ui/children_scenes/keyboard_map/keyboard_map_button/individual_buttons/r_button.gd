@@ -21,7 +21,8 @@ func _on_pressed() -> void:
 			GameStateManager.start_player_task(Statics.PLAYER_TASK.MOVE)
 		
 		GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
-			SignalManager.on_start_player_movement_pressed.emit()
+			# movement_plotter will hear this
+			GameStateManager.current_game_state = GameStateManager.GAME_STATE.PLAYER_MOVING
 		
 		_:
 			push_error("%s was pressed but did not have an action assigned")

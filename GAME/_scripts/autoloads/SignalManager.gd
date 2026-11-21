@@ -27,9 +27,9 @@ signal on_world_left_clicked()
 ## heard by MovementPlotter
 signal on_try_remove_movement_pivot_point()
 
-## emitted by r_button
-## heard by MovementPlotter
-signal on_start_player_movement_pressed()
+### emitted by r_button
+### heard by MovementPlotter
+#signal on_start_player_movement_pressed()
 
 
 ############## update CombatUI elements
@@ -54,9 +54,9 @@ signal on_object_selected(n: Node2D)
 ## heard by: 
 signal on_object_selection_cleared()
 
-## emitted by: Actor
-## heard by: GameStateManager
-signal on_actor_activated(a: Actor)
+### emitted by: Actor
+### heard by: GameStateManager
+#signal on_actor_activated(a: Actor)
 
 
 ## emitted by: lots
@@ -72,15 +72,16 @@ signal on_select_next_player_actor()
 ## heard by: PlayerMovementPanel
 signal on_update_player_movement_distance(dist: float)
 
-## emitted by: GameStateManager
-## heard by: KeyboardMap
-signal on_game_state_changed(new_state: GameStateManager.GAME_STATE)
 
 ############### DooDads
 signal on_move_hover_circle(visible: bool, global_loc: Vector2)
 
 
 ################ Actions
+
+## emitted by: GameStateManager
+## heard by: KeyboardMap
+signal on_game_state_changed(new_state: GameStateManager.GAME_STATE)
 
 signal on_make_movement_plot_marker_doodad(global_pos: Vector2)
 

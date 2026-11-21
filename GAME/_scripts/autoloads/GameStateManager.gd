@@ -4,6 +4,7 @@ enum GAME_STATE {
 	PLAYER_IDLE,  ## it's player's turn and they're not doing anything
 	PLAYER_ACTOR_ACTIVATED, ## PlayerExecutionPanel is shown to player so they can have an actor doing something
 	PLAYER_PLOTTING_MOVEMENT, ## it's player's turn and they're plotting out movement
+	PLAYER_MOVING,
 	ENEMY_TURN
 }
 
@@ -64,6 +65,9 @@ var current_game_state: GAME_STATE:
 				GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
 					pass
 				
+				GAME_STATE.PLAYER_MOVING:
+					pass
+				
 				GAME_STATE.ENEMY_TURN:
 					remaining_actions = max_actions
 					current_cycle += 1
@@ -82,6 +86,9 @@ var current_game_state: GAME_STATE:
 					pass
 				
 				GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
+					pass
+				
+				GAME_STATE.PLAYER_MOVING:
 					pass
 				
 				GAME_STATE.ENEMY_TURN:
@@ -130,9 +137,8 @@ func try_activate_actor(actor: Actor) -> void:
 	if activated_actor:
 		activated_actor.remove_activation_circle()
 	activated_actor = actor
-	current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
 	current_player_task_count = PLAYER_TASK_COUNT.FIRST
-	SignalManager.on_actor_activated.emit(actor)
+	current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
 
 
 func try_deactivate_actor() -> void:
