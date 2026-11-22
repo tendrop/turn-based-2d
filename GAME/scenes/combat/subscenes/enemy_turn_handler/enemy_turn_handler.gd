@@ -48,7 +48,7 @@ func _on_start_enemy_turn(number_of_actions: int) -> void:
 			SignalManager.on_print_message_to_log.emit(
 				"%s Task #%d: %s" % [
 					mob.display_name, task_count, Statics.ENEMY_TASK.keys()[task]
-				]
+				], Statics.MSG_TYPE.INFO
 			)
 
 			mob.do_task(task, target)

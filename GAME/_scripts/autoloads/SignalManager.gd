@@ -61,7 +61,7 @@ signal on_object_selection_cleared()
 
 ## emitted by: lots
 ## heard by: ScrollingLog (in CombatUi)
-signal on_print_message_to_log(msg: String)
+signal on_print_message_to_log(msg: String, msg_type: Statics.MSG_TYPE)
 
 ## emitted by: KeyHandler
 ## heard by: PlayerActorsTable
@@ -82,8 +82,12 @@ signal on_move_hover_circle(visible: bool, global_loc: Vector2)
 ## emitted by: GameStateManager
 ## heard by: KeyboardMap
 signal on_game_state_changed(new_state: GameStateManager.GAME_STATE)
-
 signal on_make_movement_plot_marker_doodad(global_pos: Vector2)
+
+## communication between GameStateManager and MovementPlotter
+signal on_query_can_move
+signal on_return_query_can_move(can_move: bool)
+
 
 ## EMITTED by: GameStateManager
 ## HEARD BY: EnemyTurnHandler

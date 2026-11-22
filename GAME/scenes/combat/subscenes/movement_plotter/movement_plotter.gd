@@ -18,7 +18,7 @@ func _ready() -> void:
 	SignalManager.on_game_state_changed.connect(_on_game_state_changed)
 	SignalManager.on_world_left_clicked.connect(_on_world_left_clicked)
 	SignalManager.on_try_remove_movement_pivot_point.connect(_on_try_remove_movement_pivot_point)
-	#SignalManager.on_start_player_movement_pressed.connect(_on_make_player_move)
+	SignalManager.on_query_can_move.connect(_on_query_can_move)
 	self.set_process(false)
 
 
@@ -53,6 +53,10 @@ func _draw() -> void:
 			2.0,
 			true
 		)
+
+
+func _on_query_can_move() -> void:
+	SignalManager.on_return_query_can_move.emit(__saved_line_coords.size() > 1)
 
 
 func _on_world_left_clicked() -> void:

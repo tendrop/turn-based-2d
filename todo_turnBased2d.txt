@@ -1,5 +1,7 @@
 
 | TODO 2D TURN BASED |
+-- Reclaimer 2828, from Deuteronomy 28:28 
+
 Brush size: 2
 Hardness: 75%
 Spacing: 15%
@@ -152,18 +154,22 @@ Style Box (for panels) resource
 
 * remove PlayerExecutionPanel
 
-* don't allow player to move if no destination points set
-	-- put message into log with yellow text (and eventually an error noise)r
+~ don't allow player to move if no destination points set
+	-- put message into log with yellow text (and eventually an error noise)?
+	-- will need a static enum for message type
+	-- messages prepend with >>
 
 ~ get rid of on_actor_activated signal, just use gameState one
 
 ~ ACTOR MOVING needs to be it's own gamestate, so can disable/hide all keys when its occuring
 
+
 * if first action in actor activated, then can cancel out of movement. 
 	* if second action, then button is disabled
 
-* activated actor button should be disabled unless an actor is currently selected	
 
+* activated actor button should be disabled unless an actor is currently selected	
+	-- or else call activate_next_actor
 
 * SignalManager.on_show_player_task_two (and one) is not needed
 	* but update titlebar above keymap with task number, make obvious

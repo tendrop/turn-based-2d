@@ -111,6 +111,7 @@ func _ready() -> void:
 	SignalManager.on_object_selected.connect(_on_object_selected)
 	SignalManager.on_object_selection_cleared.connect(_on_object_selection_cleared)
 	SignalManager.on_end_enemy_turn.connect(_on_end_enemy_turn)
+	SignalManager.on_return_query_can_move.connect(_on_return_query_can_move)
 	remaining_actions = max_actions
 
 
@@ -155,6 +156,17 @@ func try_return_activated_actor_keymap() -> void:
 		GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
 			self.current_game_state = GAME_STATE.PLAYER_ACTOR_ACTIVATED
 
+
+func try_start_player_move() -> void:
+	SignalManager.on_query_can_move.emit()
+func _on_return_query_can_move(can_move: bool) -> void:
+	if can_move:
+		current_game_state = GAME_STATE.PLAYER_MOVING
+	else:
+		SignalManager.on_print_message_to_log.emit(
+			"Please add at least one destination point before initiating movement",
+			Statics.MSG_TYPE.WARN
+		)
 
 func start_player_task(task_type: Statics.PLAYER_TASK) -> void:
 	__active_player_task = task_type

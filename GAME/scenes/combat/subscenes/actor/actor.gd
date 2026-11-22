@@ -164,7 +164,6 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			if GameStateManager.selected_actor == self:
 				activate_me()
 			else:
-				SignalManager.on_print_message_to_log.emit("%s clicked" % display_name)
 				SignalManager.on_object_selected.emit(self)
 
 

@@ -15,6 +15,10 @@ enum ENEMY_TASK {
 	MOVE
 }
 
+enum MSG_TYPE {
+	INFO,
+	WARN
+}
 
 enum GROUPS {
 	PLAYER_ACTORS,
