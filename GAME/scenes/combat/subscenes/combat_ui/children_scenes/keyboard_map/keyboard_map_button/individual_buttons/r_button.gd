@@ -5,13 +5,13 @@ func _on_game_state_changed(new_state: GameStateManager.GAME_STATE) -> void:
 	match new_state:
 		GameStateManager.GAME_STATE.PLAYER_ACTOR_ACTIVATED:
 			%CurrentAction.text = "Move"
-			self.disabled = false
+			toggle_enabled(true)
 		GameStateManager.GAME_STATE.PLAYER_PLOTTING_MOVEMENT:
 			%CurrentAction.text = "Commit\nMove"
-			self.disabled = false
+			toggle_enabled(true)
 		_:
 			%CurrentAction.text = ""
-			self.disabled = true
+			toggle_enabled(false)
 
 
 func _on_pressed() -> void:

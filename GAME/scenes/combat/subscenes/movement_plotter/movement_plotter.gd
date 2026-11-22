@@ -96,7 +96,10 @@ func _on_world_left_clicked() -> void:
 			var remaining_dist: float = __actor.max_movement_distance - __get_total_distance(true)
 			remaining_dist = snapped(remaining_dist, 0.1)
 			if remaining_dist == 0:
-				SignalManager.on_print_message_to_log.emit("Max Distance Exceeded; Cannot plot course.")
+				SignalManager.on_print_message_to_log.emit(
+					"Max Distance Exceeded; Cannot plot course.",
+					Statics.MSG_TYPE.WARN
+				)
 				return
 			
 			var remaining_pixels: float = remaining_dist * Statics.PIXELS_TO_UNITS_CONVERSION

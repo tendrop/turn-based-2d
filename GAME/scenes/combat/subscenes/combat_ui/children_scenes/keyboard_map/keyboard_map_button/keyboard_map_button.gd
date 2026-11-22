@@ -17,7 +17,16 @@ func _ready() -> void:
 
 func reset_to_default() -> void:
 	%CurrentAction.text = ""
-	self.disabled = true
+	toggle_enabled(false)
+
+
+func toggle_enabled(enabled: bool) -> void:
+	if enabled:
+		self.disabled = false
+		%CurrentAction.self_modulate = Color.WHITE
+	else:
+		self.disabled = true
+		%CurrentAction.self_modulate = Statics.ColorDict[Statics.COLORS.GRAY_33]
 
 
 func set_key_text(letter: String) -> void:

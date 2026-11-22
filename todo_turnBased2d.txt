@@ -145,6 +145,8 @@ Style Box (for panels) resource
 
 
 | THIS BRANCH TODO |
+* when button is deactivated, main text should be gray'd
+
 ~ change the A and R in the font file
 
 ~ combine PlayerMovementPanel and MovementPlotter into a single scene
@@ -162,10 +164,6 @@ Style Box (for panels) resource
 ~ get rid of on_actor_activated signal, just use gameState one
 
 ~ ACTOR MOVING needs to be it's own gamestate, so can disable/hide all keys when its occuring
-
-
-* if first action in actor activated, then can cancel out of movement. 
-	* if second action, then button is disabled
 
 
 * activated actor button should be disabled unless an actor is currently selected	

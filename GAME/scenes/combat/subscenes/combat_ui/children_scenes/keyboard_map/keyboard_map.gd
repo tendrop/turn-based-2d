@@ -23,7 +23,7 @@ func _on_game_state_changed(new_state: GameStateManager.GAME_STATE) -> void:
 			
 		GameStateManager.GAME_STATE.PLAYER_ACTOR_ACTIVATED:
 			%KeyboardSetupLabel.text = "%s: Select Actor Task (%d of 2)" % [
-				GameStateManager.selected_actor.display_name,
+				GameStateManager.activated_actor.display_name,
 				GameStateManager.current_player_task_count
 			]
 			__activation_header_colors()

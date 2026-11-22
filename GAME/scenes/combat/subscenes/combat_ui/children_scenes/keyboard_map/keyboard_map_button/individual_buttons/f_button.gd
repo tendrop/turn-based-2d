@@ -12,19 +12,19 @@ func _on_game_state_changed(new_state: GameStateManager.GAME_STATE) -> void:
 	match new_state:
 		GameStateManager.GAME_STATE.PLAYER_IDLE:
 			%CurrentAction.text = "Activate\nActor"
-			self.disabled = GameStateManager.selected_actor == null
+			toggle_enabled(GameStateManager.selected_actor != null)
 		_:
 			%CurrentAction.text = ""
-			self.disabled = true
+			toggle_enabled(false)
 
 
 func _on_object_selected(n: Node2D) -> void:
 	if GameStateManager.current_game_state == GameStateManager.GAME_STATE.PLAYER_IDLE:
-		self.disabled = not n is Actor
+		toggle_enabled(n is Actor)
 
 
 func _on_object_selection_cleared() -> void:
-	self.disabled = true
+	toggle_enabled(false)
 
 
 func _on_pressed() -> void:
